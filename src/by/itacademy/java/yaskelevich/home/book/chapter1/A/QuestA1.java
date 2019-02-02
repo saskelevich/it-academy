@@ -1,4 +1,4 @@
-package by.itacademy.java.yaskelevich.home.book.chapter1;
+package by.itacademy.java.yaskelevich.home.book.chapter1.A;
 
 public class QuestA1 {
 	public static void main(String[] args) {

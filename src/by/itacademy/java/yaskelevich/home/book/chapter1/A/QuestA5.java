@@ -1,4 +1,4 @@
-package by.itacademy.java.yaskelevich.home.book.chapter1;
+package by.itacademy.java.yaskelevich.home.book.chapter1.A;
 
 public class QuestA5 {
 	public static void main(String[] args) {
@@ -13,6 +13,6 @@ public class QuestA5 {
 			}
 			System.out.println("Сумма = " + summary);
 		}else
-			System.out.println("Don't write data");
+			System.out.println("Not write data");
 	}
 }

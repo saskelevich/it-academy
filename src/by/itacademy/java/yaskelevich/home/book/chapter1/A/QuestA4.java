@@ -1,11 +1,11 @@
-package by.itacademy.java.yaskelevich.home.book.chapter1;
+package by.itacademy.java.yaskelevich.home.book.chapter1.A;
 
 import java.util.Scanner;
 
 public class QuestA4 {
 	public static void main(String[] args) {
 
-		String PASSWORD = "Pa$$wOrD";
+		final String PASSWORD = "Pa$$wOrD";
 
 		Scanner in = new Scanner(System.in);
 

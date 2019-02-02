@@ -1,11 +1,11 @@
-package by.itacademy.java.yaskelevich.home.book.chapter1;
+package by.itacademy.java.yaskelevich.home.book.chapter1.A;
 
 import java.util.Random;
 
 public class QuestA3 {
 	public static void main(String[] args) {
 
-		byte LENGTH = 10;
+		final byte LENGTH = 10;
 
 		Random rand = new Random();
 
