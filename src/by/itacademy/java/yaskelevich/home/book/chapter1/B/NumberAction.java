@@ -95,24 +95,24 @@ public class NumberAction {
 //	index 5	
 
 	public void showBubbleSort(int mark) {
-		
+
 		int tmp;
 
 		for (int i = 0; i < array.length; i++) {
 			for (int y = 0; y < array.length; y++) {
-				if(mark == 0)
+				if (mark == 0)
 					if (Math.abs(array[i]) > Math.abs(array[y])) {
 						tmp = array[i];
 						array[i] = array[y];
 						array[y] = tmp;
 					}
-				if(mark == -1)
+				if (mark == -1)
 					if (array[i] < array[y]) {
 						tmp = array[i];
 						array[i] = array[y];
 						array[y] = tmp;
 					}
-				if(mark == 1)
+				if (mark == 1)
 					if (array[i] > array[y]) {
 						tmp = array[i];
 						array[i] = array[y];
@@ -149,19 +149,18 @@ public class NumberAction {
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //index 7
 
-	public void showMaxDevider( int[] numbers) {
+	public void showMaxDevider(int[] numbers) {
 
 		int[] devider = new int[numbers.length - 1];
 
-		for (int i = 0; i < devider.length; i++) 
-			devider[i] = gcd(numbers[i], numbers[i+1]);
-		
-		if(devider.length > 1)
+		for (int i = 0; i < devider.length; i++)
+			devider[i] = gcd(numbers[i], numbers[i + 1]);
+
+		if (devider.length > 1)
 			showMaxDevider(devider);
-		
-		if(devider.length == 1)
+
+		if (devider.length == 1)
 			System.out.println("\nMax devider = " + devider[0]);
-		
 
 	}
 
@@ -173,57 +172,96 @@ public class NumberAction {
 		}
 		return a;
 	}
-	
-	public void showMinMultiple( int[] numbers) {
-		
-		int[] multiple = new int[numbers.length-1];
-		
-		for( int i = 0; i < multiple.length; i++)
-			multiple[i] = lcm(numbers[i], numbers[i+1]);
-		
-		if(multiple.length > 1)
+
+	public void showMinMultiple(int[] numbers) {
+
+		int[] multiple = new int[numbers.length - 1];
+
+		for (int i = 0; i < multiple.length; i++)
+			multiple[i] = lcm(numbers[i], numbers[i + 1]);
+
+		if (multiple.length > 1)
 			showMinMultiple(multiple);
-		
-		if(multiple.length == 1)
+
+		if (multiple.length == 1)
 			System.out.println("\nMin multiple = " + multiple[0]);
 	}
-	
-	public int lcm( int a, int b) {
-		return (a*b)/gcd(a,b);
+
+	public int lcm(int a, int b) {
+		return (a * b) / gcd(a, b);
 	}
-	
+
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //	index 8
-	
+
 	public void showPrimeNumber() {
-		
+
 		System.out.print("\nPrime numbers: ");
-		
-		
-		for( int i = 0; i < array.length; i++) {
+
+		for (int i = 0; i < array.length; i++) {
 			boolean isPrime = true;
-			for(int y = 2; y < array[i]; y++) {
-				if((array[i]%y) == 0) {
+			for (int y = 2; y < array[i]; y++) {
+				if ((array[i] % y) == 0) {
 					isPrime = false;
 					break;
-				}
-				else
+				} else
 					continue;
 			}
-			if(isPrime && array[i] != 1)
+			if (isPrime && array[i] != 1)
 				System.out.print(array[i] + "; ");
 		}
 		System.out.println();
 	}
-	
+
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //	index 9 in method showBubbleSort
-	
+
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-//index 10 not understand
+//	index 10 & 11 not understand question
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//index 13
+
+	public void showPalindr() {
+		
+		int decimal = 0;
+		
+		for( int i = 0; i < array.length; i++) {
+			decimal = howManyNumb(array[i]);
+			decimal = getNumber(decimal);
+			decimal /= 2;
+		}
+		
+	}
+
+	public int howManyNumb(int numbers) {
+
+		int a = 1_000_000_000;
+		while (true) {
+			if ((numbers / a) >= 1)
+				return a;
+			a /= 10;
+		}
+	}
 	
-	
+	public int getNumber( int a ) {
+		
+		int b = 0;
+		while( a > 10) {
+			a /= 10;
+			b++;
+		}
+		return b;
+	}
+
 }
+
+
+
+
+
+
+
 
 
 
