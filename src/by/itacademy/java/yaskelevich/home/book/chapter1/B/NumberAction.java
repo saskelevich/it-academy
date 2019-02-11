@@ -19,7 +19,6 @@ public class NumberAction {
 
 		System.out.print("\nEven number: ");
 		for (byte i = 0; i < array.length; i++) {
-//			if( array[i] != 0)	
 			if ((array[i] % 2) == 0)
 				System.out.print(array[i] + "; ");
 		}
