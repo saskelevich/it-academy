@@ -10,7 +10,7 @@ public class Test3 {
 		BufferedReader buffRead = new BufferedReader(new InputStreamReader(System.in));
 //		String line = buffRead.readLine();
 		
-		int count = Integer.parseInt(buffRead.read());
+		int count = Integer.parseInt(null, buffRead.read());
 	
 	}
 }
