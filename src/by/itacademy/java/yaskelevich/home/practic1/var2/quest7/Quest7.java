@@ -17,6 +17,7 @@ public class Quest7 {
             if (isPrime(args[i]))
                 System.out.print(args[i] + "; ");
         }
+        System.out.println();
     }
 
     private boolean isPrime(final String args) {

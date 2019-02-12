@@ -36,7 +36,7 @@ public class Quest1 {
     public void show(final String[] args) {
         getValue(args[0]);
         search(args);
-        System.out.println("Max = " + max + " (length = " + max.length() + ")\n" + "Max = " + min + " (length = "
+        System.out.println("Max = " + max + " (length = " + max.length() + ")\n" + "Min = " + min + " (length = "
                 + min.length() + ")");
     }
 }

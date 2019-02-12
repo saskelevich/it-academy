@@ -17,7 +17,7 @@ public class Quest3 {
         for (int i = 0; i < args.length; i++) {
             summEven(convert(Integer.parseInt(args[i]), args[i].length()));
         }
-        System.out.println(even);
+        System.out.println("Have only even numbers: " + even);
     }
 
     public int[] convert(int num, int length) {

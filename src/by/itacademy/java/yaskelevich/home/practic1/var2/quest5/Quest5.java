@@ -27,8 +27,9 @@ public class Quest5 {
     }
 
     void print(final String[] args, final int i, final boolean isPrime) {
-        if (isPrime && Integer.parseInt(args[i]) != 1 && Integer.parseInt(args[i]) != 0)
+        if (isPrime && Integer.parseInt(args[i]) != 1 && Integer.parseInt(args[i]) != 0) {
             System.out.print(args[i] + "; ");
+        }
     }
 
     private boolean isTrue(final String[] args, final int i, final boolean isPrime, final int y) {

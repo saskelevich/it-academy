@@ -12,7 +12,8 @@ public class Quest4 {
 
         System.out.print("\nDevided by three and five: ");
         for (int i = 0; i < args.length; i++) {
-            if (((Integer.parseInt(args[i]) % 3) == 0) && ((Integer.parseInt(args[i]) % 5) == 0)) {
+            if (((Integer.parseInt(args[i]) % 3) == 0) && ((Integer.parseInt(args[i]) % 5) == 0)
+                    && (Integer.parseInt(args[i]) != 0)) {
                 System.out.print(args[i] + "; ");
             }
         }

@@ -14,7 +14,7 @@ public class Running {
     public static void main(final String[] args) {
 
         final Array ar = new Array();
-
+        ar.start();
         final Quest1 ob1 = new Quest1();
         final Quest2 ob2 = new Quest2(ar.getArray());
         final Quest3 ob3 = new Quest3();

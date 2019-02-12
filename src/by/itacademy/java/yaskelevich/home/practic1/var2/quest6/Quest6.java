@@ -14,7 +14,7 @@ public class Quest6 {
     private final Quest3 ob = new Quest3();
 
     public void show(final String[] args) {
-        System.out.print("First number(example 123): " + check(args));
+        System.out.print("\nNumber go up(example 123): " + check(args));
     }
 
     private String check(final String[] args) {

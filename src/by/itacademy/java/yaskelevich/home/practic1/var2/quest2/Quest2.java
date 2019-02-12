@@ -29,8 +29,9 @@ public class Quest2 {
     public void showLess(final String[] args) {
         System.out.print("Less: ");
         for (int i = 0; i < args.length; i++) {
-            if (args[i].length() < this.aver)
+            if (args[i].length() < this.aver) {
                 System.out.print(args[i] + ": ");
+            }
         }
         System.out.println();
     }
@@ -38,8 +39,9 @@ public class Quest2 {
     public void showLarger(final String[] args) {
         System.out.print("Larger: ");
         for (int i = 0; i < args.length; i++) {
-            if (args[i].length() > this.aver)
+            if (args[i].length() > this.aver) {
                 System.out.print(args[i] + ": ");
+            }
         }
         System.out.println();
     }
