@@ -1,5 +1,9 @@
 package by.itacademy.java.yaskelevich.home.practical1.qyeation4;
-
+/**
+ * вывести на консоль числа, которые делятся на 3 или на 5
+ * @author ys
+ *
+ */
 public class Quest4 {
 
 	public void showThreeFive(String[] args) {

@@ -1,8 +1,15 @@
 package by.itacademy.java.yaskelevich.home.practical1.quest1;
 
+/**
+ * вывести на консоль самое короткое и самое длинное число, а также их длину.
+ * если чисел с одинаковой длиной несколько - вывести первое по очереди
+ * 
+ * @author ys
+ *
+ */
 public class Length {
 	private String min, max;
-	
+
 	private void isMax(String args) {
 		if (this.max.length() < args.length()) {
 			this.max = args;
@@ -25,11 +32,11 @@ public class Length {
 	private void getValue(String args) {
 		this.max = this.min = args;
 	}
-	
+
 	public void show(String[] args) {
 		getValue(args[0]);
 		search(args);
-		System.out.println(
-				"Max = " + max + " (length = " + max.length() + ")\n" + "Max = " + min + " (length = " + min.length() + ")");
+		System.out.println("Max = " + max + " (length = " + max.length() + ")\n" + "Max = " + min + " (length = "
+				+ min.length() + ")");
 	}
 }
