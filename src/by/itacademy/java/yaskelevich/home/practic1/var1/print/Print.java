@@ -1,6 +1,6 @@
-package by.itacademy.java.yaskelevich.home.practical0.print;
+package by.itacademy.java.yaskelevich.home.practic1.var1.print;
 
-import by.itacademy.java.yaskelevich.home.practical0.in.InputHandler;
+import by.itacademy.java.yaskelevich.home.practic1.var1.in.InputHandler;
 
 public class Print {
 
