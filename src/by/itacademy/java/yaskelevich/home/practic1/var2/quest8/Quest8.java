@@ -1,24 +1,20 @@
 package by.itacademy.java.yaskelevich.home.practic1.var2.quest8;
 
-import by.itacademy.java.yaskelevich.home.practical1.qustion3.Quest3;
+import by.itacademy.java.yaskelevich.home.practic1.var2.quest3.Quest3;
 
-/**
- * вывести на консоль первое число-палиндром (одинаково читающееся в обоих
- * направлениях. Например, число 404)
- * 
- * @author ys
- *
- */
+//вывести на консоль первое число-палиндром (одинаково читающееся в обоих направлениях.
+//Например, число 404)
 public class Quest8 {
 
-    private final int INDEX = -1;
+    private static final int INDEX = -1;
     private final Quest3 ob = new Quest3();
 
     public void show(final String[] args) {
         System.out.print("Palindrom numbers: ");
         for (int i = 0; i < args.length; i++) {
-            if (isEquals(args[i]))
+            if (isEquals(args[i])) {
                 System.out.print(args[i] + "; ");
+            }
         }
         System.out.println();
     }
@@ -29,11 +25,13 @@ public class Quest8 {
 
     private boolean isEquals(final String args) {
         final int[] array = conv(args);
-        if (!isDigit(array))
+        if (!isDigit(array)) {
             return false;
+        }
         for (int i = 0; i < (args.length() / 2); i++) {
-            if (getBegNum(array, i) != getLastNum(array, i))
+            if (getBegNum(array, i) != getLastNum(array, i)) {
                 return false;
+            }
         }
         return true;
     }

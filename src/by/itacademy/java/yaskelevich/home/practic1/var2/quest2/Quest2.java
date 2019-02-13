@@ -1,14 +1,9 @@
 package by.itacademy.java.yaskelevich.home.practic1.var2.quest2;
 
-/**
- * вывести на консоль те числа, длина которых меньше (больше) средней, а также
- * длину
- * 
- * @author ys
- *
- */
+// вывести на консоль те числа, длина которых меньше (больше) средней, а также
+// длину
 public class Quest2 {
-    private final double aver;
+    private final int aver;
 
     public Quest2(final String[] args) {
         this.aver = average(args);
@@ -30,7 +25,7 @@ public class Quest2 {
         System.out.print("Less: ");
         for (int i = 0; i < args.length; i++) {
             if (args[i].length() < this.aver) {
-                System.out.print(args[i] + ": ");
+                System.out.print(args[i] + "(" + args[i].length() + "): ");
             }
         }
         System.out.println();
@@ -40,9 +35,13 @@ public class Quest2 {
         System.out.print("Larger: ");
         for (int i = 0; i < args.length; i++) {
             if (args[i].length() > this.aver) {
-                System.out.print(args[i] + ": ");
+                System.out.print(args[i] + "(" + args[i].length() + "): ");
             }
         }
         System.out.println();
+    }
+
+    public void showAverage() {
+        System.out.println("Average = " + getAverage() + "\n");
     }
 }

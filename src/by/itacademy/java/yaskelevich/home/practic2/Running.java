@@ -1,6 +1,6 @@
-package by.itacademy.java.yaskelevich.home.practical2;
+package by.itacademy.java.yaskelevich.home.practic2;
 
-import by.itacademy.java.yaskelevich.home.practical2.print.Print;
+import by.itacademy.java.yaskelevich.home.practic2.print.Print;
 
 public final class Running {
     public static void main(final String[] args) {

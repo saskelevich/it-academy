@@ -1,12 +1,7 @@
 package by.itacademy.java.yaskelevich.home.practic1.var2.quest1;
 
-/**
- * вывести на консоль самое короткое и самое длинное число, а также их длину.
- * если чисел с одинаковой длиной несколько - вывести первое по очереди
- * 
- * @author ys
- *
- */
+//вывести на консоль самое короткое и самое длинное число, а также их длину.
+//если чисел с одинаковой длиной несколько - вывести первое по очереди
 public class Quest1 {
     private String min, max;
 
@@ -30,13 +25,15 @@ public class Quest1 {
     }
 
     private void getValue(final String args) {
-        this.max = this.min = args;
+        this.min = args;
+        this.max = this.min;
     }
 
     public void show(final String[] args) {
         getValue(args[0]);
         search(args);
-        System.out.println("Max = " + max + " (length = " + max.length() + ")\n" + "Min = " + min + " (length = "
-                + min.length() + ")");
+        System.out.println("Max length = " + max + " (length = " + max.length() + ")\nMin length= "
+                + min + " (length = " + min.length() + ")");
+        System.out.println();
     }
 }

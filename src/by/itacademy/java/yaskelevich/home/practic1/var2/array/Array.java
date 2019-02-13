@@ -9,13 +9,13 @@ public class Array {
     private final Scanner in = new Scanner(System.in);
 
     public void start() {
-        System.out.println("Wrute array length: ");
-        setArray();
+        System.out.println("Write length youre array: ");
+        setLength();
         System.out.println("Write array: ");
         setNumber();
     }
 
-    private void setArray() {
+    private void setLength() {
         length = Integer.parseInt(in.next());
         array = new String[length];
     }

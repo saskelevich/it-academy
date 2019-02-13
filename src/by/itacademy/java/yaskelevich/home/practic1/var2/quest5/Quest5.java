@@ -1,16 +1,9 @@
 package by.itacademy.java.yaskelevich.home.practic1.var2.quest5;
 
-/**
- * вывести на консоль простые числа (делятся без остатка только на 1 и само на
- * себя)
- * 
- * @author ys
- *
- */
+//вывести на консоль простые числа (делятся без остатка только на 1 и само на себя)
 public class Quest5 {
 
     public void showPrimeNumber(final String[] args) {
-
         System.out.print("\nPrime numbers: ");
         check(args);
         System.out.println();
@@ -35,8 +28,9 @@ public class Quest5 {
     private boolean isTrue(final String[] args, final int i, final boolean isPrime, final int y) {
         if ((Integer.parseInt(args[i]) % y) == 0) {
             return false;
-        } else
+        } else {
             return isPrime;
+        }
     }
 
 }
