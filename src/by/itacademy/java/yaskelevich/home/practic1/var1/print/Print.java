@@ -4,8 +4,8 @@ import by.itacademy.java.yaskelevich.home.practic1.var1.in.InputHandler;
 
 public class Print {
 
-    private static final String[] MONTH = {"January", "February", "March", "April", "May",
-            "June", "July", "August", "September", "October", "November", "December"};
+    private static final String[] MONTH = {"January", "February", "March", "April", "May", "June",
+            "July", "August", "September", "October", "November", "December"};
     private static final int ONE = -1;
 
     private final InputHandler ob = new InputHandler();
@@ -20,8 +20,7 @@ public class Print {
         if (num > 0) {
             System.out.println("You're month is: " + MONTH[num + ONE]);
         } else {
-            System.out.println(
-                    "\nIts not a number ,ore number is not valid.\nTry again.\n");
+            System.out.println("\nIts not a number ,ore number is not valid.\nTry again.\n");
             start();
         }
     }

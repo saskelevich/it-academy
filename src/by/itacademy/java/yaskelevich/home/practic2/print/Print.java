@@ -11,7 +11,8 @@ public class Print {
 
     public void start() {
         System.out.println(
-                "You are must write two numbers.\nFirst numbers equals max numbers in matrix.\nSecond number equals length matrix");
+                "You are must write two numbers.\nFirst numbers equals max numbers in matrix."
+                        + "\nSecond number equals length matrix");
         System.out.print("Write first number: ");
         setMaxNum();
         System.out.print("Write seconds number: ");

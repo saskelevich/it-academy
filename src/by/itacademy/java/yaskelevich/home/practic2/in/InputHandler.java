@@ -6,7 +6,7 @@ import by.itacademy.java.yaskelevich.home.practic2.matrix.Matrix;
 
 public class InputHandler {
 
-    private final String YES[] = {"y", "Y"};
+    private static final String[] YES = {"y", "Y"};
 
     private final Scanner in = new Scanner(System.in);
     private final Matrix mat = new Matrix();
@@ -20,9 +20,11 @@ public class InputHandler {
     }
 
     public boolean ask() {
-        if (answer(in.next())) return true;
-        else
+        if (answer(in.next())) {
+            return true;
+        } else {
             return false;
+        }
     }
 
     public int[][] show() {
@@ -30,8 +32,11 @@ public class InputHandler {
     }
 
     public boolean answer(final String str) {
-        for (int i = 0; i < YES.length; i++)
-            if (YES[i].equals(str)) return true;
+        for (int i = 0; i < YES.length; i++) {
+            if (YES[i].equals(str)) {
+                return true;
+            }
+        }
         return false;
     }
 }
