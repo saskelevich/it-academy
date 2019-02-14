@@ -1,6 +1,6 @@
-package by.itacademy.java.yaskelevich.home.practic2;
+package by.itacademy.java.yaskelevich.home.practic2.var1;
 
-import by.itacademy.java.yaskelevich.home.practic2.print.Print;
+import by.itacademy.java.yaskelevich.home.practic2.var1.inout.Print;
 
 public final class Running {
 

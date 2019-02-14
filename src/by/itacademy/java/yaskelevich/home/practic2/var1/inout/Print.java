@@ -1,12 +1,8 @@
-package by.itacademy.java.yaskelevich.home.practic2.print;
-
-import java.util.Scanner;
-
-import by.itacademy.java.yaskelevich.home.practic2.in.InputHandler;
+package by.itacademy.java.yaskelevich.home.practic2.var1.inout;
 
 public class Print {
 
-    private final Scanner in = new Scanner(System.in);
+//    private final Scanner in = new Scanner(System.in);
     private final InputHandler inHand = new InputHandler();
 
     public void start() {
@@ -17,21 +13,16 @@ public class Print {
         setMaxNum();
         System.out.print("Write seconds number: ");
         setLength();
-        System.out.print("Show you'r matrix('y' or 'Y' to show)?");
-        if (inHand.ask()) {
-            showMatrix(inHand.show());
-        } else {
-            System.out.println("Exit.");
-            return;
-        }
+        System.out.print("You're have matrix:");
+        showMatrix(inHand.show());
     }
 
     private void setMaxNum() {
-        inHand.setMaxNum(Integer.parseInt(in.next()));
+        inHand.setMaxNum();
     }
 
     private void setLength() {
-        inHand.setLength(Integer.parseInt(in.next()));
+        inHand.setLength();
     }
 
     private void showMatrix(final int[][] matrix) {
@@ -41,5 +32,6 @@ public class Print {
                 System.out.print(matrix[i][y] + " ");
             }
         }
+        System.out.println();
     }
 }

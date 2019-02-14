@@ -1,4 +1,4 @@
-package by.itacademy.java.yaskelevich.home.practic2.matrix;
+package by.itacademy.java.yaskelevich.home.practic2.var1.matrix;
 
 import java.util.Random;
 
@@ -15,7 +15,9 @@ public class Matrix {
     }
 
     public int[][] writeMatrix() {
+
         final int[][] array = new int[length][length];
+
         for (int i = 0; i < array.length; i++) {
             for (int y = 0; y < array[i].length; y++) {
                 array[i][y] = rand.nextInt(max);
