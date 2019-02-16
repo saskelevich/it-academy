@@ -1,11 +1,11 @@
 package by.itacademy.java.yaskelevich.home.practic1.var1;
 
-import by.itacademy.java.yaskelevich.home.practic1.var1.print.Print;
+import by.itacademy.java.yaskelevich.home.practic1.var1.inout.Output;
 
 public class Running {
     public static void main(final String[] args) {
 
-        final Print ob = new Print();
+        final Output ob = new Output();
         ob.start();
     }
 }

@@ -12,5 +12,9 @@ public class StringPool {
         final Integer i = new Integer("3");
         final Integer ii = new Integer('3');
         final Integer iii = new Integer(3);
+        /**
+         * @Deprecated(since="9") public Integer(String s) throws NumberFormatException { this.value
+         *                        = parseInt(s, 10); }
+         */
     }
 }

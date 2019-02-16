@@ -1,26 +1,26 @@
 package by.itacademy.java.yaskelevich.home.practic1.var2;
 
 import by.itacademy.java.yaskelevich.home.practic1.var2.array.Array;
-import by.itacademy.java.yaskelevich.home.practic1.var2.quest1.Quest1;
-import by.itacademy.java.yaskelevich.home.practic1.var2.quest2.Quest2;
-import by.itacademy.java.yaskelevich.home.practic1.var2.quest3.Quest3;
-import by.itacademy.java.yaskelevich.home.practic1.var2.quest4.Quest4;
-import by.itacademy.java.yaskelevich.home.practic1.var2.quest5.Quest5;
-import by.itacademy.java.yaskelevich.home.practic1.var2.quest6.Quest6;
-import by.itacademy.java.yaskelevich.home.practic1.var2.quest8.Quest8;
+import by.itacademy.java.yaskelevich.home.practic1.var2.task1.Task1;
+import by.itacademy.java.yaskelevich.home.practic1.var2.task2.Task2;
+import by.itacademy.java.yaskelevich.home.practic1.var2.task3.Task3;
+import by.itacademy.java.yaskelevich.home.practic1.var2.task4.Task4;
+import by.itacademy.java.yaskelevich.home.practic1.var2.task5.Task5;
+import by.itacademy.java.yaskelevich.home.practic1.var2.task6.Task6;
+import by.itacademy.java.yaskelevich.home.practic1.var2.task8.Task8;
 
 public class Running {
     public static void main(final String[] args) {
 
         final Array ar = new Array();
         ar.start();
-        final Quest1 ob1 = new Quest1();
-        final Quest2 ob2 = new Quest2(ar.getArray());
-        final Quest3 ob3 = new Quest3();
-        final Quest4 ob4 = new Quest4();
-        final Quest5 ob5 = new Quest5();
-        final Quest6 ob6 = new Quest6();
-        final Quest8 ob8 = new Quest8();
+        final Task1 ob1 = new Task1();
+        final Task2 ob2 = new Task2(ar.getArray());
+        final Task3 ob3 = new Task3();
+        final Task4 ob4 = new Task4();
+        final Task5 ob5 = new Task5();
+        final Task6 ob6 = new Task6();
+        final Task8 ob8 = new Task8();
 
         ob1.show(ar.getArray());
         ob2.showLarger(ar.getArray());
