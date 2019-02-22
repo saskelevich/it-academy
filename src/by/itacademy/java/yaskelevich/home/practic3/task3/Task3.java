@@ -1,63 +1,44 @@
 package by.itacademy.java.yaskelevich.home.practic3.task3;
 
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.FileReader;
-import java.io.FileWriter;
 import java.io.IOException;
+
+import by.itacademy.java.yaskelevich.home.practic3.url.ReadURL;
 
 //3. Напечатать без повторения слова текста,
 //у которых первая и последняя буквы совпадают.
 public class Task3 {
-    private BufferedWriter writer;
-    private BufferedReader reader;
-    private final String tmp = "src/by/itacademy/java/yaskelevich/home/practic3/task3/txt/tmp.txt";
-    private int character;
-    private final String filePathOut;
-    private final String filePathIn;
-    private String str;
+    private final String text;
 
-    public Task3(final String filePathIn, final String filePathOut) throws IOException {
-        this.reader = new BufferedReader(new FileReader(filePathIn));
-        this.writer = new BufferedWriter(new FileWriter(tmp));
-        this.filePathIn = filePathIn;
-        this.filePathOut = filePathOut;
+    public Task3(final String url) throws IOException {
+        this.text = ReadURL.readFromUrl(url);
     }
 
     public void isWord() throws IOException {
-        while ((character = reader.read()) != -1) {
-            if (Character.isLetter(character)) {
-                writer.write((char) character);
-            } else {
-                writer.newLine();
-            }
-        }
-        writer.close();
-        writeEquals();
+        String[] tmp;
+        tmp = text.split("\\W+");
+        writeEquals(tmp);
     }
 
-    private void writeEquals() throws IOException {
-        this.reader = new BufferedReader(new FileReader(tmp));
-        this.writer = new BufferedWriter(new FileWriter(filePathOut));
-        while (reader.ready()) {
-            str = reader.readLine();
-            if (str.length() > 1) {
-                if (str.charAt(0) == str.charAt(str.length() - 1)) {
-                    writer.flush();
-                    if (isHave(str)) {
-                        writer.write(str);
-                        writer.newLine();
-                    }
-                }
+    private void writeEquals(final String[] tmp) throws IOException {
+        for (int i = 0; i < tmp.length; i++) {
+            if (checkLength(tmp, i) && equalsLastAndFirst(tmp, i) && isFirstTime(tmp, i)) {
+                System.out.println(tmp[i]);
             }
         }
-        writer.close();
+        System.out.println();
     }
 
-    private boolean isHave(final String str) throws IOException {
-        final BufferedReader reader = new BufferedReader(new FileReader(filePathOut));
-        while (reader.ready()) {
-            if (str.equals(reader.readLine())) {
+    private boolean checkLength(final String[] tmp, final int index) {
+        return (tmp[index].length() > 1);
+    }
+
+    private boolean equalsLastAndFirst(final String[] tmp, final int index) {
+        return (tmp[index].charAt(0) == tmp[index].charAt(tmp[index].length() - 1));
+    }
+
+    private boolean isFirstTime(final String[] tmp, final int index) {
+        for (int i = 0; i < index - 1; i++) {
+            if (tmp[index].equals(tmp[i])) {
                 return false;
             }
         }

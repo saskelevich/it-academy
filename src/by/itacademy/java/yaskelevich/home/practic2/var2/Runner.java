@@ -10,7 +10,7 @@ import by.itacademy.java.yaskelevich.home.practic2.var2.task5.Task5;
 import by.itacademy.java.yaskelevich.home.practic2.var2.task6.Task6;
 import by.itacademy.java.yaskelevich.home.practic2.var2.task7.Task7;
 
-public class Running {
+public class Runner {
     public static void main(final String[] args) {
 
         final Matrix matrix = new Matrix();

@@ -1,10 +1,9 @@
 package by.itacademy.java.yaskelevich.home.practic3.task2;
 
-public class Array {
+public class ArrayChar {
     private static final int ONE = 1;
     private static final int ZERO = 0;
     private final int[][] array = new int[128][2];
-//    private int index;
     private int getIndex = -1;
     private int setIndex = 0;
 
@@ -19,7 +18,7 @@ public class Array {
         ++setIndex;
     }
 
-    public boolean isNewChar(final int character) {
+    public boolean checkIsNew(final int character) {
         for (int i = 0; i < setIndex; i++) {
             if (array[i][ZERO] == character) {
                 ++array[i][ONE];
@@ -29,10 +28,21 @@ public class Array {
         return true;
     }
 
-    public void howMany() {
+    public void showHowMany() {
+        System.out.println();
         for (int i = 0; i < setIndex; i++) {
             System.out.printf("char \'%s\' = %d\n", (char) array[i][ZERO], array[i][ONE]);
         }
+    }
+
+    public void showPutChar(final int character) {
+        for (int i = 0; i < array.length; i++) {
+            if (array[i][ZERO] == character) {
+                System.out.printf("You'r character %s = %d;\n", (char) array[i][ZERO],
+                        array[i][ONE]);
+            }
+        }
+        System.out.println();
     }
 
     public void showMaxChar() {
@@ -45,7 +55,7 @@ public class Array {
 
             }
         }
-        System.out.printf("\nmax is: \'%s\' = %d;\n", (char) array[mark][ZERO], array[mark][ONE]);
+        System.out.printf("\nmax is: \'%s\' = %d;\n\n", (char) array[mark][ZERO], array[mark][ONE]);
     }
 
     public int getIndex() {

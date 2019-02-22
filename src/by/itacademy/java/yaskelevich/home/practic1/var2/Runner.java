@@ -9,7 +9,7 @@ import by.itacademy.java.yaskelevich.home.practic1.var2.task5.Task5;
 import by.itacademy.java.yaskelevich.home.practic1.var2.task6.Task6;
 import by.itacademy.java.yaskelevich.home.practic1.var2.task8.Task8;
 
-public class Running {
+public class Runner {
     public static void main(final String[] args) {
 
         final Array ar = new Array();

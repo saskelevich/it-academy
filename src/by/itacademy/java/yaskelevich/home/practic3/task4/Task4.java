@@ -1,83 +1,56 @@
 package by.itacademy.java.yaskelevich.home.practic3.task4;
 
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.FileReader;
-import java.io.FileWriter;
 import java.io.IOException;
 
+import by.itacademy.java.yaskelevich.home.practic3.url.ReadURL;
+
+//4. В тексте найти и напечатать все слова максимальной и все слова минимальной длины.
 public class Task4 {
-    private BufferedWriter writer;
-    private BufferedReader reader;
-    private final String tmp = "src/by/itacademy/java/yaskelevich/home/practic3/task4/txt/tmp.txt";
-    private int character;
-    private final String filePathOut;
-    private final String filePathIn;
-    private String str;
-    private int max = 1;
-    private int min = 1;
 
-    public Task4(final String filePathIn, final String filePathOut) throws IOException {
-        this.reader = new BufferedReader(new FileReader(filePathIn));
-        this.writer = new BufferedWriter(new FileWriter(tmp));
-        this.filePathIn = filePathIn;
-        this.filePathOut = filePathOut;
+    private final String text;
+
+    public Task4(final String url) throws IOException {
+        this.text = ReadURL.readFromUrl(url);
     }
 
-    public void isWord() throws IOException {
-        while ((character = reader.read()) != -1) {
-            if (Character.isLetter(character)) {
-                writer.write((char) character);
-            } else {
-                writer.newLine();
+    public void isMaxMin() throws IOException {
+        final String[] tmp = text.split("\\W+");
+        searchMaxMin(tmp);
+    }
+
+    private void searchMaxMin(final String[] tmp) throws IOException {
+        int max = tmp[0].length();
+        int min = tmp[0].length();
+        for (int i = 0; i < tmp.length; i++) {
+            max = isMax(tmp, max, i);
+            min = isMin(tmp, min, i);
+        }
+        show(tmp, max, "Max");
+        show(tmp, min, "Min");
+    }
+
+    private int isMin(final String[] tmp, final int min, final int index) {
+        if ((tmp[index].length() < min) && (tmp[index].matches("\\b\\w+\\b"))) {
+            return tmp[index].length();
+        }
+        return min;
+    }
+
+    private int isMax(final String[] tmp, final int max, final int index) {
+        if ((tmp[index].length() > max) && (tmp[index].matches("\\b\\w+\\b"))) {
+            return tmp[index].length();
+        }
+        return max;
+    }
+
+    private void show(final String[] tmp, final int index, final String description) {
+        System.out.printf("%s length:\n", description);
+        for (final String string : tmp) {
+            if ((string.length() == index) && (string.matches("\\b\\w+\\b"))) {
+                System.out.println(string);
             }
         }
-        writer.close();
-        searchMaxMin();
-        writeMax();
+        System.out.println();
     }
 
-    private void searchMaxMin() throws IOException {
-        this.reader = new BufferedReader(new FileReader(tmp));
-        while (reader.ready()) {
-            str = reader.readLine();
-            if (str.length() - 1 > this.max) {
-                this.max = str.length();
-            }
-            if (str.length() < this.min) {
-                this.min = str.length();
-            }
-        }
-        reader.close();
-    }
-
-    private void writeMax() throws IOException {
-        this.writer = new BufferedWriter(new FileWriter(filePathOut));
-        this.reader = new BufferedReader(new FileReader(tmp));
-        writer.write("Max:\n");
-        while (reader.ready()) {
-            str = reader.readLine();
-            if (str.length() == this.max) {
-                writer.write(str);
-                writer.newLine();
-            }
-        }
-        reader.close();
-        writer.flush();
-        writeMin();
-    }
-
-    private void writeMin() throws IOException {
-        this.reader = new BufferedReader(new FileReader(tmp));
-        writer.write("#\n#\nMin:\n#\n#\n");
-        while (reader.ready()) {
-            str = reader.readLine();
-            if (str.length() == this.min) {
-                writer.write(str);
-                writer.newLine();
-            }
-        }
-        reader.close();
-        writer.close();
-    }
 }
