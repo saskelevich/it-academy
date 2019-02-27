@@ -1,51 +1,62 @@
 package by.itacademy.java.yaskelevich.home.practic4.task1;
 
 public class Text extends Sentence {
-    private String text;
-    private String title;
+    private Sentence[] text;
+    private Word title;
 
     public Text() {
-        // TODO Auto-generated constructor stub
     }
 
-    public Text(final String word, final String sentence, final String text, final String title) {
-        super(word, sentence);
+    public Text(final Sentence[] text, final Word title) {
         this.text = text;
         this.title = title;
     }
 
     @Override
     public void show() {
-//        super.show();
-        System.out.println(this.text);
+        for (final Sentence sentence : text) {
+            sentence.show();
+        }
     }
 
-    @Override
-    public void add(final String text) {
-        StringBuilder tmp = new StringBuilder(this.text);
-        tmp = tmp.append(text);
-        this.text = tmp.toString();
+    public void addText(final Sentence[] text) {
+        final Sentence[] tmp = new Sentence[this.text.length + text.length];
+        for (int i = 0; i < this.text.length; i++) {
+            for (int j = 0; j < text.length; j++) {
+                tmp[i] = this.text[i];
+                tmp[this.text.length + j] = text[j];
+            }
+        }
+        this.text = tmp;
     }
 
-    public String getTitle() {
+    public Word getTitle() {
         return this.title;
     }
 
-    public void setTitle(final String title) {
+    public void setTitle(final Word title) {
         this.title = title;
     }
 
-    public String getText() {
+    public Sentence[] getText() {
         return this.text;
     }
 
-    public void setText(final String text) {
+    public void setText(final Sentence[] text) {
         this.text = text;
     }
 
     @Override
     public String toString() {
-        // TODO Auto-generated method stub
-        return (super.toString() + "\n" + this.title + "\n" + this.text);
+        StringBuilder str = new StringBuilder();
+        for (int i = 0; i < this.text.length; i++) {
+            str = str.append(this.text[i].toString());
+            if (i != this.text.length - 1) {
+                str = str.append(". ");
+            } else {
+                str = str.append(".");
+            }
+        }
+        return new String(str);
     }
 }

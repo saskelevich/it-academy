@@ -1,12 +1,24 @@
 package by.itacademy.java.yaskelevich.home.practic5.bancomat.display;
 
+import java.text.NumberFormat;
+import java.util.Locale;
+
 import by.itacademy.java.yaskelevich.home.practic5.bancomat.box.CashBox;
 
 public abstract class Display {
+    public static final String ZERO = "key='0';";
+    public static final String ONE = "key='1';";
+    public static final String TWO = "key='2';";
+    public static final String TREE = "key='3';";
+    public static final String BALANCE = "Look balance:";
+    public static final String INPUT = "Menu inputing cash:";
+    public static final String OUTPUT = "Menu outputing cash:";
+    public static final String EXIT = "Exit:";
 
     public static void start() {
-        System.out
-                .printf("Welcom in bankomat\nDescription: bancomat can output only 50, 20, 10;\n");
+        System.out.printf("Welcom in bankomat\nDescription: bancomat can output only %s, %s, %s;\n",
+                inLocaleCash(CashBox.FIFTY[0]), inLocaleCash(CashBox.TWENTY[0]),
+                inLocaleCash(CashBox.TEN[0]));
     }
 
     public static void pushCard() {
@@ -16,10 +28,9 @@ public abstract class Display {
 
     public static void mainWindow() {
         windowBorder();
-        System.out.printf("\n\tMain window\nLook balance: key \'0\'\nMenu inputing cash: key \'1\'"
-                + "\nMenu outputing cash: key \'2\'\nExit: key \'3\'");
+        System.out.printf("\n\tMain window\n%-25s%-30s\n%-25s%-30s\n%-25s%-30s\n%-25s%-30s",
+                BALANCE, ZERO, INPUT, ONE, OUTPUT, TWO, EXIT, TREE);
         enter();
-//        printBorder();
     }
 
     public static void enter() {
@@ -29,7 +40,8 @@ public abstract class Display {
 
     public static void lookBalance(final String balance) {
         windowBorder();
-        System.out.printf("\n\tShow balace\nYou'r balance = %s;\n", balance);
+        System.out.printf("\n\tShow balace\nYou'r balance = %s;\n",
+                inLocaleCash(Double.parseDouble(balance)));
 //        if (balance < 0) {
 //            System.out.printf("\nCollector is comming.\n");
 //        }
@@ -76,9 +88,9 @@ public abstract class Display {
 
     public static void getMoney() {
         inWindowBorder();
-        System.out.printf("\nBox %d = %d;", CashBox.FIFTY[0], CashBox.FIFTY[1]);
-        System.out.printf("\nBox %d = %d;", CashBox.TWENTY[0], CashBox.TWENTY[1]);
-        System.out.printf("\nBox %d = %d;", CashBox.TEN[0], CashBox.TEN[1]);
+        System.out.printf("\nBox %s = %d;", inLocaleCash(CashBox.FIFTY[0]), CashBox.FIFTY[1]);
+        System.out.printf("\nBox %s = %d;", inLocaleCash(CashBox.TWENTY[0]), CashBox.TWENTY[1]);
+        System.out.printf("\nBox %s = %d;", inLocaleCash(CashBox.TEN[0]), CashBox.TEN[1]);
     }
 
     public static void windowBorder() {
@@ -93,6 +105,10 @@ public abstract class Display {
         for (int i = 0; i < 50; i++) {
             System.out.printf("-");
         }
+    }
+
+    public static String inLocaleCash(final double summ) {
+        return NumberFormat.getCurrencyInstance(Locale.getDefault()).format(summ);
     }
 
 }

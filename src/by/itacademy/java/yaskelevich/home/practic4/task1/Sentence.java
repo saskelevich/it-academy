@@ -1,41 +1,59 @@
 package by.itacademy.java.yaskelevich.home.practic4.task1;
 
 public class Sentence extends Word {
-    private String sentence;
+    protected Word[] sentence;
 
     public Sentence() {
-        // TODO Auto-generated constructor stub
     }
 
-    public Sentence(final String word, final String sentence) {
+    public Sentence(final String word, final Word[] sentence) {
         super(word);
         this.sentence = sentence;
     }
 
-    @Override
-    public void show() {
-//        super.show();
-        System.out.println(this.sentence);
-    }
-
-    public void add(final String sentence) {
-//        StringBuilder tmp = new StringBuilder(this.sentence);
-//        tmp = tmp.append(sentence);
-//        this.sentence = tmp.toString();
-        this.sentence = new StringBuilder(this.sentence).append(sentence).toString();
-    }
-
-    public void setSentence(final String sentence) {
+    public Sentence(final Word[] sentence) {
         this.sentence = sentence;
     }
 
-    public String getSentence() {
+    public Sentence(final Sentence sentence) {
+        this.sentence = sentence.getSentence();
+    }
+
+    @Override
+    public void show() {
+        for (final Word word : this.sentence) {
+            word.show();
+        }
+    }
+
+    public void addSentence(final Word[] sentence) {
+        final Word[] tmp = new Word[this.sentence.length + sentence.length];
+        for (int i = 0; i < this.sentence.length; i++) {
+            for (int j = 0; j < sentence.length; j++) {
+                tmp[i] = this.sentence[i];
+                tmp[this.sentence.length + j] = sentence[j];
+            }
+        }
+        this.sentence = tmp;
+    }
+
+    public void setSentence(final Word[] sentence) {
+        this.sentence = sentence;
+    }
+
+    public Word[] getSentence() {
         return sentence;
     }
 
     @Override
     public String toString() {
-        // TODO Auto-generated method stub
-        return (super.toString() + "\n" + this.sentence);
+        StringBuilder str = new StringBuilder();
+        for (int i = 0; i < this.sentence.length; i++) {
+            str = str.append(this.sentence[i].getWord());
+            if (i != this.sentence.length - 1) {
+                str = str.append(" ");
+            }
+        }
+        return new String(str);
     }
 }

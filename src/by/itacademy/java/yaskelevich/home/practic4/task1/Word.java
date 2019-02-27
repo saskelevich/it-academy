@@ -1,30 +1,34 @@
 package by.itacademy.java.yaskelevich.home.practic4.task1;
 
 public class Word {
-    protected String word;
+    protected StringBuilder word;
 
     public Word() {
-        // TODO Auto-generated constructor stub
     }
 
     public Word(final String word) {
-        this.word = word;
-    }
-
-    public void show() {
-        System.out.println(this.word);
+        this.setWord(word);
     }
 
     public String getWord() {
-        return word;
+        return new String(this.word);
     }
 
     public void setWord(final String word) {
-        this.word = word;
+        this.word = new StringBuilder(word);
+    }
+
+    public void show() {
+        System.out.printf("%s ", this.getWord());
+    }
+
+    public void addWord(final String word) {
+        this.word = this.word.append(word);
     }
 
     @Override
     public String toString() {
-        return this.word;
+        return this.getWord();
     }
+
 }
