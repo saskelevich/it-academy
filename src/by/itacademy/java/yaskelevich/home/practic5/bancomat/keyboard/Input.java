@@ -2,6 +2,8 @@ package by.itacademy.java.yaskelevich.home.practic5.bancomat.keyboard;
 
 import java.util.Scanner;
 
+import by.itacademy.java.yaskelevich.home.practic5.bancomat.Runner;
+import by.itacademy.java.yaskelevich.home.practic5.bancomat.box.CashBox;
 import by.itacademy.java.yaskelevich.home.practic5.bancomat.display.Display;
 
 public class Input {
@@ -59,22 +61,27 @@ public class Input {
 
     private double checkOut(final String str) {
         if (Validator.isNumber(str)) {
-            return checkDecimal(str);
+            if ((Runner.account.getBalance()) > (Double.parseDouble(str))) {
+                return checkDecimal(str);
+            }
+            Display.noMoney();
         }
         return 0;
     }
 
     double checkDecimal(final String str) {
         final int decimal;
-        if ((decimal = Validator.returnDecimal(str)) != 0) {
+        if ((decimal = Validator.checkDecimal(str)) != 0) {
             return ifNotZero(str, decimal);
         }
+        new CashBox().getMoney(Double.parseDouble(str) - decimal);
         return Double.parseDouble(str);
     }
 
     private double ifNotZero(final String str, final int decimal) {
         Display.notZero();
         if (toZero()) {
+            new CashBox().getMoney(Double.parseDouble(str) - decimal);
             return (Double.parseDouble(str) - decimal);
         }
         return 0;

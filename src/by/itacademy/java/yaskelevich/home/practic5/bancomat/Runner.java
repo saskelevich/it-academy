@@ -7,7 +7,7 @@ import by.itacademy.java.yaskelevich.home.practic5.bancomat.keyboard.Input;
 public class Runner {
     final private static Input in = new Input();
     private static int i = -1;
-    final static Account account = new Account();
+    final public static Account account = new Account();
 
     public static void main(final String[] args) {
 
