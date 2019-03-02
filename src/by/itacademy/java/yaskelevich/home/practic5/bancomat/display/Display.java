@@ -42,10 +42,10 @@ public abstract class Display {
         windowBorder();
         System.out.printf("\n\tShow balace\nYou'r balance = %s;\n",
                 inLocaleCash(Double.parseDouble(balance)));
-//        if (balance < 0) {
-//            System.out.printf("\nCollector is comming.\n");
-//        }
-//        enter();
+        if (Double.parseDouble(balance) < 0) {
+            System.out.printf("\nCollector is comming.\n");
+        }
+        enter();
 
     }
 
@@ -88,27 +88,34 @@ public abstract class Display {
 
     public static void getMoney() {
         inWindowBorder();
-        System.out.printf("\nBox %s = %d;", inLocaleCash(CashBox.FIFTY[0]), CashBox.FIFTY[1]);
-        System.out.printf("\nBox %s = %d;", inLocaleCash(CashBox.TWENTY[0]), CashBox.TWENTY[1]);
-        System.out.printf("\nBox %s = %d;", inLocaleCash(CashBox.TEN[0]), CashBox.TEN[1]);
+//        System.out.printf("\nBox %s = %d;", inLocaleCash(CashBox.FIFTY[0]), CashBox.FIFTY[1]);
+//        System.out.printf("\nBox %s = %d;", inLocaleCash(CashBox.TWENTY[0]), CashBox.TWENTY[1]);
+//        System.out.printf("\nBox %s = %d;", inLocaleCash(CashBox.TEN[0]), CashBox.TEN[1]);
+        System.out.printf("\nBox %s:", inLocaleCash(CashBox.FIFTY[0]));
+        System.out.printf("\t\tBox %s:", inLocaleCash(CashBox.TWENTY[0]));
+        System.out.printf("\t\tBox %s:", inLocaleCash(CashBox.TEN[0]));
+        System.out.printf("\n\t%d", CashBox.FIFTY[1]);
+        System.out.printf("\t\t\t%d", CashBox.TWENTY[1]);
+        System.out.printf("\t\t\t%d", CashBox.TEN[1]);
     }
 
     public static void windowBorder() {
         System.out.println();
-        for (int i = 0; i < 50; i++) {
+        for (int i = 0; i < 70; i++) {
             System.out.printf("#");
         }
     }
 
     public static void inWindowBorder() {
         System.out.println();
-        for (int i = 0; i < 50; i++) {
+        for (int i = 0; i < 70; i++) {
             System.out.printf("-");
         }
     }
 
     public static String inLocaleCash(final double summ) {
-        return NumberFormat.getCurrencyInstance(Locale.getDefault()).format(summ);
+//        return NumberFormat.getCurrencyInstance(Locale.getDefault()).format(summ);
+        return NumberFormat.getCurrencyInstance(new Locale("by", "BY")).format(summ);
     }
 
 }

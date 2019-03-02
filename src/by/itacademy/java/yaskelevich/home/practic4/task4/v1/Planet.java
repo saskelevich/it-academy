@@ -2,50 +2,17 @@ package by.itacademy.java.yaskelevich.home.practic4.task4.v1;
 
 //4. Создать объект класса Планета, используя классы Материк, Океан, Остров.
 //Методы: вывести на консоль название материка, планеты, количество материков
-public class Planet {
+public class Planet extends Ocean {
     private String namePlanet;
+    private Ocean[] ocean;
     private Mainland[] mainland;
+    private Island[] island;
 
     public Planet() {
+        // TODO Auto-generated constructor stub
     }
 
     public Planet(final String namePlanet) {
-        this.namePlanet = namePlanet;
-    }
-
-    public final class Mainland {
-        private String nameMainland;
-
-        public Mainland() {
-        }
-
-        public Mainland(final String nameMainland) {
-            this.nameMainland = nameMainland;
-        }
-
-        @Override
-        public String toString() {
-            return nameMainland;
-        }
-    }
-
-    private final class Ocean {
-        private final String nameOcean;
-
-        private Ocean(final String nameOcean) {
-            this.nameOcean = nameOcean;
-        }
-
-        private final class Island {
-            private final String nameIsland;
-
-            private Island(final String nameIsland) {
-                this.nameIsland = nameIsland;
-            }
-        }
-    }
-
-    public void setNamePlanet(final String namePlanet) {
         this.namePlanet = namePlanet;
     }
 
@@ -53,18 +20,31 @@ public class Planet {
         return namePlanet;
     }
 
-    public int getSumMainlang() {
-        return this.mainland.length;
+    public void setNamePlanet(final String namePlanet) {
+        this.namePlanet = namePlanet;
     }
 
-    public void setMainland(final String... mainland) {
-        this.mainland = new Mainland[mainland.length];
-        for (int i = 0; i < this.mainland.length; i++) {
-            this.mainland[i] = new Mainland(mainland[i]);
-        }
+    public Ocean[] getOcean() {
+        return ocean;
+    }
+
+    public void setOcean(final Ocean[] ocean) {
+        this.ocean = ocean;
     }
 
     public Mainland[] getMainland() {
         return mainland;
+    }
+
+    public void setMainland(final Mainland[] mainland) {
+        this.mainland = mainland;
+    }
+
+    public Island[] getIsland() {
+        return island;
+    }
+
+    public void setIsland(final Island[] island) {
+        this.island = island;
     }
 }
