@@ -1,7 +1,5 @@
 package by.itacademy.java.yaskelevich.home.practic4.task2;
 
-//2. Создать объект класса Автомобиль, используя классы Колесо, Двигатель. 
-//Методы: ехать, заправляться, менять колесо, вывести на консоль марку автомобиля. 
 public class Car {
     private String mark;
     private int fuel;
@@ -15,6 +13,22 @@ public class Car {
         fuel = 100;
     }
 
+    public String getMark() {
+        return mark;
+    }
+
+    public void setMark(final String mark) {
+        this.mark = mark;
+    }
+
+    public int getFuel() {
+        return fuel;
+    }
+
+    public void setFuel(final int fuel) {
+        this.fuel = fuel;
+    }
+
     private class Wheel {
 
         public void chengeWheel() {
@@ -23,16 +37,16 @@ public class Car {
     }
 
     private class Engine {
-        private static final String START = "\nEngine start\n";
-        private static final String STOP = "\nEngine stop\n";
+        private static final String START = "Engine start";
+        private static final String STOP = "Engine stop";
 
         private void start() {
-            System.out.println(START);
+            System.out.printf("%s", START);
 
         }
 
         private void stop() {
-            System.out.println(STOP);
+            System.out.printf("%s", STOP);
         }
     }
 
@@ -41,6 +55,7 @@ public class Car {
     }
 
     public void go() {
+        System.out.println();
         new Engine().start();
         System.out.print("\nAuto go\n");
         this.fuel -= 5;
@@ -49,6 +64,7 @@ public class Car {
     public void stop() {
         System.out.print("\nAuto stop\n");
         new Engine().stop();
+        System.out.println();
     }
 
     public void fillCar() {

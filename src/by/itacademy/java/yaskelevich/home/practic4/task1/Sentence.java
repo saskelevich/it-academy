@@ -1,7 +1,7 @@
 package by.itacademy.java.yaskelevich.home.practic4.task1;
 
 public class Sentence extends Word {
-    protected Word[] sentence;
+    private Word[] sentence;
 
     public Sentence() {
     }
@@ -45,15 +45,4 @@ public class Sentence extends Word {
         return sentence;
     }
 
-    @Override
-    public String toString() {
-        StringBuilder str = new StringBuilder();
-        for (int i = 0; i < this.sentence.length; i++) {
-            str = str.append(this.sentence[i].getWord());
-            if (i != this.sentence.length - 1) {
-                str = str.append(" ");
-            }
-        }
-        return new String(str);
-    }
 }

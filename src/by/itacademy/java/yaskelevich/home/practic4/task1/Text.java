@@ -46,17 +46,4 @@ public class Text extends Sentence {
         this.text = text;
     }
 
-    @Override
-    public String toString() {
-        StringBuilder str = new StringBuilder();
-        for (int i = 0; i < this.text.length; i++) {
-            str = str.append(this.text[i].toString());
-            if (i != this.text.length - 1) {
-                str = str.append(". ");
-            } else {
-                str = str.append(".");
-            }
-        }
-        return new String(str);
-    }
 }

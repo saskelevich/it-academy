@@ -1,7 +1,7 @@
 package by.itacademy.java.yaskelevich.home.practic4.task1;
 
 public class Word {
-    protected StringBuilder word;
+    private StringBuilder word;
 
     public Word() {
     }
@@ -26,9 +26,8 @@ public class Word {
         this.word = this.word.append(word);
     }
 
-    @Override
-    public String toString() {
-        return this.getWord();
+    public void addWord(final String... word) {
+        this.word = this.word.append(word[0]);
     }
 
 }
