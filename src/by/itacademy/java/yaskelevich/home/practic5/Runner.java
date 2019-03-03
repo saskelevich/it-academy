@@ -1,10 +1,10 @@
-package by.itacademy.java.yaskelevich.home.practic5.atm;
+package by.itacademy.java.yaskelevich.home.practic5;
 
 import java.util.Scanner;
 
-import by.itacademy.java.yaskelevich.home.practic5.atm.atm.ATM;
-import by.itacademy.java.yaskelevich.home.practic5.atm.atm.data.Cell;
-import by.itacademy.java.yaskelevich.home.practic5.atm.feedback.Display;
+import by.itacademy.java.yaskelevich.home.practic5.atm.ATM;
+import by.itacademy.java.yaskelevich.home.practic5.atm.data.Cell;
+import by.itacademy.java.yaskelevich.home.practic5.feedback.Display;
 
 public class Runner {
     private static final int EXIT = 3;
@@ -26,7 +26,7 @@ public class Runner {
             switch (returnNumber(index)) {
 
             case BALANCE:
-                Display.lookBalance(atm.getAccount().getBalance());
+                Display.printBalance(atm.getAccount().getBalance());
                 break;
             case INPUT:
                 Display.input();

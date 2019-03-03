@@ -12,11 +12,6 @@ public class Sity {
         this.sityName = sityName;
     }
 
-    public Sity(final Sity sity) {
-        this.sityName = sity.getSityName();
-        this.square = sity.getSquare();
-    }
-
     public Sity(final String sityName, final double square) {
         this.sityName = sityName;
         this.square = square;

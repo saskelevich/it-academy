@@ -1,14 +1,16 @@
-package by.itacademy.java.yaskelevich.home.practic5.atm.atm;
+package by.itacademy.java.yaskelevich.home.practic5.atm;
 
 import java.util.ArrayList;
 
-import by.itacademy.java.yaskelevich.home.practic5.atm.atm.data.Account;
-import by.itacademy.java.yaskelevich.home.practic5.atm.atm.data.Cell;
-import by.itacademy.java.yaskelevich.home.practic5.atm.atm.manipulater.Calculator;
-import by.itacademy.java.yaskelevich.home.practic5.atm.atm.manipulater.Validator;
+import by.itacademy.java.yaskelevich.home.practic5.atm.data.Account;
+import by.itacademy.java.yaskelevich.home.practic5.atm.data.Cell;
+import by.itacademy.java.yaskelevich.home.practic5.atm.manipul.Calculator;
+import by.itacademy.java.yaskelevich.home.practic5.atm.manipul.Validator;
+import by.itacademy.java.yaskelevich.home.practic5.caunting.ICounting;
 
-public class ATM {
-    public static final int[] CELL_NUMBERS = {50, 20, 10};
+public class ATM implements ICounting {
+//    public static final int[] CELL_NUMBERS = {50, 20, 10};
+    private static final int[] CELL_NUMBERS = {50, 20, 10};
 
     private ArrayList<Cell> cell;
     private Account account;
@@ -47,6 +49,7 @@ public class ATM {
         this.calc = calc;
     }
 
+    @Override
     public boolean add(final String str) {
         if (valid.isNumber(str)) {
             return account.add(str);
@@ -54,6 +57,7 @@ public class ATM {
         return false;
     }
 
+    @Override
     public boolean substract(final String str) {
         if (valid.isNumber(str) && valid.isLastZero(str)
                 && valid.howMatch(str, account.getBalance())) {

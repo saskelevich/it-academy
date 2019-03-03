@@ -1,4 +1,4 @@
-package by.itacademy.java.yaskelevich.home.practic5.atm.atm.data;
+package by.itacademy.java.yaskelevich.home.practic5.atm.data;
 
 public class Cell {
     private int nameCell;

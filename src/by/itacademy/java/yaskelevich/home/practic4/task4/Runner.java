@@ -7,8 +7,8 @@ public class Runner {
 
         final Planet planet = new Planet();
 
-        planet.setMainland(new Mainland[] {new Mainland("Europa"), new Mainland("Asia"),
-                new Mainland("America"), new Mainland("Africa")});
+        planet.setMainland(new Mainland[] {new Mainland("Eurasia"), new Mainland("America"),
+                new Mainland("Africa")});
         planet.setNamePlanet("Eart");
 
         System.out.println(planet.getMainland()[0].getNameMainland());

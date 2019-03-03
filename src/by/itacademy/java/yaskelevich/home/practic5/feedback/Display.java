@@ -1,18 +1,18 @@
-package by.itacademy.java.yaskelevich.home.practic5.atm.feedback;
+package by.itacademy.java.yaskelevich.home.practic5.feedback;
 
 import java.text.NumberFormat;
 import java.util.Locale;
 
-import by.itacademy.java.yaskelevich.home.practic5.atm.atm.data.Cell;
+import by.itacademy.java.yaskelevich.home.practic5.atm.data.Cell;
 
 public class Display {
     public static final String ZERO = "key='0';";
     public static final String ONE = "key='1';";
     public static final String TWO = "key='2';";
     public static final String TREE = "key='3';";
-    public static final String BALANCE = "Look balance:";
-    public static final String INPUT = "Menu inputing cash:";
-    public static final String OUTPUT = "Menu outputing cash:";
+    public static final String BALANCE = "Print balance:";
+    public static final String INPUT = "Input menu:";
+    public static final String OUTPUT = "Output menu:";
     public static final String EXIT = "Exit:";
 
     public static void start() {
@@ -32,9 +32,9 @@ public class Display {
         System.out.printf("\n\nYou'r choice: ");
     }
 
-    public static void lookBalance(final double balance) {
+    public static void printBalance(final double balance) {
         windowBorder();
-        System.out.printf("\n\tShow balace\nYou'r balance = %s;\n", inLocaleCash(balance));
+        System.out.printf("\n\tPrint balance\nYou'r balance = %s;\n", inLocaleCash(balance));
     }
 
     public static void input() {

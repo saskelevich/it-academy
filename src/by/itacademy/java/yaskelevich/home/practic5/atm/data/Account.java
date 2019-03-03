@@ -1,6 +1,8 @@
-package by.itacademy.java.yaskelevich.home.practic5.atm.atm.data;
+package by.itacademy.java.yaskelevich.home.practic5.atm.data;
 
-public class Account {
+import by.itacademy.java.yaskelevich.home.practic5.caunting.ICounting;
+
+public class Account implements ICounting {
 
     private double balance;
     private String userName;
@@ -14,9 +16,9 @@ public class Account {
         return balance;
     }
 
-    public void setBalance(final double balance) {
-        this.balance = balance;
-    }
+//    public void setBalance(final double balance) {
+//        this.balance = balance;
+//    }
 
     public String getUserName() {
         return this.userName;
@@ -26,6 +28,7 @@ public class Account {
         this.userName = userName;
     }
 
+    @Override
     public boolean add(final String value) {
         if (Double.parseDouble(value) >= 0) {
             this.balance += Double.parseDouble(value);
@@ -34,6 +37,7 @@ public class Account {
         return false;
     }
 
+    @Override
     public boolean substract(final String value) {
         if (Double.parseDouble(value) >= 0) {
             this.balance -= Double.parseDouble(value);

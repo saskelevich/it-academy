@@ -8,15 +8,6 @@ public class Land extends Region {
     public Land() {
     }
 
-    public Land(final Land land) {
-        super(land);
-        this.sumRegion = land.getSumRegion();
-        this.regionCentr = land.getRegionCentr();
-        this.capital = land.capital;
-        setSityName(land.getSityName());
-        setSquare(land.getSquare());
-    }
-
     public void setSumRegion(final int sumRegion) {
         this.sumRegion = sumRegion;
     }

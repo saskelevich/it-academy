@@ -7,7 +7,7 @@ public class Runner {
         final Car car = new Car("Сar model");
 
         car.showMark();
-        car.changeWheel();
+        car.chengeWheel();
         car.fillCar();
         car.go();
         car.stop();
