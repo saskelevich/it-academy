@@ -1,12 +1,12 @@
-package by.itacademy.java.yaskelevich.home.practic5.atm;
+package by.itacademy.java.yaskelevich.home.practic4atm.atm;
 
 import java.util.ArrayList;
 
-import by.itacademy.java.yaskelevich.home.practic5.atm.data.Account;
-import by.itacademy.java.yaskelevich.home.practic5.atm.data.Cell;
-import by.itacademy.java.yaskelevich.home.practic5.atm.utility.Calculator;
-import by.itacademy.java.yaskelevich.home.practic5.atm.utility.Validator;
-import by.itacademy.java.yaskelevich.home.practic5.caunting.ICounting;
+import by.itacademy.java.yaskelevich.home.practic4atm.atm.data.Account;
+import by.itacademy.java.yaskelevich.home.practic4atm.atm.data.Cell;
+import by.itacademy.java.yaskelevich.home.practic4atm.atm.utility.Calculator;
+import by.itacademy.java.yaskelevich.home.practic4atm.atm.utility.Validator;
+import by.itacademy.java.yaskelevich.home.practic4atm.counting.ICounting;
 
 public class ATM implements ICounting {
     private static final int[] CELL_NUMBERS = {50, 20, 10};

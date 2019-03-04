@@ -1,6 +1,6 @@
-package by.itacademy.java.yaskelevich.home.practic5.atm.data;
+package by.itacademy.java.yaskelevich.home.practic4atm.atm.data;
 
-import by.itacademy.java.yaskelevich.home.practic5.caunting.ICounting;
+import by.itacademy.java.yaskelevich.home.practic4atm.counting.ICounting;
 
 public class Account implements ICounting {
 

@@ -6,7 +6,7 @@ public class Runner {
     public static void main(final String[] args) {
         final Car car = new Car("Сar model");
 
-        car.showMark();
+        car.showBrand();
         car.chengeWheel();
         car.fillCar();
         car.go();

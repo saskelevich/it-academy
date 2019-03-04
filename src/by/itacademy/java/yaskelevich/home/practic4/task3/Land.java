@@ -2,8 +2,8 @@ package by.itacademy.java.yaskelevich.home.practic4.task3;
 
 public class Land extends Region {
     private int sumRegion;
-    private Sity[] regionCentr;
-    private Sity capital;
+    private City[] regionCentr;
+    private City capital;
 
     public Land() {
     }
@@ -16,19 +16,19 @@ public class Land extends Region {
         return sumRegion;
     }
 
-    public void setRegionCentr(final Sity[] areaCentr) {
+    public void setRegionCentr(final City[] areaCentr) {
         this.regionCentr = areaCentr;
     }
 
-    public Sity[] getRegionCentr() {
+    public City[] getRegionCentr() {
         return regionCentr;
     }
 
-    public Sity getCapital() {
+    public City getCapital() {
         return capital;
     }
 
-    public void setCapital(final Sity capital) {
+    public void setCapital(final City capital) {
         this.capital = capital;
     }
 }

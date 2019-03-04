@@ -1,10 +1,10 @@
-package by.itacademy.java.yaskelevich.home.practic5;
+package by.itacademy.java.yaskelevich.home.practic4atm;
 
 import java.util.Scanner;
 
-import by.itacademy.java.yaskelevich.home.practic5.atm.ATM;
-import by.itacademy.java.yaskelevich.home.practic5.atm.data.Cell;
-import by.itacademy.java.yaskelevich.home.practic5.feedback.Display;
+import by.itacademy.java.yaskelevich.home.practic4atm.atm.ATM;
+import by.itacademy.java.yaskelevich.home.practic4atm.atm.data.Cell;
+import by.itacademy.java.yaskelevich.home.practic4atm.feedback.Display;
 
 public class Runner {
     private static final int EXIT = 3;
@@ -48,6 +48,7 @@ public class Runner {
                 }
                 break;
             default:
+                Display.notFound();
                 break;
             }
             Display.mainWindow();

@@ -1,9 +1,9 @@
-package by.itacademy.java.yaskelevich.home.practic5.feedback;
+package by.itacademy.java.yaskelevich.home.practic4atm.feedback;
 
 import java.text.NumberFormat;
 import java.util.Locale;
 
-import by.itacademy.java.yaskelevich.home.practic5.atm.data.Cell;
+import by.itacademy.java.yaskelevich.home.practic4atm.atm.data.Cell;
 
 public class Display {
     public static final String ZERO = "key='0';";
@@ -44,9 +44,14 @@ public class Display {
 
     public static void output() {
         windowBorder();
-        System.out.printf(
-                "\n\tOutput mode\n(The number entered must be an integer and ends with a zero)"
+        System.out
+                .printf("\n\tOutput mode\n(Entered number must be an integer and ends with a zero)"
                         + "\n\nWrite summ for output: ");
+    }
+
+    public static void notFound() {
+        inWindowBorder();
+        System.out.printf("\nWrong request.\nTry again.");
     }
 
     public static void exit() {

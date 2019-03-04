@@ -1,6 +1,6 @@
 package by.itacademy.java.yaskelevich.home.practic4.task3;
 
-public class Area extends Sity {
+public class Area extends City {
     private String areaName;
 
     public Area() {

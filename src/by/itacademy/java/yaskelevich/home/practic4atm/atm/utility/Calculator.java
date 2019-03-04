@@ -1,8 +1,8 @@
-package by.itacademy.java.yaskelevich.home.practic5.atm.utility;
+package by.itacademy.java.yaskelevich.home.practic4atm.atm.utility;
 
 import java.util.ArrayList;
 
-import by.itacademy.java.yaskelevich.home.practic5.atm.data.Cell;
+import by.itacademy.java.yaskelevich.home.practic4atm.atm.data.Cell;
 
 public abstract class Calculator {
 

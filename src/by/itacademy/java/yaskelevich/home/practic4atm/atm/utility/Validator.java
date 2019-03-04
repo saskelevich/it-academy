@@ -1,4 +1,4 @@
-package by.itacademy.java.yaskelevich.home.practic5.atm.utility;
+package by.itacademy.java.yaskelevich.home.practic4atm.atm.utility;
 
 public abstract class Validator {
 

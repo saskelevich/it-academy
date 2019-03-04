@@ -1,7 +1,7 @@
 package by.itacademy.java.yaskelevich.home.practic4.task2;
 
 public class Car extends Wheel {
-    private String mark;
+    private String brand;
     private int fuel;
 
     public Car() {
@@ -9,7 +9,7 @@ public class Car extends Wheel {
     }
 
     public Car(final String mark) {
-        this.mark = mark;
+        this.brand = mark;
         fuel = 100;
     }
 
@@ -25,12 +25,12 @@ public class Car extends Wheel {
         }
     }
 
-    public String getMark() {
-        return mark;
+    public String getBrand() {
+        return brand;
     }
 
-    public void setMark(final String mark) {
-        this.mark = mark;
+    public void setBrand(final String brand) {
+        this.brand = brand;
     }
 
     public int getFuel() {
@@ -41,8 +41,8 @@ public class Car extends Wheel {
         this.fuel = fuel;
     }
 
-    public void showMark() {
-        System.out.printf("\nMark: %s\n", this.mark);
+    public void showBrand() {
+        System.out.printf("\nMark: %s\n", this.brand);
     }
 
     public void go() {
