@@ -1,22 +1,22 @@
-package by.itacademy.java.yaskelevich.home.practic5.atm.manipul;
+package by.itacademy.java.yaskelevich.home.practic5.atm.utility;
 
-public class Validator {
+public abstract class Validator {
 
-    public boolean isNumber(final String str) {
+    public static boolean isNumber(final String str) {
         try {
-            Integer.parseInt(str);
+            Double.parseDouble(str);
         } catch (final NumberFormatException exc) {
             return false;
         }
         return true;
     }
 
-    public boolean isLastZero(final String str) {
+    public static boolean isLastZero(final String str) {
         return (Character.digit(str.split("[.|,]")[0].charAt(str.split("[.|,]")[0].length() - 1),
                 10) == 0);
     }
 
-    public boolean howMatch(final String str, final double balance) {
+    public static boolean howMatch(final String str, final double balance) {
         if (Double.parseDouble(str) <= balance) {
             return true;
         }

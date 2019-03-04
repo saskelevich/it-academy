@@ -4,25 +4,20 @@ import java.util.ArrayList;
 
 import by.itacademy.java.yaskelevich.home.practic5.atm.data.Account;
 import by.itacademy.java.yaskelevich.home.practic5.atm.data.Cell;
-import by.itacademy.java.yaskelevich.home.practic5.atm.manipul.Calculator;
-import by.itacademy.java.yaskelevich.home.practic5.atm.manipul.Validator;
+import by.itacademy.java.yaskelevich.home.practic5.atm.utility.Calculator;
+import by.itacademy.java.yaskelevich.home.practic5.atm.utility.Validator;
 import by.itacademy.java.yaskelevich.home.practic5.caunting.ICounting;
 
 public class ATM implements ICounting {
-//    public static final int[] CELL_NUMBERS = {50, 20, 10};
     private static final int[] CELL_NUMBERS = {50, 20, 10};
 
     private ArrayList<Cell> cell;
     private Account account;
-    private Calculator calc;
-    private final Validator valid;
 
     public ATM() {
         this.account = new Account();
         this.cell = new ArrayList<Cell>();
         basicInitCell();
-        this.calc = new Calculator();
-        this.valid = new Validator();
     }
 
     public ArrayList<Cell> getCell() {
@@ -41,17 +36,9 @@ public class ATM implements ICounting {
         this.account = account;
     }
 
-    public Calculator getCalc() {
-        return calc;
-    }
-
-    public void setCalc(final Calculator calc) {
-        this.calc = calc;
-    }
-
     @Override
     public boolean add(final String str) {
-        if (valid.isNumber(str)) {
+        if (Validator.isNumber(str)) {
             return account.add(str);
         }
         return false;
@@ -59,9 +46,9 @@ public class ATM implements ICounting {
 
     @Override
     public boolean substract(final String str) {
-        if (valid.isNumber(str) && valid.isLastZero(str)
-                && valid.howMatch(str, account.getBalance())) {
-            calc.writeCell(cell, str);
+        if (Validator.isNumber(str) && Validator.isLastZero(str)
+                && Validator.howMatch(str, account.getBalance())) {
+            Calculator.writeCell(cell, str);
             return account.substract(str);
         }
         return false;
