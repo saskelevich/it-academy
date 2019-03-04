@@ -2,6 +2,7 @@ package by.itacademy.java.yaskelevich.home.practic4.task3.task3v1;
 
 public class Runner {
     public static void main(final String[] args) {
+//        ati();
         final Land land = new Land();
 
         land.setName("Belarus");
@@ -42,5 +43,11 @@ public class Runner {
         region[5].setCapital(new City());
         region[5].getCapital().setName("Vitebsk");
         return region;
+    }
+
+    private static void ati() {
+        final District dis = new District();
+        dis.setName("Grodno");
+        System.out.println(dis.getName());
     }
 }

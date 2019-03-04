@@ -6,13 +6,6 @@ public class Planet {
     private Ocean[] ocean;
     private Island[] island;
 
-    public Planet() {
-    }
-
-    public Planet(final String name) {
-        this.name = name;
-    }
-
     public String getName() {
         return name;
     }

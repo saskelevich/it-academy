@@ -7,7 +7,7 @@ public class Ocean {
         this.name = name;
     }
 
-    public String getNcean() {
+    public String getName() {
         return name;
     }
 
