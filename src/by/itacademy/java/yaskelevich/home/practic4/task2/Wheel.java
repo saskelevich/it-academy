@@ -1,17 +1,13 @@
 package by.itacademy.java.yaskelevich.home.practic4.task2;
 
 public class Wheel {
-    private float diametr;
+    private int number;
 
-    public float getDiametr() {
-        return diametr;
+    public int getNumber() {
+        return number;
     }
 
-    public void setDiametr(final float diametr) {
-        this.diametr = diametr;
-    }
-
-    public void chengeWheel() {
-        System.out.printf("\nWhell is change\n");
+    public void setNumber(final int number) {
+        this.number = number;
     }
 }

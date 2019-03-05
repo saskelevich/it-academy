@@ -1,33 +1,20 @@
 package by.itacademy.java.yaskelevich.home.practic4.task1;
 
 public class Word {
-    private StringBuilder word;
+    private String word;
 
     public Word() {
     }
 
     public Word(final String word) {
-        this.setWord(word);
+        this.word = word;
     }
 
     public String getWord() {
-        return new String(this.word);
+        return word;
     }
 
     public void setWord(final String word) {
-        this.word = new StringBuilder(word);
+        this.word = word;
     }
-
-    public void show() {
-        System.out.printf("%s ", this.getWord());
-    }
-
-    public void addWord(final String word) {
-        this.word = this.word.append(word);
-    }
-
-    public void addWord(final String... word) {
-        this.word = this.word.append(word[0]);
-    }
-
 }

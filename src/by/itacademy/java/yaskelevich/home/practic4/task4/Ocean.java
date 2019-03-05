@@ -1,21 +1,23 @@
-//package by.itacademy.java.yaskelevich.home.practic4.task4;
-//
-//public class Ocean extends Island {
-//    private String nameOcean;
-//
-//    public Ocean() {
-//    }
-//
-//    public Ocean(final String nameOcean) {
-//        this.nameOcean = nameOcean;
-//    }
-//
-//    public String getNameOcean() {
-//        return nameOcean;
-//    }
-//
-//    public void setNameOcean(final String nameOcean) {
-//        this.nameOcean = nameOcean;
-//    }
-//
-//}
+package by.itacademy.java.yaskelevich.home.practic4.task4;
+
+public class Ocean {
+    private String name;
+    private Island[] islands;
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(final String name) {
+        this.name = name;
+    }
+
+    public Island[] getIslands() {
+        return islands;
+    }
+
+    public void setIsland(final Island[] islands) {
+        this.islands = islands;
+    }
+
+}

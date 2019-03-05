@@ -1,6 +1,6 @@
-package by.itacademy.java.yaskelevich.home.practic4.task3.task3v1;
+package by.itacademy.java.yaskelevich.home.practic4.task3;
 
-public class City {
+public class AdminUnit {
     private String name;
     private double square;
 
