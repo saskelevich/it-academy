@@ -32,7 +32,7 @@ public class Task2 {
         }
         array.showHowMany();
         array.showMaxChar();
-        array.showPutChar(this.character);
+        array.showChar(this.character);
     }
 
 }

@@ -4,22 +4,22 @@ public class ArrayChar {
     private static final int ONE = 1;
     private static final int ZERO = 0;
     private final int[][] array = new int[128][2];
-    private int getIndex = -1;
-    private int setIndex = 0;
+    private int in = -1;
+    private int out = 0;
 
     public int getChar(final int index) {
-        ++getIndex;
-        return array[getIndex][ZERO];
+        ++in;
+        return array[in][ZERO];
     }
 
     public void setChar(final int character) {
-        this.array[setIndex][ZERO] = character;
-        this.array[setIndex][ONE] = 1;
-        ++setIndex;
+        this.array[out][ZERO] = character;
+        this.array[out][ONE] = 1;
+        ++out;
     }
 
     public boolean checkIsNew(final int character) {
-        for (int i = 0; i < setIndex; i++) {
+        for (int i = 0; i < out; i++) {
             if (array[i][ZERO] == character) {
                 ++array[i][ONE];
                 return false;
@@ -30,12 +30,12 @@ public class ArrayChar {
 
     public void showHowMany() {
         System.out.println();
-        for (int i = 0; i < setIndex; i++) {
+        for (int i = 0; i < out; i++) {
             System.out.printf("char \'%s\' = %d\n", (char) array[i][ZERO], array[i][ONE]);
         }
     }
 
-    public void showPutChar(final int character) {
+    public void showChar(final int character) {
         for (int i = 0; i < array.length; i++) {
             if (array[i][ZERO] == character) {
                 System.out.printf("You'r character %s = %d;\n", (char) array[i][ZERO],
@@ -48,7 +48,7 @@ public class ArrayChar {
     public void showMaxChar() {
         int max = 0;
         int mark = 0;
-        for (int i = 0; i < setIndex; i++) {
+        for (int i = 0; i < out; i++) {
             if (max < array[i][ONE]) {
                 max = array[i][ONE];
                 mark = i;
@@ -59,7 +59,7 @@ public class ArrayChar {
     }
 
     public int getIndex() {
-        return this.setIndex;
+        return this.out;
     }
 
 }
