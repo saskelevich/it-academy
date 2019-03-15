@@ -10,7 +10,7 @@ public class Rekursia {
         array.add(265);
         array.add(177);
         array.add(745);
-        array.add(5447);
+        array.add(36001);
         for (final Integer number : array) {
             System.out.println(rekursia(number, number - 1));
         }
