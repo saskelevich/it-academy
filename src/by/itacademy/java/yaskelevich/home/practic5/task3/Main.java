@@ -6,28 +6,26 @@ import java.net.ProtocolException;
 import java.util.HashMap;
 import java.util.Map;
 
-import by.itacademy.java.yaskelevich.home.practic3.url.ReadURL;
+import by.itacademy.java.yaskelevich.home.practic5.url.ReadURL;
 
 public class Main {
     private static final String PATTERN = ("\\b[^\\w]+\\b");
     private static final String URL = "https://sample-videos.com/text/Sample-text-file-10kb.txt";
 
-    public static void main(final String[] args) throws MalformedURLException, ProtocolException, IOException {
-        final Map<String, Integer> map = new HashMap<String, Integer>();
-        final String[] word = ReadURL.readFromUrl(URL).split(Main.PATTERN);
-        for (final String string : word) {
-            // final Integer value = map.get(string);
-            // if (value != null) {
-            // map.replace(string, value + 1);
-            // } else {
-            // map.put(string, 1);
-            // }
-            if (map.get(string) != null) {
-                map.replace(string, map.get(string) + 1);
+    public static void main(final String[] args)
+            throws MalformedURLException, ProtocolException, IOException {
+
+        final Map<String, Integer> words = new HashMap<String, Integer>();
+        final String[] tmp = ReadURL.readFromUrl(URL).split(Main.PATTERN);
+
+        for (final String string : tmp) {
+            if (words.containsKey(string)) {
+                words.replace(string, words.get(string) + 1);
             } else {
-                map.put(string, 1);
+                words.put(string, 1);
             }
         }
-        System.out.println(map);
+
+        System.out.println(words);
     }
 }

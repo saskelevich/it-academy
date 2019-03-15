@@ -3,11 +3,8 @@ package by.itacademy.java.yaskelevich.home.practic5.task1;
 import java.util.Comparator;
 
 public class Car implements Comparable<Car> {
-    private String brand;
-    private int cost;
-
-    public Car() {
-    }
+    private final String brand;
+    private final int cost;
 
     public Car(final String brand, final int cost) {
         this.brand = brand;
@@ -18,26 +15,18 @@ public class Car implements Comparable<Car> {
         return brand;
     }
 
-    public void setBrand(final String brand) {
-        this.brand = brand;
-    }
-
     public int getCost() {
         return cost;
     }
 
-    public void setCost(final int cost) {
-        this.cost = cost;
-    }
-
     @Override
     public String toString() {
-        return "Car [brand=" + brand + ", cost=" + cost + "]";
+        return "Car [brand=" + getBrand() + ", cost=" + getCost() + "]";
     }
 
     @Override
     public int compareTo(final Car o) {
-        return this.brand.compareTo(o.getBrand());
+        return getBrand().compareTo(o.getBrand());
     }
 
     static class CarComparator implements Comparator<Car> {
@@ -47,4 +36,5 @@ public class Car implements Comparable<Car> {
             return o1.getCost() - o2.getCost();
         }
     }
+
 }
