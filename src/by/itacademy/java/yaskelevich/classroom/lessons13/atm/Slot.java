@@ -1,41 +1,25 @@
 package by.itacademy.java.yaskelevich.classroom.lessons13.atm;
 
-public class Slot implements Comparable<Slot> {
-    private final int nominal;
-    private int quantity;
+public class Slot extends MoneyItem implements Comparable<Slot> {
 
     public Slot(final int nominal) {
-        super();
-        this.nominal = nominal;
-    }
-
-    public int getNominal() {
-        return nominal;
-    }
-
-    public int getQuantity() {
-        return quantity;
+        super(nominal);
     }
 
     public void addQuantity(final int quantity) {
-        this.quantity += quantity;
+        setQuantity(getQuantity() + quantity);
     }
 
     public void removeQuantity(final int quantity) {
-        this.quantity -= quantity;
+        setQuantity(getQuantity() - quantity);
     }
 
     public boolean isApplicable(final int nominal) {
-        return this.nominal == nominal;
+        return getNominal() == nominal;
     }
 
     @Override
     public int compareTo(final Slot o) {
-        return this.nominal - o.getNominal();
-    }
-
-    @Override
-    public String toString() {
-        return "Slot [nominal=" + nominal + ", quantity=" + quantity + "]";
+        return getNominal() - o.getNominal();
     }
 }
