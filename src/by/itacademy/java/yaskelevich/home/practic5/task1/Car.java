@@ -33,12 +33,6 @@ public class Car implements Comparable<Car> {
 
         @Override
         public int compare(final Car o1, final Car o2) {
-            if (o1 == null) {
-                return 1;
-            }
-            if (o2 == null) {
-                return -1;
-            }
             return o1.getCost() - o2.getCost();
         }
     }
