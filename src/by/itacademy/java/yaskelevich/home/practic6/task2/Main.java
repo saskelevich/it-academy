@@ -1,68 +1,78 @@
 package by.itacademy.java.yaskelevich.home.practic6.task2;
 
-import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.io.InputStreamReader;
 import java.io.PrintWriter;
-import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
-import java.net.ProtocolException;
-import java.net.URL;
-import java.util.HashSet;
-import java.util.Set;
 
 public class Main {
-    private static final String PATTERN = "\\b[^\\w]+\\b";
-    private static final String URL = "https://sample-videos.com/text/Sample-text-file-10kb.txt";
-    private static final String FILE_PATH = "src/by/itacademy/java/yaskelevich/home/practic6/task2/words/";
-
-    public static void main(final String[] args)
-            throws MalformedURLException, ProtocolException, IOException {
-        final String[] str = readFromUrl(URL).split(PATTERN);
-        final Set<String> words = new HashSet<String>();
-        for (final String string : str) {
-            words.add(string.toLowerCase());
-        }
-        for (final String string : words) {
-            write(string, create(string));
-        }
-        System.out.println("Ready");
+    public static void main(final String[] args) {
+        final File[] file = File.listRoots();
+        buildTree((file[0]), 0);
     }
 
-    private static String readFromUrl(final String url)
-            throws MalformedURLException, IOException, ProtocolException {
-        final HttpURLConnection connection = (HttpURLConnection) new URL(url).openConnection();
-        connection.setRequestMethod("GET");
-        String htmlString = null;
-        try (BufferedReader in = new BufferedReader(
-                new InputStreamReader(connection.getInputStream()))) {
-            String inputLine;
-            final StringBuffer response = new StringBuffer();
-            while ((inputLine = in.readLine()) != null) {
-                response.append(inputLine);
-                htmlString = response.toString();
+    private static void buildTree(final File file, final int level) {
+        if (level >= 5) {
+            return;
+        }
+        final MyFile myFile = new MyFile(file);
+        myFile.setFiles(myFile.getFile().listFiles());
+        write(myFile.getFile(), level);
+        print(level, myFile.getFile());
+        for (final File files : myFile.getFiles()) {
+            if (files.isDirectory() && checking(files)) {
+                buildTree(files, level + 1);
+            }
+            if (files.isFile() && checking(files)) {
+                write(files, level);
+                print(level, files);
             }
         }
-        return htmlString;
     }
 
-    private static String create(final String str) throws IOException {
-        final File dir = new File(FILE_PATH + str.charAt(0));
-        final File fail = new File(dir.getAbsolutePath() + File.separator + "words.txt");
-        if (!dir.exists()) {
-            dir.mkdir();
-            fail.createNewFile();
+    static boolean checking(final File files) {
+        return files.canRead() && !files.isHidden();
+    }
+
+    private static void print(final int level, final File file) {
+        for (int i = 0; i < level; i++) {
+            System.out.print("-");
         }
-        return fail.getAbsolutePath();
-    }
-
-    private static void write(final String str, final String path) throws IOException {
-        try (PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter(path, true)))) {
-            out.print(str + "\n");
+        if (file.isDirectory()) {
+            System.out.printf("%.15s\n", file.getPath());
+        }
+        if (file.isFile()) {
+            System.out.printf("%.15s : %d\n", file.getName(), file.length());
         }
     }
 
+    private static void write(final File file, final int level) {
+        final File filesTree = new File("src" + File.separator + "by" + File.separator + "itacademy"
+                + File.separator + "java" + File.separator + "yaskelevich" + File.separator + "home"
+                + File.separator + "practic6" + File.separator + "task2" + File.separator
+                + "filesTree.txt");
+        if (!filesTree.exists()) {
+            try {
+                filesTree.createNewFile();
+            } catch (final IOException exc) {
+                System.err.println(exc + "File not created");
+            }
+        }
+        try (PrintWriter out = new PrintWriter(
+                new BufferedWriter(new FileWriter(filesTree, true)))) {
+            for (int i = 0; i < level; i++) {
+                out.print("-");
+            }
+            if (file.isDirectory()) {
+                out.print(file.getPath() + "\n");
+            }
+            if (file.isFile()) {
+                out.printf("%s: %d\n", file.getPath(), file.length());
+            }
+        } catch (final IOException exc) {
+            System.err.println(exc + "File not recorded");
+        }
+
+    }
 }

@@ -1,80 +1,72 @@
 package by.itacademy.java.yaskelevich.home.practic6.task1;
 
+import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.io.PrintWriter;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.ProtocolException;
+import java.net.URL;
+import java.util.HashSet;
+import java.util.Set;
 
 public class Main {
-    public static void main(final String[] args) {
-        rekursia(new File("/"), 0);
-    }
+    private static final String PATTERN = "\\b[^\\w]+\\b";
+    private static final String URL = "https://sample-videos.com/text/Sample-text-file-10kb.txt";
+    private static final String FILE_PATH = "src/by/itacademy/java/yaskelevich/home/practic6/task1"
+            + "/words/";
 
-    private static void rekursia(final File file, final int lvl) {
-        if (lvl > 5) {
-            return;
+    public static void main(final String[] args)
+            throws MalformedURLException, ProtocolException, IOException {
+        final String[] strins = readFromUrl(URL).split(PATTERN);
+        final Set<String> words = new HashSet<String>();
+
+        for (final String string : strins) {
+            words.add(string.toLowerCase());
         }
-        final MyFile myFile = new MyFile(file);
-        myFile.setFiles(myFile.getFile().listFiles());
-        write(myFile.getFile(), lvl);
-        print(lvl, myFile.getFile());
-        for (final File files : myFile.getFiles()) {
-            if (files.isDirectory() && checking(files)) {
-                rekursia(files, lvl + 1);
-            }
-            if (files.isFile() && checking(files)) {
-                write(files, lvl);
-                print(lvl, files);
-            }
+
+        for (final String word : words) {
+            write(word, create(word));
         }
     }
 
-    static boolean checking(final File files) {
-        return files.canRead() && !files.isHidden();
-    }
+    private static String create(final String str) throws IOException {
+        final File dir = new File(FILE_PATH + str.charAt(0));
+        final File file = new File(dir.getAbsolutePath() + File.separator + "words.txt");
 
-    private static void print(final int lvl, final File file) {
-        for (int i = 0; i < lvl; i++) {
-            System.out.print("-");
-        }
-        if (file.isDirectory()) {
-            System.out.printf("%s\n", file.getPath());
-        }
-        if (file.isFile()) {
-            System.out.printf("%s : %d\n", file.getPath(), file.length());
-        }
-    }
-
-    /**
-     * does not fit into the terminal
-     */
-    private static void write(final File file, final int lvl) {
-        final File filesTree = new File("src" + File.separator + "by" + File.separator + "itacademy"
-                + File.separator + "java" + File.separator + "yaskelevich" + File.separator + "home"
-                + File.separator + "practic6" + File.separator + "task1" + File.separator
-                + "filesTree.txt");
-        if (!filesTree.exists()) {
-            try {
-                filesTree.createNewFile();
-            } catch (final IOException exc) {
-                System.err.println(exc + "File not created");
-            }
-        }
-        try (PrintWriter out = new PrintWriter(
-                new BufferedWriter(new FileWriter(filesTree, true)))) {
-            for (int i = 0; i < lvl; i++) {
-                out.print("-");
-            }
-            if (file.isDirectory()) {
-                out.print(file.getPath() + "\n");
-            }
-            if (file.isFile()) {
-                out.printf("%s: %d\n", file.getPath(), file.length());
-            }
-        } catch (final IOException exc) {
-            System.err.println(exc + "File not recorded");
+        if (!dir.exists()) {
+            dir.mkdir();
+            file.createNewFile();
         }
 
+        return file.getAbsolutePath();
     }
+
+    private static void write(final String str, final String path) throws IOException {
+        try (PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter(path, true)))) {
+            out.print(str + "\n");
+        }
+    }
+
+    private static String readFromUrl(final String url)
+            throws MalformedURLException, IOException, ProtocolException {
+        final HttpURLConnection connection = (HttpURLConnection) new URL(url).openConnection();
+        connection.setRequestMethod("GET");
+        String htmlString = null;
+        try (BufferedReader in = new BufferedReader(
+                new InputStreamReader(connection.getInputStream()))) {
+            String inputLine;
+            final StringBuffer response = new StringBuffer();
+            while ((inputLine = in.readLine()) != null) {
+                response.append(inputLine);
+                htmlString = response.toString();
+            }
+        }
+        return htmlString;
+    }
+
 }
