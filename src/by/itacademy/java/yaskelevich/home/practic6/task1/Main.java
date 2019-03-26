@@ -17,13 +17,9 @@ import java.util.Set;
 public class Main {
     private static final String PATTERN = "\\b[^\\w]+\\b";
     private static final String URL = "https://sample-videos.com/text/Sample-text-file-10kb.txt";
-    private static final String FILE_PATH = "src" + File.separator + "by" + File.separator
-            + "itacademy" + File.separator + "java" + File.separator + "yaskelevich"
-            + File.separator + "home" + File.separator + "practic6" + File.separator + "task1"
-            + File.separator + "words" + File.separator;
+    private static final String FILE_PATH = "src/by/itacademy/java/yaskelevich/home/practic6/task1/words/";
 
-    public static void main(final String[] args)
-            throws MalformedURLException, ProtocolException, IOException {
+    public static void main(final String[] args) throws MalformedURLException, ProtocolException, IOException {
         final String[] strins = readFromUrl(URL).split(PATTERN);
         final Set<String> words = new HashSet<String>();
 
@@ -38,7 +34,7 @@ public class Main {
 
     private static String create(final String str) throws IOException {
         final File dir = new File(FILE_PATH + str.charAt(0));
-        final File file = new File(dir.getAbsolutePath() + File.separator + "words.txt");
+        final File file = new File(dir.getAbsolutePath() + "/words.txt");
 
         if (!dir.exists()) {
             dir.mkdir();
@@ -54,13 +50,11 @@ public class Main {
         }
     }
 
-    private static String readFromUrl(final String url)
-            throws MalformedURLException, IOException, ProtocolException {
+    private static String readFromUrl(final String url) throws MalformedURLException, IOException, ProtocolException {
         final HttpURLConnection connection = (HttpURLConnection) new URL(url).openConnection();
         connection.setRequestMethod("GET");
         String htmlString = null;
-        try (BufferedReader in = new BufferedReader(
-                new InputStreamReader(connection.getInputStream()))) {
+        try (BufferedReader in = new BufferedReader(new InputStreamReader(connection.getInputStream()))) {
             String inputLine;
             final StringBuffer response = new StringBuffer();
             while ((inputLine = in.readLine()) != null) {
