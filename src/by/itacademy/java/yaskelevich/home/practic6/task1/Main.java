@@ -17,8 +17,10 @@ import java.util.Set;
 public class Main {
     private static final String PATTERN = "\\b[^\\w]+\\b";
     private static final String URL = "https://sample-videos.com/text/Sample-text-file-10kb.txt";
-    private static final String FILE_PATH = "src/by/itacademy/java/yaskelevich/home/practic6/task1"
-            + "/words/";
+    private static final String FILE_PATH = "src" + File.separator + "by" + File.separator
+            + "itacademy" + File.separator + "java" + File.separator + "yaskelevich"
+            + File.separator + "home" + File.separator + "practic6" + File.separator + "task1"
+            + File.separator + "words" + File.separator;
 
     public static void main(final String[] args)
             throws MalformedURLException, ProtocolException, IOException {

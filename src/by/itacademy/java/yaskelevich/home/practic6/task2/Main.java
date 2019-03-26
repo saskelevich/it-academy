@@ -18,14 +18,14 @@ public class Main {
         }
         final MyFile myFile = new MyFile(file);
         myFile.setFiles(myFile.getFile().listFiles());
-        write(myFile.getFile(), level);
+        writeFile(myFile.getFile(), level);
         print(level, myFile.getFile());
         for (final File files : myFile.getFiles()) {
             if (files.isDirectory() && checking(files)) {
                 buildTree(files, level + 1);
             }
             if (files.isFile() && checking(files)) {
-                write(files, level);
+                writeFile(files, level);
                 print(level, files);
             }
         }
@@ -47,7 +47,7 @@ public class Main {
         }
     }
 
-    private static void write(final File file, final int level) {
+    private static void writeFile(final File file, final int level) {
         final File filesTree = new File("src" + File.separator + "by" + File.separator + "itacademy"
                 + File.separator + "java" + File.separator + "yaskelevich" + File.separator + "home"
                 + File.separator + "practic6" + File.separator + "task2" + File.separator
