@@ -11,7 +11,7 @@ public class MyFile {
     }
 
     public File getFile() {
-        return new File(file.getPath());
+        return file;
     }
 
     public File[] getFiles() {

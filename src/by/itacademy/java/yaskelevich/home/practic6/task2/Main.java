@@ -31,7 +31,7 @@ public class Main {
         }
     }
 
-    static boolean checking(final File files) {
+    private static boolean checking(final File files) {
         return files.canRead() && !files.isHidden();
     }
 
@@ -48,15 +48,14 @@ public class Main {
     }
 
     private static void writeFile(final File file, final int level) {
-        final File filesTree = new File("src" + File.separator + "by" + File.separator + "itacademy"
-                + File.separator + "java" + File.separator + "yaskelevich" + File.separator + "home"
-                + File.separator + "practic6" + File.separator + "task2" + File.separator
-                + "filesTree.txt");
+        final File filesTree = new File(
+                "src/by/itacademy/java/yaskelevich/home/practic6/task2/filesTree.txt");
         if (!filesTree.exists()) {
             try {
                 filesTree.createNewFile();
             } catch (final IOException exc) {
-                System.err.println(exc + "File not created");
+                exc.fillInStackTrace();
+                return;
             }
         }
         try (PrintWriter out = new PrintWriter(
@@ -71,7 +70,7 @@ public class Main {
                 out.printf("%s: %d\n", file.getPath(), file.length());
             }
         } catch (final IOException exc) {
-            System.err.println(exc + "File not recorded");
+            exc.fillInStackTrace();
         }
 
     }
