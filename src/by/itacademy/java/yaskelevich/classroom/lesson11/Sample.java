@@ -1,4 +1,4 @@
-package by.itacademy.java.yaskelevich.classroom.lessons11;
+package by.itacademy.java.yaskelevich.classroom.lesson11;
 
 import java.util.HashSet;
 import java.util.Iterator;
