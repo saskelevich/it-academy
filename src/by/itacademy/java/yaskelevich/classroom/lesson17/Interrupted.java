@@ -1,6 +1,6 @@
 package by.itacademy.java.yaskelevich.classroom.lesson17;
 
-public class Incrementator extends Thread {
+public class Interrupted extends Thread {
     private volatile boolean isIncrement = true;
     private volatile boolean toBeFinished = false;
     public int mValue = 0;
@@ -34,11 +34,12 @@ public class Incrementator extends Thread {
                 System.out.println("Interrupted");
                 return;
             }
-        } while (true);
+        }
+        while (true);
     }
 
     public static void main(final String[] args) {
-        final Incrementator incrementatorThread = new Incrementator();
+        final Interrupted incrementatorThread = new Interrupted();
         incrementatorThread.start();
 
         for (int i = 1; i <= 3; i++) {
