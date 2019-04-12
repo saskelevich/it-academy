@@ -11,7 +11,6 @@ public class ParalelStreamsPerfomance {
             final UUID uuid = UUID.randomUUID();
             values.add(uuid.toString());
         }
-
         sortSequential(values);
         sortParallel(values);
     }

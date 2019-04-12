@@ -25,9 +25,10 @@ public class Streams {
     }
 
     public static void main(final String[] args) {
-        final Collection<Streams> tasks = Arrays.asList(new Streams(Status.OPEN, 5), new Streams(Status.OPEN, 13),
-                new Streams(Status.CLOSED, 8));
-        final long totalPointsOfOpenTasks = tasks.stream().filter(task -> task.getStatus() == Status.OPEN)
+        final Collection<Streams> tasks = Arrays.asList(new Streams(Status.OPEN, 5),
+                new Streams(Status.OPEN, 13), new Streams(Status.CLOSED, 8));
+        final long totalPointsOfOpenTasks = tasks.stream()
+                .filter(task -> task.getStatus() == Status.OPEN)
                 // final long totalPointsOfOpenTasks = tasks.stream().parallel().filter(task ->
                 // task.getStatus() == Status.OPEN)
                 .mapToInt(Streams::getPoints).sum();
