@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE catalog SYSTEM "catalog.dtd">
+<!--catalog last updated 2010-11-01 -->
+<catalog>
+	<book id="bk109">
+		<author>Kress, Peter</author>
+		<title>Paradox Lost</title>
+		<genre>Science Fiction</genre>
+		<price>6.95</price>
+	</book>
+
+	<book id="bk110">
+		<author>Kress, Peter</author>
+		<title>Fantasy</title>
+		<genre>Science Fiction</genre>
+		<price>10/00</price>
+	</book>
+</catalog>
+</xml>
