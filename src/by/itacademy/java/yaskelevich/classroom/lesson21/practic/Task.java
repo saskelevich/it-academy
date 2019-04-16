@@ -7,8 +7,6 @@ import java.io.InputStreamReader;
 import java.util.Locale;
 import java.util.ResourceBundle;
 
-import by.itacademy.java.yaskelevich.classroom.lesson21.i18n.practic.UTF8Control;
-
 public class Task {
 
     public static void main(final String[] args) throws IOException {
@@ -25,15 +23,17 @@ public class Task {
             sb.append(subStr).append(", ");
         }
 
-        System.out.println("Hello! I know salaries for " + sb.toString().substring(0, sb.toString().length() - 2)
+        System.out.println("Hello! I know salaries for "
+                + sb.toString().substring(0, sb.toString().length() - 2)
                 + ". What is your locale?");
 
         String str;
         while (!(str = br.readLine()).equals("")) {
             final String[] array = str.split("_");
             final Locale locale = new Locale(array[0], array[1]);
-            final ResourceBundle rb = ResourceBundle.getBundle("prop", locale, new UTF8Control());
-            System.out.println(rb.getString("message"));
+            final ResourceBundle rb = ResourceBundle.getBundle("prop", locale);
+//            final ResourceBundle rb = ResourceBundle.getBundle("prop", locale, new UTF8Control());
+            System.out.println(rb.getString("prop.key1"));
         }
     }
 }
