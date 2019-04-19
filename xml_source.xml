@@ -1,0 +1,11 @@
+<?xml version= "1.0"?>
+<?xml-stylesheet type = "test/xsl"
+href = "hello.xsl"?>
+<hello-world>
+	<greeter>
+		An XSLT Programmerer
+	</greeter>
+	<greeter>
+		Hello, World!
+	</greeter>
+</hello-world>
