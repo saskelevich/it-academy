@@ -18,7 +18,8 @@ import by.itacademy.java.yaskelevich.classroom.lesson22.xml.model.ParsingResult;
 
 public class DomParserDemo {
 
-    public static void main(final String argv[]) throws SAXException, IOException, ParserConfigurationException {
+    public static void main(final String argv[])
+            throws SAXException, IOException, ParserConfigurationException {
         final DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
         final DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
         final Document doc = dBuilder.parse(new File("sample.xml"));
@@ -72,7 +73,6 @@ public class DomParserDemo {
     }
 }
 /*
- * itemsQuantity=5 itemHighestPrice=Food [name=Berry-Berry Belgian Waffles,
- * price=8.95] itemLowestPrice=Food [name=French Toast, price=4.5]
- * totalPrice=34.3
+ * itemsQuantity=5 itemHighestPrice=Food [name=Berry-Berry Belgian Waffles, price=8.95]
+ * itemLowestPrice=Food [name=French Toast, price=4.5] totalPrice=34.3
  */

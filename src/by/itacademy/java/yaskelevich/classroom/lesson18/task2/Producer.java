@@ -24,7 +24,8 @@ public class Producer implements Runnable {
             }
             final int lengthList = random.nextInt(3) + 1;
             for (int i = 0; i < lengthList; i++) {
-                System.out.printf("%s - %s create %s\n", LogPrinter.log(), Thread.currentThread(), cerate());
+                System.out.printf("%s - %s create %s\n", LogPrinter.log(), Thread.currentThread(),
+                        cerate());
             }
         }
     }

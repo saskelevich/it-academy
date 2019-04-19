@@ -26,7 +26,8 @@ public class FixedPoolExample {
 
         @Override
         public void run() {
-            System.out.printf("Executing task %s inside %s %n", name, Thread.currentThread().getName());
+            System.out.printf("Executing task %s inside %s %n", name,
+                    Thread.currentThread().getName());
             try {
                 Thread.sleep(pause);
                 System.out.printf("task %s completed %n", name);

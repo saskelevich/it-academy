@@ -19,7 +19,8 @@ public class Consumer implements Runnable {
     public void run() {
         while (!thread.isAlive()) {
             if (!list.isEmpty()) {
-                System.out.printf("%s - %s get %s\n", LogPrinter.log(), Thread.currentThread(), listPoll());
+                System.out.printf("%s - %s get %s\n", LogPrinter.log(), Thread.currentThread(),
+                        listPoll());
                 try {
                     Thread.sleep(TimeUnit.SECONDS.toMillis(3));
                 } catch (final InterruptedException e) {

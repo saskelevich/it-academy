@@ -43,7 +43,8 @@ public class SaxParserDemo extends DefaultHandler {
     }
 
     @Override
-    public void startElement(final String uri, final String name, final String qName, final Attributes atts) {
+    public void startElement(final String uri, final String name, final String qName,
+            final Attributes atts) {
         lastTagName = name;
         if ("food".equals(name)) {
             itemsQuantity++;
@@ -53,7 +54,8 @@ public class SaxParserDemo extends DefaultHandler {
     @Override
     public void characters(final char[] ch, final int start, final int length) throws SAXException {
         String str = new String(ch, start, length);
-        str = str.replaceAll("\n", "").replaceAll("\t", "").trim(); // clean formatting characters and whitespaces
+        str = str.replaceAll("\n", "").replaceAll("\t", "").trim(); // clean formatting characters
+                                                                    // and whitespaces
         if (str.isEmpty()) {
             return;
         }
@@ -98,7 +100,6 @@ public class SaxParserDemo extends DefaultHandler {
     }
 }
 /*
- * itemsQuantity=5 itemHighestPrice=Food [name=Berry-Berry Belgian Waffles,
- * price=8.95] itemLowestPrice=Food [name=French Toast, price=4.5]
- * totalPrice=34.3
+ * itemsQuantity=5 itemHighestPrice=Food [name=Berry-Berry Belgian Waffles, price=8.95]
+ * itemLowestPrice=Food [name=French Toast, price=4.5] totalPrice=34.3
  */

@@ -1,8 +1,10 @@
 package by.itacademy.java.yaskelevich.classroom.lesson22.xml.model;
 
-import javax.xml.bind.annotation.XmlRootElement;
+//The import javax.xml.bind cannot be resolved
+//import javax.xml.bind.annotation.XmlRootElement;
 
-@XmlRootElement
+//XmlRootElement cannot be resolved to a type
+//@XmlRootElement
 public class Food {
     private String name;
     private Double price;

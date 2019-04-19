@@ -1,3 +1,4 @@
+
 package by.itacademy.java.yaskelevich.classroom.lesson17;
 
 import java.lang.reflect.InvocationTargetException;
@@ -28,14 +29,14 @@ public class SampleClass {
     }
 
     /**
-     * Runs 6 threads to execute all methods of the sample class. Specified (in
-     * parameter) method will be executed first with delay to be sure that it will
-     * acquire all necessary resources.
+     * Runs 6 threads to execute all methods of the sample class. Specified (in parameter) method
+     * will be executed first with delay to be sure that it will acquire all necessary resources.
      * 
      * @param firstMethodIndex
      * @throws InterruptedException
      */
-    private static void callMethodThenOthers(final int firstMethodIndex) throws InterruptedException {
+    private static void callMethodThenOthers(final int firstMethodIndex)
+            throws InterruptedException {
         System.out.println("run test with first executed method test" + firstMethodIndex);
         final SampleClass objectInstance = new SampleClass();
         runInNewThread(firstMethodIndex, objectInstance);
@@ -52,10 +53,8 @@ public class SampleClass {
     /**
      * Executes the specified method in new Thread.
      * 
-     * @param methodIndex
-     *            will be used to build the method name like test{methodIndex}
-     * @param objectInstance
-     *            instance of the sample class to be used as execution context
+     * @param methodIndex    will be used to build the method name like test{methodIndex}
+     * @param objectInstance instance of the sample class to be used as execution context
      */
     private static void runInNewThread(final int methodIndex, final SampleClass objectInstance) {
         new Thread(new Runnable() {
@@ -65,8 +64,8 @@ public class SampleClass {
                 try {
                     method = SampleClass.class.getMethod("test" + methodIndex);
                     method.invoke(objectInstance);
-                } catch (NoSuchMethodException | SecurityException | IllegalAccessException | IllegalArgumentException
-                        | InvocationTargetException e) {
+                } catch (NoSuchMethodException | SecurityException | IllegalAccessException
+                        | IllegalArgumentException | InvocationTargetException e) {
                     e.printStackTrace();
                 }
             }
@@ -86,7 +85,8 @@ public class SampleClass {
     }
 
     public synchronized static void test4() {
-        pause5seconds("test4 static[sync static method. monitor=this class]"); // sync using monitor='this'
+        pause5seconds("test4 static[sync static method. monitor=this class]"); // sync using
+                                                                               // monitor='this'
     }
 
     public void test5() {

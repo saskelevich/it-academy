@@ -25,10 +25,12 @@ public class MainThread implements Runnable {
             if (emails.size() >= 20) {
                 final Consumer consumer = new Consumer(emails, ("Consumer" + returnId()));
                 threads.add(consumer);
-                System.out.printf("%s - Size = %d. Create %s\n", LogPrinter.log(), emails.size(), consumer);
+                System.out.printf("%s - Size = %d. Create %s\n", LogPrinter.log(), emails.size(),
+                        consumer);
             }
             if (emails.size() <= 10) {
-                System.out.printf("%s - Size = %d. Delete %s\n", LogPrinter.log(), emails.size(), threads.poll());
+                System.out.printf("%s - Size = %d. Delete %s\n", LogPrinter.log(), emails.size(),
+                        threads.poll());
             } else {
                 try {
                     Thread.sleep(TimeUnit.SECONDS.toMillis(5));

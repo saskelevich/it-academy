@@ -1,3 +1,4 @@
+
 package by.itacademy.java.yaskelevich.classroom.lesson16;
 
 import java.util.concurrent.atomic.AtomicLong;
