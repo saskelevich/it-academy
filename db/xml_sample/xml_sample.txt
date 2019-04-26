@@ -1,0 +1,46 @@
+-- select * from brand;
+-- select * from model;
+-- select * from car;
+
+-- insert into brand(name) values ('Opel');
+-- insert into model(name) values ('Octavia');
+
+-- select name, updated from model;
+-- select * from model where id<5;
+-- select * from model where id=3;
+-- select * from model where id=4 or id=3;
+
+-- delete from brand;
+-- delete from model where id = 5;
+
+-- update car set vin = 'AAA' where id = 1;
+
+-- псевдонимы
+-- select m.name from model m;
+-- select m.name as model_name from model m;
+
+-- select count(*) from model;
+-- ==
+-- select count(1) from model;
+
+-- select distinct model_id from car; 
+-- select distinct model_id, vin from car; 
+
+-- select count(1) from car group by model_id;
+-- select count(1),model_id from car group by model_id;
+
+-- LIMIT
+-- select 8 from car  where id <= 3 limit 2 offset 0;
+
+-- ORDER BY
+-- select * from car order by id ;
+-- select * from car order by id asc;
+-- select * from car order by id desc;
+-- select * from car order by created,id desc;
+
+-- LIKE
+-- select * from car where vim like '%tlas002';
+-- select * from car where vim like '_tlas002';
+
+-- IN
+-- select * from car where vim in ('002');
