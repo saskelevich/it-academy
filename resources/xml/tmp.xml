@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<shiporder orderid="889923">
+    <item>
+        <price>10.9</price>
+        <quantity>1</quantity>
+        <title>Empire Burlesque</title>
+    </item>
+    <item>
+        <price>9.9</price>
+        <quantity>1</quantity>
+        <title>Hide your heart</title>
+    </item>
+    <orderperson>John Smith</orderperson>
+    <shipto>
+        <address>Langgt 23</address>
+        <city>4000 Stavanger</city>
+        <country>Norway</country>
+        <name>Ola Nordmann</name>
+    </shipto>
+</shiporder>

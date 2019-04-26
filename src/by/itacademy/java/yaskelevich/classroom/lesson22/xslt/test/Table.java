@@ -11,7 +11,8 @@ import javax.xml.transform.stream.StreamSource;
 public class Table {
     public static void main(final String[] args) throws TransformerException {
         final StreamSource source = new StreamSource(Table.class.getResourceAsStream("table.xml"));
-        final StreamSource stylesource = new StreamSource(Table.class.getResourceAsStream("table.xsl"));
+        final StreamSource stylesource = new StreamSource(
+                Table.class.getResourceAsStream("table1.xsl"));
 
         final TransformerFactory factory = TransformerFactory.newInstance();
         final Transformer transformer = factory.newTransformer(stylesource);
@@ -19,7 +20,7 @@ public class Table {
         // final StreamResult result = new StreamResult(System.out);
         // transformer.transform(source, result);
 
-        final StreamResult result = new StreamResult(new File("table.html"));
+        final StreamResult result = new StreamResult(new File("./resources/xml/table.html"));
         transformer.transform(source, result);
 
     }
