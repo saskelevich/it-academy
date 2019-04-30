@@ -39,8 +39,8 @@
 -- select * from car order by created,id desc;
 
 -- LIKE
--- select * from car where vim like '%tlas002';
--- select * from car where vim like '_tlas002';
+-- select * from car where vin like '%tlas002';
+-- select * from car where vin like '_tlas002';
 
 -- IN
--- select * from car where vim in ('002');
+-- select * from car where vin in ('002');
