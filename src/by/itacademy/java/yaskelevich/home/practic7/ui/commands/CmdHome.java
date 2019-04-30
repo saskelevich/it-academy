@@ -7,6 +7,6 @@ import by.itacademy.java.yaskelevich.home.practic7.ui.commands.search.CmdSearch;
 public class CmdHome extends AbstractCmd {
 
     public CmdHome() {
-        super(CmdEditDB.class, CmdSearch.class);
+        super(CmdEditDB.class, CmdSearch.class, CmdExit.class);
     }
 }

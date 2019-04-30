@@ -5,7 +5,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 
 public abstract class AbstractCmd {
-    private static final BufferedReader consoleReader = new BufferedReader(
+    private static final BufferedReader CONSOLE_READER = new BufferedReader(
             new InputStreamReader(System.in));
 
     private Class<? extends AbstractCmd>[] subCommands;
@@ -36,29 +36,21 @@ public abstract class AbstractCmd {
             throws InstantiationException, IllegalAccessException, IOException {
         final Class<? extends AbstractCmd> selectNextSubCommand = selectNextSubCommand();
         return selectNextSubCommand.newInstance();
-        // The method newInstance() from the type
-        // Class<capture#6-of ? extends AbstractCmd> is
-        // deprecated since version 9
     }
 
     protected Class<? extends AbstractCmd> selectNextSubCommand() {
         showSubCommands();
         Class<? extends AbstractCmd> selectedCmd = selectCommand();
         while (selectedCmd == null) {
-            System.out.println("Input is invalid. Try again...");
+            System.out.println("Input is wrong, try again...");
             showSubCommands();
             selectedCmd = selectCommand();
         }
-// my changes
-//        if (selectedCmd == null) {
-//            System.out.println("Input is invalid. Try again...");
-//            selectNextSubCommand();
-//        }
         return selectedCmd;
     }
 
     protected String readInput() throws IOException {
-        return consoleReader.readLine();
+        return CONSOLE_READER.readLine();
     }
 
     private String getDescription(final Class<? extends AbstractCmd> clazz) {
@@ -80,12 +72,12 @@ public abstract class AbstractCmd {
 
     private void showSubCommands() {
         if (subCommands.length != 0) {
-            System.out.println("-----------select action-----------");
+            System.out.println("-----------Select an action-----------");
             for (final Class<? extends AbstractCmd> cmdClass : subCommands) {
                 System.out.printf("%s - %s\n", getCommandName(cmdClass), getDescription(cmdClass));
             }
         } else {
-            System.out.println("no subcommands to display.");
+            System.out.println("No subcommands to display");
             System.exit(1);
         }
     };
@@ -98,7 +90,6 @@ public abstract class AbstractCmd {
             e.printStackTrace();
             return null;
         }
-
         for (final Class<? extends AbstractCmd> cmd : subCommands) {
             if (getCommandName(cmd).equalsIgnoreCase(cmdName)) {
                 return cmd;
