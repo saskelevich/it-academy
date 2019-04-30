@@ -7,8 +7,7 @@ import by.itacademy.java.yaskelevich.home.practic7.ui.commands.CmdHome;
 
 public class Application {
 
-    public static void main(final String[] args)
-            throws InstantiationException, IllegalAccessException, IOException {
+    public static void main(final String[] args) throws InstantiationException, IllegalAccessException, IOException {
         System.out.println("start application");
 
         AbstractCmd nextCommand = new CmdHome();
