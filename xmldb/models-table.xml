@@ -49,5 +49,12 @@
         <name>Siera</name>
         <updated>2019-04-28T17:28:57.127+03:00</updated>
     </models>
-    <nextId>11</nextId>
+    <models>
+        <brandId>8</brandId>
+        <created>2019-05-08T21:52:59.396+03:00</created>
+        <id>12</id>
+        <name>TT</name>
+        <updated>2019-05-08T21:52:59.396+03:00</updated>
+    </models>
+    <nextId>12</nextId>
 </modelTable>

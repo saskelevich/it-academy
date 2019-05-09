@@ -1,4 +1,4 @@
-package by.itacademy.java.yaskelevich.home.practic7.db.xml.copy;
+package by.itacademy.java.yaskelevich.home.practic7.datalayer.xml;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -9,30 +9,35 @@ import javax.xml.bind.JAXBException;
 import javax.xml.bind.Marshaller;
 import javax.xml.bind.Unmarshaller;
 
+import by.itacademy.java.yaskelevich.home.practic7.datalayer.DAOException;
+
 public abstract class AbstractXMLDao<T> {
     private static final String ROOT_FOLDER = "./xmldb";
 
-    abstract protected String getFileName();
+    abstract String getFileName();
 
-    abstract protected Class<T> getTableClass();
+    abstract Class<T> getTableClass();
 
     static {
+
         final File root = new File(ROOT_FOLDER);
         if (!root.exists()) {
             root.mkdirs();
         }
     }
 
+    @SuppressWarnings("deprecation")
     protected AbstractXMLDao() {
+
         super();
         final File file = getFile();
+
         if (!file.exists()) {
             try {
                 file.createNewFile();
-                write(getTableClass().newInstance());
-            } catch (InstantiationException | IllegalAccessException | IOException e) {
-                e.printStackTrace();
-                throw new RuntimeException();// TODO
+                write(getTableClass().newInstance()); // create new empty
+            } catch (IOException | InstantiationException | IllegalAccessException exc) {
+                throw new DAOException("Constructor AbstractXMLDao", exc);
             }
         }
     }
@@ -41,30 +46,34 @@ public abstract class AbstractXMLDao<T> {
         return new File(ROOT_FOLDER + "/" + getFileName());
     }
 
+    @SuppressWarnings("unchecked")
     protected T read() {
+
         final File file = getFile();
-        JAXBContext jaxbContext;
-        Unmarshaller jaxbUnmarshaller;
+
         try {
-            jaxbContext = JAXBContext.newInstance(getTableClass());
-            jaxbUnmarshaller = jaxbContext.createUnmarshaller();
+            final JAXBContext jaxbContext = JAXBContext.newInstance(getTableClass());
+            final Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();
+
             return (T) jaxbUnmarshaller.unmarshal(file);
         } catch (final JAXBException e) {
-            e.printStackTrace();
-            throw new RuntimeException(e);// TODO
+            throw new DAOException("Cannot read", e);
         }
     }
 
     protected void write(final T table) {
+
         JAXBContext jaxbContext;
+
         try (FileOutputStream os = new FileOutputStream(getFile());) {
+
             jaxbContext = JAXBContext.newInstance(getTableClass());
             final Marshaller jaxbMarshaller = jaxbContext.createMarshaller();
             jaxbMarshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
             jaxbMarshaller.marshal(table, os);
+
         } catch (JAXBException | IOException e) {
-            e.printStackTrace();
-            throw new RuntimeException(e);// TODO
+            throw new DAOException("Cannot write", e);
         }
     }
 }

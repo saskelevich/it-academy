@@ -1,11 +1,11 @@
-package by.itacademy.java.yaskelevich.home.practic7.db.xml.table;
+package by.itacademy.java.yaskelevich.home.practic7.datalayer.xml.table;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import javax.xml.bind.annotation.XmlRootElement;
 
-import by.itacademy.java.yaskelevich.home.practic7.db.entity.Car;
+import by.itacademy.java.yaskelevich.home.practic7.datalayer.entity.Car;
 
 @XmlRootElement
 public class CarTable {

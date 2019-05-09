@@ -1,25 +1,31 @@
 package by.itacademy.java.yaskelevich.home.practic7.ui.commands.edit.brand;
 
-import java.io.IOException;
-
-import by.itacademy.java.yaskelevich.home.practic7.db.IDao;
-import by.itacademy.java.yaskelevich.home.practic7.db.entity.Brand;
-import by.itacademy.java.yaskelevich.home.practic7.db.xml.BrandXmlDaoImpl;
+import by.itacademy.java.yaskelevich.home.practic7.datalayer.IDao;
+import by.itacademy.java.yaskelevich.home.practic7.datalayer.db.BrandDBDaoImpl;
+import by.itacademy.java.yaskelevich.home.practic7.datalayer.entity.Brand;
 import by.itacademy.java.yaskelevich.home.practic7.ui.commands.AbstractCmd;
 import by.itacademy.java.yaskelevich.home.practic7.ui.commands.Command;
 
-@Command(name = "delete", description = "delete brand")
+@Command(name = "delete", description = "удалить бренд")
 public class CmdDeleteBrand extends AbstractCmd {
-    private final IDao<Brand> dao = BrandXmlDaoImpl.getInstance();
+
+    private IDao<Brand, Brand> dao;
 
     @Override
-    public AbstractCmd execute()
-            throws InstantiationException, IllegalAccessException, IOException {
+    public AbstractCmd execute() {
 
-        System.out.println("input brand id for deleting");
+        // DB
+        dao = BrandDBDaoImpl.getInstance();
+
+        // XML
+//        dao = BrandXMLDaoImpl.getDAOInstance();
+
+        System.out.println("введите id для удаления нового бренда");
         final Integer id = Integer.parseInt(readInput());
+
         dao.delete(id);
-        System.out.println("brand was deleted");
+
+        System.out.println("бренд удален");
         return new CmdEditBrand();
     }
 }

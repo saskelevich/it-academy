@@ -1,46 +1,55 @@
-package by.itacademy.java.yaskelevich.home.practic7.db.xml.copy;
+package by.itacademy.java.yaskelevich.home.practic7.datalayer.xml;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
 
-import by.itacademy.java.yaskelevich.home.practic7.db.IDao;
-import by.itacademy.java.yaskelevich.home.practic7.db.entity.Car;
-import by.itacademy.java.yaskelevich.home.practic7.db.xml.table.CarTable;
+import by.itacademy.java.yaskelevich.home.practic7.datalayer.IDao;
+import by.itacademy.java.yaskelevich.home.practic7.datalayer.entity.Car;
+import by.itacademy.java.yaskelevich.home.practic7.datalayer.xml.table.CarTable;
 
-public final class CarXmlDaoImpl extends AbstractXMLDao<CarTable> implements IDao<Car> {
+public final class CarXMLDaoImpl extends AbstractXMLDao<CarTable> implements IDao<Car, List<Car>> {
 
-    private static final String CARS_TABLE_FILE = "cars-table.xml";
-    private static IDao<Car> instance;
+    private static final String FILE_NAME = "cars-table.xml";
 
-    private CarXmlDaoImpl() {
+    private static IDao<Car, List<Car>> instance;
+
+    private CarXMLDaoImpl() {
     }
 
-    public static IDao<Car> getInstance() {
+    public static IDao<Car, List<Car>> getInstance() {
+
         if (instance == null) {
-            instance = new CarXmlDaoImpl();
+            instance = new CarXMLDaoImpl();
         }
         return instance;
     }
 
     @Override
     public Car insert(final Car entity) {
+
         final CarTable carTable = read();
         final Integer id = carTable.nextId();
+
         entity.setId(id);
         final Date created = new Date();
         entity.setCreated(created);
         entity.setUpdated(created);
         carTable.getCars().add(entity);
+
         write(carTable);
+
         return entity;
     }
 
     @Override
     public void update(final Car entity) {
+
         final CarTable table = read();
+
         table.getCars().stream().forEach(str -> {
-            if (str.equals(entity)) {
+            if (str.getId().equals(entity.getId())) {
                 str.setVin(entity.getVin());
                 str.setModelId(entity.getModelId());
                 str.setUpdated(new Date());
@@ -51,8 +60,10 @@ public final class CarXmlDaoImpl extends AbstractXMLDao<CarTable> implements IDa
 
     @Override
     public void delete(final Integer id) {
+
         final CarTable carTable = read();
         final Iterator<Car> iterator = carTable.getCars().iterator();
+
         while (iterator.hasNext()) {
             final Car car = iterator.next();
             if (car.getId().equals(id)) {
@@ -64,18 +75,40 @@ public final class CarXmlDaoImpl extends AbstractXMLDao<CarTable> implements IDa
 
     @Override
     public List<Car> getAll() {
+
         final CarTable carTable = read();
         return carTable.getCars();
     }
 
     @Override
+    public Car get(final Integer id) {
+
+        for (final Car car : getAll()) {
+            if (car.getId().equals(id)) {
+                return car;
+            }
+        }
+        return null;// TODO Optional
+    }
+
+    @Override
     protected String getFileName() {
-        return CARS_TABLE_FILE;
+        return FILE_NAME;
     }
 
     @Override
     protected Class<CarTable> getTableClass() {
         return CarTable.class;
+    }
+
+    @Override
+    public List<Car> find(final Integer id) {
+
+        final List<Car> cars = new ArrayList<Car>();
+
+        getAll().stream().filter(car -> car.getModelId().equals(id)).forEach(str -> cars.add(str));
+
+        return cars;
     }
 
 }

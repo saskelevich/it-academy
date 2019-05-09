@@ -1,46 +1,55 @@
-package by.itacademy.java.yaskelevich.home.practic7.db.xml.copy;
+package by.itacademy.java.yaskelevich.home.practic7.datalayer.xml;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
 
-import by.itacademy.java.yaskelevich.home.practic7.db.IDao;
-import by.itacademy.java.yaskelevich.home.practic7.db.entity.Model;
-import by.itacademy.java.yaskelevich.home.practic7.db.xml.table.ModelTable;
+import by.itacademy.java.yaskelevich.home.practic7.datalayer.IDao;
+import by.itacademy.java.yaskelevich.home.practic7.datalayer.entity.Model;
+import by.itacademy.java.yaskelevich.home.practic7.datalayer.xml.table.ModelTable;
 
-public final class ModelXmlDaoImpl extends AbstractXMLDao<ModelTable> implements IDao<Model> {
+public final class ModelXMLDaoImpl extends AbstractXMLDao<ModelTable>
+        implements IDao<Model, List<Model>> {
 
-    private static final String MODEL_TABLE_FILE = "models-table.xml";
-    private static IDao<Model> instance;
+    private static final String FILE_NAME = "models-table.xml";
+    private static IDao<Model, List<Model>> instance;
 
-    private ModelXmlDaoImpl() {
+    private ModelXMLDaoImpl() {
     }
 
-    public static IDao<Model> getInstance() {
+    public static IDao<Model, List<Model>> getInstance() {
+
         if (instance == null) {
-            instance = new ModelXmlDaoImpl();
+            instance = new ModelXMLDaoImpl();
         }
         return instance;
     }
 
     @Override
     public Model insert(final Model entity) {
+
         final ModelTable modelTable = read();
         final Integer id = modelTable.nextId();
+
         entity.setId(id);
         final Date created = new Date();
         entity.setCreated(created);
         entity.setUpdated(created);
         modelTable.getModels().add(entity);
+
         write(modelTable);
+
         return entity;
     }
 
     @Override
     public void update(final Model entity) {
+
         final ModelTable table = read();
+
         table.getModels().stream().forEach(str -> {
-            if (str.equals(entity)) {
+            if (str.getId().equals(entity.getId())) {
                 str.setName(entity.getName());
                 str.setBrandId(entity.getBrandId());
                 str.setUpdated(new Date());
@@ -51,8 +60,10 @@ public final class ModelXmlDaoImpl extends AbstractXMLDao<ModelTable> implements
 
     @Override
     public void delete(final Integer id) {
+
         final ModelTable modelTable = read();
         final Iterator<Model> iterator = modelTable.getModels().iterator();
+
         while (iterator.hasNext()) {
             final Model model = iterator.next();
             if (model.getId().equals(id)) {
@@ -64,18 +75,41 @@ public final class ModelXmlDaoImpl extends AbstractXMLDao<ModelTable> implements
 
     @Override
     public List<Model> getAll() {
+
         final ModelTable modelTable = read();
         return modelTable.getModels();
     }
 
     @Override
+    public Model get(final Integer id) {
+
+        for (final Model model : getAll()) {
+            if (model.getId().equals(id)) {
+                return model;
+            }
+        }
+        return null;// TODO Optional
+    }
+
+    @Override
     protected String getFileName() {
-        return MODEL_TABLE_FILE;
+        return FILE_NAME;
     }
 
     @Override
     protected Class<ModelTable> getTableClass() {
         return ModelTable.class;
+    }
+
+    @Override
+    public List<Model> find(final Integer id) {
+
+        final List<Model> models = new ArrayList<Model>();
+
+        getAll().stream().filter(model -> model.getBrandId().equals(id))
+                .forEach(model -> models.add(model));
+
+        return models;
     }
 
 }

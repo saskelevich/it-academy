@@ -21,5 +21,12 @@
         <updated>2019-04-28T17:34:01.067+03:00</updated>
         <vin>344334GHHI</vin>
     </cars>
-    <nextId>5</nextId>
+    <cars>
+        <created>2019-05-08T21:54:08.389+03:00</created>
+        <id>6</id>
+        <modelId>12</modelId>
+        <updated>2019-05-08T21:54:08.389+03:00</updated>
+        <vin>GH6545</vin>
+    </cars>
+    <nextId>6</nextId>
 </carTable>

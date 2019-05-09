@@ -18,5 +18,11 @@
         <name>Ford</name>
         <updated>2019-04-28T17:24:02.395+03:00</updated>
     </brands>
-    <nextId>7</nextId>
+    <brands>
+        <created>2019-05-08T21:50:38.649+03:00</created>
+        <id>8</id>
+        <name>Audi</name>
+        <updated>2019-05-08T21:51:32.368+03:00</updated>
+    </brands>
+    <nextId>8</nextId>
 </brandTable>

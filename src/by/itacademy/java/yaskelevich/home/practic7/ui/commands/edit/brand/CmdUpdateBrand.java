@@ -1,30 +1,36 @@
 package by.itacademy.java.yaskelevich.home.practic7.ui.commands.edit.brand;
 
-import java.io.IOException;
-
-import by.itacademy.java.yaskelevich.home.practic7.db.IDao;
-import by.itacademy.java.yaskelevich.home.practic7.db.entity.Brand;
-import by.itacademy.java.yaskelevich.home.practic7.db.xml.BrandXmlDaoImpl;
+import by.itacademy.java.yaskelevich.home.practic7.datalayer.IDao;
+import by.itacademy.java.yaskelevich.home.practic7.datalayer.db.BrandDBDaoImpl;
+import by.itacademy.java.yaskelevich.home.practic7.datalayer.entity.Brand;
 import by.itacademy.java.yaskelevich.home.practic7.ui.commands.AbstractCmd;
 import by.itacademy.java.yaskelevich.home.practic7.ui.commands.Command;
 
-@Command(name = "update", description = "update btand")
+@Command(name = "edit", description = "редакатировать бренд")
 public class CmdUpdateBrand extends AbstractCmd {
-    private final IDao<Brand> dao = BrandXmlDaoImpl.getInstance();
+
+    private IDao<Brand, Brand> dao;
 
     @Override
-    public AbstractCmd execute()
-            throws InstantiationException, IllegalAccessException, IOException {
-        System.out.println("input brand id for updating");
-        final Integer id = Integer.valueOf(readInput());
-        System.out.println("input new brand name:");
-        final String newNane = readInput();
-        final Brand brand = new Brand();
-        brand.setId(id);
-        brand.setName(newNane);
+    public AbstractCmd execute() {
+
+        // DB
+        dao = BrandDBDaoImpl.getInstance();
+
+        // XML
+//        dao = BrandXMLDaoImpl.getDAOInstance();
+
+        System.out.println("введите id бренда для редактирования ");
+        final Integer id = Integer.parseInt(readInput());
+
+        final Brand brand = dao.get(id);
+        System.out.println(brand);
+
+        System.out.println("введите новое имя");
+        brand.setName(readInput());
         dao.update(brand);
-        System.out.println("Brand with id=" + id + " was updated");
+
+        System.out.println("бренд обновлен:" + dao.get(id));
         return new CmdEditBrand();
     }
-
 }

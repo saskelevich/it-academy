@@ -47,19 +47,19 @@
 
 ---------------------------------------------------------------
 
--- select * from model
--- join brand.b on (model.brand_id = b.id);
+-- select * from model m join brand b 
+-- on (m.brand_id = b.id);
 
---  select * from model
--- inner join brand on (model.brand_id = brand.id);
+-- select * from model inner join brand 
+-- on (model.brand_id = brand.id);
 
--- update model set brand_id = null where id = 2; 
+-- update model set brand_id = null where id = 3; 
 
--- select * from model
--- left join brand on (model.brand_id = brand.id);
+-- select * from model left join brand 
+-- on (model.brand_id = brand.id);
 
--- select * from model
--- right join brand on (model.brand_id = brand.id);
+-- select * from model right join brand 
+-- on (model.brand_id = brand.id);
 
--- select * from model
--- full join brand on (model.brand_id = brand.id);
+-- select * from model full join brand 
+-- on (model.brand_id = brand.id);

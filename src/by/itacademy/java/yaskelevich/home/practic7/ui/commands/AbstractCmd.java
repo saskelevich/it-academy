@@ -3,6 +3,7 @@ package by.itacademy.java.yaskelevich.home.practic7.ui.commands;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.sql.SQLException;
 
 public abstract class AbstractCmd {
     private static final BufferedReader CONSOLE_READER = new BufferedReader(
@@ -12,13 +13,18 @@ public abstract class AbstractCmd {
 
     @SafeVarargs
     public AbstractCmd(final Class<? extends AbstractCmd>... cmd) {
+
         if (this.getClass() != CmdHome.class) {
+
+            @SuppressWarnings("unchecked")
             final Class<? extends AbstractCmd>[] allSubcommands = new Class[cmd.length + 1];
             for (int i = 0; i < cmd.length; i++) {
                 allSubcommands[i] = cmd[i];
             }
+
             allSubcommands[cmd.length] = CmdHome.class; // add default
             this.subCommands = allSubcommands;
+
         } else {
             this.subCommands = cmd;
         }
@@ -27,30 +33,38 @@ public abstract class AbstractCmd {
     /**
      * Contains code to be executed when user selected current command and also returns the next
      * command
-     * 
      * @throws IllegalAccessException
      * @throws InstantiationException
      * @throws IOException
+     * @throws SQLException
      */
-    public AbstractCmd execute()
-            throws InstantiationException, IllegalAccessException, IOException {
+    @SuppressWarnings("deprecation")
+    public AbstractCmd execute() {
         final Class<? extends AbstractCmd> selectNextSubCommand = selectNextSubCommand();
-        return selectNextSubCommand.newInstance();
+        try {
+            return selectNextSubCommand.newInstance();
+        } catch (InstantiationException | IllegalAccessException exc) {
+            throw new UIException(exc);
+        }
     }
 
     protected Class<? extends AbstractCmd> selectNextSubCommand() {
         showSubCommands();
         Class<? extends AbstractCmd> selectedCmd = selectCommand();
         while (selectedCmd == null) {
-            System.out.println("Input is wrong, try again...");
+            System.out.println("неверный ввод, попробуйте еще раз...");
             showSubCommands();
             selectedCmd = selectCommand();
         }
         return selectedCmd;
     }
 
-    protected String readInput() throws IOException {
-        return CONSOLE_READER.readLine();
+    protected String readInput() {
+        try {
+            return CONSOLE_READER.readLine();
+        } catch (final IOException exc) {
+            throw new UIException(exc);
+        }
     }
 
     private String getDescription(final Class<? extends AbstractCmd> clazz) {
@@ -64,32 +78,27 @@ public abstract class AbstractCmd {
     private Command getMetadata(final Class<? extends AbstractCmd> clazz) {
         final Command annotation = clazz.getAnnotation(Command.class);
         if (annotation == null) {
-            throw new IllegalArgumentException(
-                    "Class should be annotated with metadata. Class:" + clazz);
+            throw new UIException("Class should be annotated with metadata. Class:" + clazz,
+                    new IllegalArgumentException());
         }
         return annotation;
     }
 
     private void showSubCommands() {
         if (subCommands.length != 0) {
-            System.out.println("-----------Select an action-----------");
+            System.out.println("-----------выберите действие-----------");
             for (final Class<? extends AbstractCmd> cmdClass : subCommands) {
                 System.out.printf("%s - %s\n", getCommandName(cmdClass), getDescription(cmdClass));
             }
         } else {
-            System.out.println("No subcommands to display");
+            System.out.println("нет подкоманд для показа");
             System.exit(1);
         }
     };
 
     private Class<? extends AbstractCmd> selectCommand() {
-        String cmdName;
-        try {
-            cmdName = readInput();
-        } catch (final IOException e) {
-            e.printStackTrace();
-            return null;
-        }
+        final String cmdName = readInput();
+
         for (final Class<? extends AbstractCmd> cmd : subCommands) {
             if (getCommandName(cmd).equalsIgnoreCase(cmdName)) {
                 return cmd;

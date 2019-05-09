@@ -7,6 +7,6 @@ import by.itacademy.java.yaskelevich.home.practic7.ui.commands.Command;
 public class CmdEditModel extends AbstractCmd {
 
     public CmdEditModel() {
-        super(CmdListModel.class, CmdAddModel.class, CmdDeleteModel.class, CmdUpdateModel.class);
+        super(CmdAddModel.class, CmdDeleteModel.class, CmdListModel.class, CmdUpdateModel.class);
     }
 }
