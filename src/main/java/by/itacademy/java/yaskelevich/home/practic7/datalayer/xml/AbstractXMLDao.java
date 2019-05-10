@@ -26,7 +26,6 @@ public abstract class AbstractXMLDao<T> {
         }
     }
 
-    @SuppressWarnings("deprecation")
     protected AbstractXMLDao() {
 
         super();

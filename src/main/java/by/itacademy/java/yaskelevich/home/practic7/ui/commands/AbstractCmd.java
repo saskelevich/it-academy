@@ -6,8 +6,7 @@ import java.io.InputStreamReader;
 import java.sql.SQLException;
 
 public abstract class AbstractCmd {
-    private static final BufferedReader CONSOLE_READER = new BufferedReader(
-            new InputStreamReader(System.in));
+    private static final BufferedReader CONSOLE_READER = new BufferedReader(new InputStreamReader(System.in));
 
     private Class<? extends AbstractCmd>[] subCommands;
 
@@ -31,14 +30,14 @@ public abstract class AbstractCmd {
     }
 
     /**
-     * Contains code to be executed when user selected current command and also returns the next
-     * command
+     * Contains code to be executed when user selected current command and also
+     * returns the next command
+     * 
      * @throws IllegalAccessException
      * @throws InstantiationException
      * @throws IOException
      * @throws SQLException
      */
-    @SuppressWarnings("deprecation")
     public AbstractCmd execute() {
         final Class<? extends AbstractCmd> selectNextSubCommand = selectNextSubCommand();
         try {

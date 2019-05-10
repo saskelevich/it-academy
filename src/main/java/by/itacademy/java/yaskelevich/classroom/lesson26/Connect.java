@@ -9,8 +9,8 @@ import java.sql.Statement;
 public class Connect {
     public static void main(final String[] args) {
 
-        try (Connection connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/", "saskel-cars",
-                "1");) {
+        try (Connection connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/saskel-cars",
+                "postgres", "1");) {
 
             final Statement statement = connection.createStatement();
             final ResultSet resultSet = statement.executeQuery("SELECT * FROM car");
