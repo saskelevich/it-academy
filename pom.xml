@@ -15,7 +15,7 @@
 		<tiles.version>3.0.8</tiles.version>
 	</properties>
 
-
+	<packaging>war</packaging>
 	<dependencies>
 		<dependency>
 			<groupId>com.fasterxml.jackson.core</groupId>
