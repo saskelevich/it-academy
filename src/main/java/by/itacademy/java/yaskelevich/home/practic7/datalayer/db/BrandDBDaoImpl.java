@@ -21,7 +21,6 @@ public final class BrandDBDaoImpl extends AbstractDBDao implements IDao<Brand, B
     private static final String DELETE_SQL = "delete from brand where id=%s";
     private static final String GET_SQL = "select * from brand where id=%s";
     private static final String GET_ALL_SQL = "select * from brand";
-    private static final String TO_FIND_SQL = "select * from brand where id=\'%d\'";
     private static final String NAME = "name";
     private static IDao<Brand, Brand> instance;
 
@@ -136,24 +135,6 @@ public final class BrandDBDaoImpl extends AbstractDBDao implements IDao<Brand, B
 
     @Override
     public Brand find(final Integer id) {
-
-        final Brand brand = new Brand();
-
-        try (Connection connection = createConnection();
-                Statement st = connection.createStatement();
-                ResultSet rs = st.executeQuery(String.format(TO_FIND_SQL, id));) {
-
-            if (rs.next()) {
-                brand.setId(rs.getInt(ID));
-                brand.setName(rs.getString(NAME));
-                brand.setCreated(rs.getDate(CREATED));
-                brand.setUpdated(rs.getDate(UPDATED));
-            }
-
-        } catch (final SQLException exc) {
-            throw new DAOException("Cannot search Brand" + exc);
-        }
-
-        return brand;
+        return get(id);
     }
 }

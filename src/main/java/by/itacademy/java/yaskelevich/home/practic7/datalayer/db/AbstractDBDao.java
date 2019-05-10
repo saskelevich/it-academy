@@ -13,7 +13,7 @@ public class AbstractDBDao {
     protected static final String CREATED = "created";
     protected static final String ID = "id";
 
-    protected static Connection createConnection() throws SQLException {
+    protected Connection createConnection() throws SQLException {
         return DriverManager.getConnection(LOCALHOST, USER, PASSWORD);
     }
 }

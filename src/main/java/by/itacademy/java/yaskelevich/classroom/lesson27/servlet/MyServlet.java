@@ -1,4 +1,4 @@
-package by.itacademy.java.yaskelevich.classroom.lesson26.servlet;
+package by.itacademy.java.yaskelevich.classroom.lesson27.servlet;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -8,13 +8,14 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+//@WebServlet("/my_servlet")
 public class MyServlet extends HttpServlet {
 
     private String message;
 
     @Override
     public void init() throws ServletException {
-        message = "Hello World";
+        message = "Hello Jetty";
     }
 
     @Override

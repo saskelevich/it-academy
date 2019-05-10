@@ -141,7 +141,7 @@ public final class ModelDBDaoImpl extends AbstractDBDao implements IDao<Model, L
 
         final List<Model> list = new ArrayList<Model>();
 
-        try (Connection connection = AbstractDBDao.createConnection();
+        try (Connection connection = createConnection();
                 Statement st = connection.createStatement();
                 ResultSet rs = st.executeQuery(String.format(FIND_SQL, id));) {
 
