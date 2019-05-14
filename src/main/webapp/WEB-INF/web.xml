@@ -13,7 +13,27 @@
 
 	<servlet-mapping>
 		<servlet-name>MyServlet</servlet-name>
-		<url-pattern>/*</url-pattern>
+		<url-pattern>/home</url-pattern>
 	</servlet-mapping>
 
+	<servlet>
+		<servlet-name>MyServlet1</servlet-name>
+		<servlet-class>by.itacademy.java.yaskelevich.classroom.lesson27.servlet.MyServlet1</servlet-class>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>MyServlet1</servlet-name>
+		<url-pattern>/home1</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>MyServlet2</servlet-name>
+		<servlet-class>by.itacademy.java.yaskelevich.classroom.lesson27.servlet.MyServlet2</servlet-class>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>MyServlet2</servlet-name>
+		<url-pattern>/home2</url-pattern>
+	</servlet-mapping>
+	
 </web-app>
