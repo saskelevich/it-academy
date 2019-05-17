@@ -4,6 +4,7 @@ import org.eclipse.jetty.server.HttpConfiguration;
 import org.eclipse.jetty.server.HttpConnectionFactory;
 import org.eclipse.jetty.server.Server;
 import org.eclipse.jetty.server.ServerConnector;
+import org.eclipse.jetty.webapp.Configuration;
 import org.eclipse.jetty.webapp.WebAppContext;
 
 /**
@@ -18,9 +19,6 @@ public class StartJetty {
      */
     public static void main(final String[] args) {
 
-//        startInstance(8081);
-        // startInstance(8082);
-        // startInstance(8083);
         startInstance(8081);
     }
 
@@ -37,8 +35,7 @@ public class StartJetty {
 
         server.addConnector(http);
 
-        final org.eclipse.jetty.webapp.Configuration.ClassList classlist = org.eclipse.jetty.webapp.Configuration.ClassList
-                .setServerDefault(server);
+        final Configuration.ClassList classlist = Configuration.ClassList.setServerDefault(server);
         classlist.addAfter("org.eclipse.jetty.webapp.FragmentConfiguration",
                 "org.eclipse.jetty.plus.webapp.EnvConfiguration",
                 "org.eclipse.jetty.plus.webapp.PlusConfiguration");
