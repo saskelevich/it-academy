@@ -7,7 +7,14 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<%@include file= "menu.jsp" %>
-	<h1>Cars page</h1>
+	
+	<table>
+		<tr>
+			<td><a href="brands.jsp">Brands</a></td>
+			<td><a href="models.jsp">Models</a></td>
+			<td><a href="cars.jsp">Cars</a></td>
+		</tr>	
+	</table>
+	
 </body>
 </html>

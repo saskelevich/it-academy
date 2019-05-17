@@ -6,9 +6,9 @@ import java.sql.SQLException;
 
 public class AbstractDBDao {
 
-    private static final String PASSWORD = "Lfnf<fpf";
-    private static final String USER = "saskel";
-    private static final String LOCALHOST = "jdbc:postgresql://localhost:5432/MyFirstDB";
+    private static final String PASSWORD = "1";
+    private static final String USER = "postgres";
+    private static final String LOCALHOST = "jdbc:postgresql://localhost:5432/saskel-cars";
     protected static final String UPDATED = "updated";
     protected static final String CREATED = "created";
     protected static final String ID = "id";

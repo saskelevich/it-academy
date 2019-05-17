@@ -40,4 +40,16 @@
 		<url-pattern>/home2</url-pattern>
 	</servlet-mapping>
 	
+	<servlet>
+		<servlet-name>WebServlet</servlet-name>
+		<servlet-class>by.itacademy.java.yaskelevich.classroom.lesson27.servlet.WebServlet</servlet-class>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>WebServlet</servlet-name>
+		<url-pattern>/servlet/brands</url-pattern>
+		<!-- <url-pattern>/servlet</url-pattern> -->
+	</servlet-mapping>
+	
+	
 </web-app>
