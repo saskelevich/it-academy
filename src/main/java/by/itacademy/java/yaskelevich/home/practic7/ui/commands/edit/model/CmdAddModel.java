@@ -12,31 +12,38 @@ import by.itacademy.java.yaskelevich.home.practic7.ui.commands.edit.brand.CmdLis
 @Command(name = "add", description = "add model")
 public class CmdAddModel extends AbstractCmd {
 
-    private IDao<Model, List<Model>> dao;
+	// DB
+	private IDao<Model, List<Model>> dao = ModelDBDaoImpl.getInstance();
 
-    @Override
-    public AbstractCmd execute() {
+	// XML
+//    private IDao<Model, List<Model>> dao = ModelXMLDaoImpl.getDAOInstance();
 
-        // DB
-        dao = ModelDBDaoImpl.getInstance();
+	@Override
+	public AbstractCmd execute() {
 
-        // XML
-//        dao = ModelXMLDaoImpl.getDAOInstance();
+		System.out.println("input new model name");
+		final String newModelName = readInput();
+		
+		final Model model = new Model();
+		model.setName(newModelName);
 
-        System.out.println("input new model name");
-        final String newModelName = readInput();
-        final Model model = new Model();
-        model.setName(newModelName);
+		new CmdListBrand();
+		System.out.println("input brand id:");
+		
+		Integer id = 0;
+		try {
+		id = Integer.valueOf(readInput());
+		}catch (NumberFormatException e) {
+			System.err.println("Model id must have integer value");
+			return new CmdEditModel();
+		}
+		
+		model.setBrandId(id);
 
-        new CmdListBrand().execute();
-        System.out.println("input brand id");
-        final Integer id = Integer.valueOf(readInput());
-        model.setBrandId(id);
+		final Model newModel= dao.insert(model);
 
-        final Model newEntity = dao.insert(model);
+		System.out.println("New model saved:" + newModel);
 
-        System.out.println("New model was saved:" + newEntity);
-
-        return new CmdEditModel();
-    }
+		return new CmdEditModel();
+	}
 }

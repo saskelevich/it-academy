@@ -12,7 +12,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 </head>
-<%@include file="menu.jsp"%>
+<%@include file="/practic7/menu.jsp"%>
 <h1>Brands page</h1>
 
 <%!IDao<Brand, Brand> dao = BrandDBDaoImpl.getInstance();%>
@@ -36,8 +36,5 @@
 	</table>
 	<input type="submit" value="SAVE">
 </form>
-
-
-
 </body>
 </html>

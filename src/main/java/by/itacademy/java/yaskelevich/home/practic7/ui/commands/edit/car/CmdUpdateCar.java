@@ -11,33 +11,44 @@ import by.itacademy.java.yaskelevich.home.practic7.ui.commands.Command;
 @Command(name = "update", description = "update car")
 public class CmdUpdateCar extends AbstractCmd {
 
-    private IDao<Car, List<Car>> dao;
+	// DB
+	private IDao<Car, List<Car>> dao = CarDBDaoImpl.getInstance();
 
-    @Override
-    public AbstractCmd execute() {
+	// XML
+//    private IDao<Car, List<Car>> dao = CarXMLDaoImpl.getDAOInstance();
 
-        // DB
-        dao = CarDBDaoImpl.getInstance();
+	@Override
+	public AbstractCmd execute() {
 
-        // XML
-//        dao = CarXMLDaoImpl.getDAOInstance();
+		System.out.println("input car id for updating:");
+		Integer id = 0;
+		try {
+			id = Integer.valueOf(readInput());
+		} catch (NumberFormatException e) {
+			System.err.println("Car id must have integer value");
+			return new CmdEditCar();
+		}
 
-        System.out.println("input car id for update:");
-        final Integer id = Integer.parseInt(readInput());
+		final Car car = dao.get(id);
+		System.out.println(car);
 
-        final Car car = dao.get(id);
-        System.out.println(car);
+		System.out.println("input new car vin:");
+		car.setVin(readInput());
 
-        System.out.println("input new car vin:");
-        car.setVin(readInput());
+		System.out.println("input new model id:");
+		Integer modelId = 0;
+		try {
+			modelId = Integer.valueOf(readInput());
+		} catch (NumberFormatException e) {
+			System.err.println("Car model_id must have integer value");
+			return new CmdEditCar();
+		}
+		car.setModelId(modelId);
 
-        System.out.println("input new model id:");
-        car.setModelId(Integer.valueOf(readInput()));
+		dao.update(car);
 
-        dao.update(car);
+		System.out.println("Car updated " + dao.get(id));
 
-        System.out.println("Car with id=" + dao.get(id) + " was update");
-
-        return new CmdEditCar();
-    }
+		return new CmdEditCar();
+	}
 }

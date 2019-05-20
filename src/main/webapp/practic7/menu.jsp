@@ -10,9 +10,10 @@
 	
 	<table>
 		<tr>
-			<td><a href="brands.jsp">Brands</a></td>
-			<td><a href="models.jsp">Models</a></td>
-			<td><a href="cars.jsp">Cars</a></td>
+			<td><a href="/practic7/update/brand/brands.jsp">Brands</a></td>
+			<td><a href="/practic7/update/model/models.jsp">Models</a></td>
+			<td><a href="/practic7/update/car/cars.jsp">Cars</a></td>
+			<td><a href="/practic7/search/brands.jsp">Search</a></td>
 		</tr>	
 	</table>
 	

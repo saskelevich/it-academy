@@ -11,44 +11,47 @@ import by.itacademy.java.yaskelevich.home.practic7.ui.commands.Command;
 @Command(name = "update", description = "update model")
 public class CmdUpdateModel extends AbstractCmd {
 
-    private IDao<Model, List<Model>> dao;
+	// DB
+	private IDao<Model, List<Model>> dao = ModelDBDaoImpl.getInstance();
 
-    @Override
-    public AbstractCmd execute() {
+	// XML
+//    private IDao<Model, List<Model>> dao = ModelXMLDaoImpl.getDAOInstance();
 
-        // DB
-        dao = ModelDBDaoImpl.getInstance();
+	@Override
+	public AbstractCmd execute() {
 
-        // XML
-//        dao = ModelXMLDaoImpl.getDAOInstance();
+		System.out.println("input model id for updating:");
+		
+		Integer id = 0;
+		try {
+		id = Integer.valueOf(readInput());
+		}catch (NumberFormatException e) {
+			System.err.println("Model id must have integer value");
+			return new CmdEditModel();
+		}
+		
+		final Model model = dao.get(id);
+		System.out.println(model);
 
-        System.out.println("input id of model for update:");
-        final Integer id = Integer.parseInt(readInput());
+		System.out.println("input new model name:");
+		model.setName(readInput());
 
-        final Model model = dao.get(id);
-        System.out.println(model);
+		System.out.println("input new brand id:");
+		
+		Integer brandId = 0;
+		try {
+			brandId = Integer.valueOf(readInput());
+		}catch (NumberFormatException e) {
+			System.err.println("In Model brand_id must have integer value");
+			return new CmdEditModel();
+		}
+		model.setBrandId(brandId);
 
-        System.out.println("input new model name");
-        model.setName(readInput());
+		dao.update(model);
 
-        System.out.println("input new brand id");
-        model.setBrandId(Integer.valueOf(readInput()));
+		System.out.println("Model updated " + dao.get(id));
 
-        dao.update(model);
-
-        System.out.println("Model with id=" + dao.get(id) + " was update");
-
-        return new CmdEditModel();
-//        System.out.println("input id of model for update:");
-//        final Model model = new Model();
-//        model.setId(Integer.valueOf(readInput()));
-//        System.out.println("input new model name:");
-//        model.setName(readInput());
-//        System.out.println("input new brand id");
-//        model.setBrandId(Integer.valueOf(readInput()));
-//        dao.update(model);
-//        System.out.println("Model with id=" + model.getId() + " was update");
-//        return new CmdEditModel();
-    }
+		return new CmdEditModel();
+	}
 
 }

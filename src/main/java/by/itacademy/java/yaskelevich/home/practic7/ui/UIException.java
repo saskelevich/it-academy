@@ -1,4 +1,4 @@
-package by.itacademy.java.yaskelevich.home.practic7.ui.commands;
+package by.itacademy.java.yaskelevich.home.practic7.ui;
 
 public class UIException extends RuntimeException {
 

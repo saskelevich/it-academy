@@ -10,22 +10,29 @@ import by.itacademy.java.yaskelevich.home.practic7.ui.commands.Command;
 
 @Command(name = "delete", description = "delete model")
 public class CmdDeleteModel extends AbstractCmd {
+	
+	// DB
+	private IDao<Model, List<Model>> dao = ModelDBDaoImpl.getInstance();
+	
+	// XML
+//	private IDao<Model, List<Model>> dao = ModelXMLDaoImpl.getDAOInstance();
 
-    private IDao<Model, List<Model>> dao;
+	@Override
+	public AbstractCmd execute() {
 
-    @Override
-    public AbstractCmd execute() {
-
-        // DB
-        dao = ModelDBDaoImpl.getInstance();
-
-        // XML
-//        dao = ModelXMLDaoImpl.getDAOInstance();
-
-        System.out.println("input model id for deleting");
-        final Integer id = Integer.parseInt(readInput());
-        dao.delete(id);
-        System.out.println("brand was delete");
-        return new CmdEditModel();
-    }
+		System.out.println("input model id for deleting");
+		
+		Integer id = 0;
+		try {
+			id = Integer.valueOf(readInput());
+		}catch (NumberFormatException e) {
+			System.err.println("Model id must have integer value");
+			return new CmdEditModel();
+		}
+		
+		dao.delete(id);
+		
+		System.out.println("brand was delete");
+		return new CmdEditModel();
+	}
 }

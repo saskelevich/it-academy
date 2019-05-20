@@ -8,17 +8,15 @@ import by.itacademy.java.yaskelevich.home.practic7.ui.commands.Command;
 
 @Command(name = "add", description = "добавить бренд")
 public class CmdAddBrand extends AbstractCmd {
-
-    private IDao<Brand, Brand> dao;
+	
+	// DB
+    private IDao<Brand, Brand> dao= BrandDBDaoImpl.getInstance();
+    
+    // XML
+//  private IDao<Brand, Brand> dao = BrandXMLDaoImpl.getDAOInstance();
 
     @Override
     public AbstractCmd execute() {
-
-        // DB
-        dao = BrandDBDaoImpl.getInstance();
-
-        // XML
-//        dao = BrandXMLDaoImpl.getDAOInstance();
 
         System.out.println("input new brand name");
         final String newBrandName = readInput();

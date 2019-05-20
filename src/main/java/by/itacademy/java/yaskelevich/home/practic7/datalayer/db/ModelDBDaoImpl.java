@@ -16,12 +16,12 @@ import by.itacademy.java.yaskelevich.home.practic7.datalayer.entity.Model;
 
 public final class ModelDBDaoImpl extends AbstractDBDao implements IDao<Model, List<Model>> {
 
-    private static final String FIND_SQL = "select * from model where brand_id=%s";
-    private static final String GET_ALL_SQL = "select * from model";
-    private static final String DELETE_SQL = "delete from model where id=%s";
-    private static final String UPDATE_SQL = "update model set name=?, updated=?, brand_id=? where id=?";
-    private static final String INSERT_SQL = "insert into model (name, brand_id) values (?, ?)";
-    private static final String GET_SQL = "select * from model where id=%s";
+    private static final String FIND_SQL = "select * from models where brand_id=%s";
+    private static final String GET_ALL_SQL = "select * from models";
+    private static final String DELETE_SQL = "delete from models where id=%s";
+    private static final String UPDATE_SQL = "update models set name=?, updated=?, brand_id=? where id=?";
+    private static final String INSERT_SQL = "insert into models (name, brand_id) values (?, ?)";
+    private static final String GET_SQL = "select * from models where id=%s";
     private static final String BRAND_ID = "brand_id";
     private static final String NAME = "name";
     private static IDao<Model, List<Model>> instance;

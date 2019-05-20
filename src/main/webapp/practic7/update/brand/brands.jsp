@@ -15,10 +15,10 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<%@include file="menu.jsp"%>
+	<%@include file="/practic7/menu.jsp"%>
 	<h1>Brands page</h1>
 
-	<%!IDao dao = BrandDBDaoImpl.getInstance();%>
+	<%!IDao<Brand, Brand> dao = BrandDBDaoImpl.getInstance();%>
 
 	<%
 	    List<Brand> brands = dao.getAll();
@@ -29,6 +29,8 @@
 		<tr>
 			<th>ID</th>
 			<th>NAME</th>
+			<th>CREATED</th>
+			<th>UPDATED</th>
 			<th>ACTIONS</th>
 		</tr>
 
@@ -36,16 +38,15 @@
 			<tr>
 				<td>${item.id}</td>
 				<td>${item.name}</td>
+				<td>${item.created}</td>
+				<td>${item.updated}</td>
 				<td>
-					<a href="/brand-edit.jsp?id=${item.id}">edit | </a> 
+					<a href="/practic7/update/brand/brand-edit.jsp?id=${item.id}">edit | </a> 
 					<a href="/servlet/brands?action=delete&id=${item.id}">delete</a></td>
 			</tr>
 		</c:forEach>
 
 	</table>
-	<a href="/brand-edit.jsp">ADD</a>
-
-
-
+	<a href="/practic7/update/brand/brand-edit.jsp">ADD</a>
 </body>
 </html>

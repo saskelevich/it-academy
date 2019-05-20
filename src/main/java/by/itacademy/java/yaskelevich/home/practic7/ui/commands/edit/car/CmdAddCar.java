@@ -11,32 +11,35 @@ import by.itacademy.java.yaskelevich.home.practic7.ui.commands.edit.model.CmdLis
 
 @Command(name = "add", description = "add car")
 public class CmdAddCar extends AbstractCmd {
+	// DB
+	private IDao<Car, List<Car>> dao = CarDBDaoImpl.getInstance();
 
-    private IDao<Car, List<Car>> dao;
+	// XML
+//   private IDao<Car, List<Car>> dao = CarXMLDaoImpl.getDAOInstance();
 
-    @Override
-    public AbstractCmd execute() {
+	@Override
+	public AbstractCmd execute() {
 
-        // DB
-        dao = CarDBDaoImpl.getInstance();
+		System.out.println("input new car vin:");
+		final String newCarVin = readInput();
 
-        // XML
-//        dao = CarXMLDaoImpl.getDAOInstance();
+		final Car car = new Car();
+		car.setVin(newCarVin);
 
-        System.out.println("input new car vin:");
-        final String newCarVin = readInput();
+		new CmdListModel().execute();
+		System.out.println("input model id");
+		Integer id = 0;
+		try {
+			id = Integer.valueOf(readInput());
+		} catch (NumberFormatException e) {
+			System.err.println("car model_id must have integer value");
+			return new CmdEditCar();
+		}
+		car.setModelId(id);
 
-        final Car car = new Car();
-        car.setVin(newCarVin);
+		final Car newEntity = dao.insert(car);
+		System.out.println("New car saved: " + newEntity);
 
-        System.out.println("input model id");
-        new CmdListModel().execute();
-        final Integer id = Integer.valueOf(readInput());
-        car.setModelId(id);
-
-        final Car newEntity = dao.insert(car);
-        System.out.println("New car was saved:" + newEntity);
-
-        return new CmdEditCar();
-    }
+		return new CmdEditCar();
+	}
 }

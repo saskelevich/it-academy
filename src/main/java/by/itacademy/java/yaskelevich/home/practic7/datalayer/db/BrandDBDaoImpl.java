@@ -16,11 +16,11 @@ import by.itacademy.java.yaskelevich.home.practic7.datalayer.entity.Brand;
 
 public final class BrandDBDaoImpl extends AbstractDBDao implements IDao<Brand, Brand> {
 
-    private static final String INSERT_SQL = "insert into brand (name) values (?)";
-    private static final String UPDATE_SQL = "update brand set name=?, updated=? where id=?";
-    private static final String DELETE_SQL = "delete from brand where id=%s";
-    private static final String GET_SQL = "select * from brand where id=%s";
-    private static final String GET_ALL_SQL = "select * from brand";
+    private static final String INSERT_SQL = "insert into brands (name) values (?)";
+    private static final String UPDATE_SQL = "update brands set name=?, updated=? where id=?";
+    private static final String DELETE_SQL = "delete from brands where id=%s";
+    private static final String GET_SQL = "select * from brands where id=%s";
+    private static final String GET_ALL_SQL = "select * from brands";
     private static final String NAME = "name";
     private static IDao<Brand, Brand> instance;
 

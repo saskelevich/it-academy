@@ -7,7 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<%@include file= "menu.jsp" %>
+	<%@include file= "/practic7/menu.jsp" %>
 	<h1>Cars page</h1>
 </body>
 </html>

@@ -5,6 +5,8 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.sql.SQLException;
 
+import by.itacademy.java.yaskelevich.home.practic7.ui.UIException;
+
 public abstract class AbstractCmd {
     private static final BufferedReader CONSOLE_READER = new BufferedReader(new InputStreamReader(System.in));
 

@@ -16,12 +16,12 @@ import by.itacademy.java.yaskelevich.home.practic7.datalayer.entity.Car;
 
 public final class CarDBDaoImpl extends AbstractDBDao implements IDao<Car, List<Car>> {
 
-    private static final String FIND_SQL = "select * from car where model_id=%s";
-    private static final String GET_ALL_SQL = "select * from car";
-    private static final String DELETE_SQL = "delete from car where id=%s";
-    private static final String UPDATE_SQL = "update car set vin=?, updated=?, model_id=? where id=?";
-    private static final String INSERT_SQL = "insert into car (vin, model_id) values (?, ?)";
-    private static final String GET_SQL = "select * from car where id=%s";
+    private static final String FIND_SQL = "select * from cars where model_id=%s";
+    private static final String GET_ALL_SQL = "select * from cars";
+    private static final String DELETE_SQL = "delete from cars where id=%s";
+    private static final String UPDATE_SQL = "update cars set vin=?, updated=?, model_id=? where id=?";
+    private static final String INSERT_SQL = "insert into cars (vin, model_id) values (?, ?)";
+    private static final String GET_SQL = "select * from cars where id=%s";
     private static final String VIN = "vin";
     private static final String MODEL_ID = "model_id";
     private static IDao<Car, List<Car>> instance;

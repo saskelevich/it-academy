@@ -11,21 +11,16 @@ import by.itacademy.java.yaskelevich.home.practic7.ui.commands.Command;
 @Command(name = "list", description = "output list")
 public class CmdListModel extends AbstractCmd {
 
-    private IDao<Model, List<Model>> dao;
+	// DB
+	private IDao<Model, List<Model>> dao = ModelDBDaoImpl.getInstance();
 
-    @Override
-    public AbstractCmd execute() {
+	// XML
+//    private IDao<Model, List<Model>> dao = ModelXMLDaoImpl.getDAOInstance();
+	
+	@Override
+	public AbstractCmd execute() {
 
-        // DB
-        dao = ModelDBDaoImpl.getInstance();
-
-        // XML
-//        dao = ModelXMLDaoImpl.getDAOInstance();
-
-        final List<Model> newEntity = dao.getAll();
-        for (final Model model : newEntity) {
-            System.out.println(model);
-        }
-        return new CmdEditModel();
-    }
+		dao.getAll().stream().forEach(model -> System.out.println(model));
+		return new CmdEditModel();
+	}
 }

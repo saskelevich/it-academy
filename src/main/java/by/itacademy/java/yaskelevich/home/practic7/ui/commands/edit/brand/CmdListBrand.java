@@ -10,23 +10,22 @@ import by.itacademy.java.yaskelevich.home.practic7.ui.commands.Command;
 
 @Command(name = "list", description = "вывести список")
 public class CmdListBrand extends AbstractCmd {
+	
+	// DB
+	private IDao<Brand, Brand> dao = BrandDBDaoImpl.getInstance();
+	
+	// XML
+//    private IDao<Brand, Brand> dao =BrandXMLDaoImpl.getDAOInstance();
+	
+	@Override
+	public AbstractCmd execute() {
 
-    private IDao<Brand, Brand> dao;
-
-    @Override
-    public AbstractCmd execute() {
-
-        // DB
-        dao = BrandDBDaoImpl.getInstance();
-
-        // XML
-//        dao = BrandXMLDaoImpl.getDAOInstance();
-
-        final List<Brand> newEntity = dao.getAll();
-
-        for (final Brand brand : newEntity) {
-            System.out.println(brand);
-        }
-        return new CmdEditBrand();
-    }
+//		final List<Brand> newEntity = dao.getAll();
+//
+//		for (final Brand brand : newEntity) {
+//			System.out.println(brand);
+//		}
+		dao.getAll().stream().forEach(brand -> System.out.println(brand));
+		return new CmdEditBrand();
+	}
 }
