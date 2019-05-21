@@ -11,6 +11,7 @@ import by.itacademy.java.yaskelevich.home.practic7.ui.commands.edit.model.CmdLis
 
 @Command(name = "add", description = "add car")
 public class CmdAddCar extends AbstractCmd {
+	
 	// DB
 	private IDao<Car, List<Car>> dao = CarDBDaoImpl.getInstance();
 

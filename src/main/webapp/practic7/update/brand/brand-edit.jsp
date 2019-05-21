@@ -12,7 +12,8 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 </head>
-<%@include file="/practic7/menu.jsp"%>
+<%-- <%@include file="/practic7/menu.jsp"%> --%>
+<jsp:include page="/practic7/menu.jsp"></jsp:include>
 <h1>Brands page</h1>
 
 <%!IDao<Brand, Brand> dao = BrandDBDaoImpl.getInstance();%>

@@ -12,7 +12,8 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<%@include file="/practic7/menu.jsp"%>
+	<%-- <%@include file="/practic7/menu.jsp"%> --%>
+	<jsp:include page="/practic7/menu.jsp"></jsp:include>
 	<h1>Models page</h1>
 
 	<%!IDao<Car, List<Car>> dao = CarDBDaoImpl.getInstance();%>
