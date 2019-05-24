@@ -24,7 +24,7 @@
 	    request.setAttribute("models", models);
 	%>
 
-	<table border="2" cellpadding="2" align="center">
+	<table border="2" cellpadding="2" >
 		<tr>
 			<th>ID</th>
 			<th>NAME</th>
