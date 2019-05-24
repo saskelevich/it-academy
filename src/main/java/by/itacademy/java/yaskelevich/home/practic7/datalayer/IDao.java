@@ -15,4 +15,6 @@ public interface IDao<T, Y> {
 
     Y find(Integer id);
 
+    Y findByName(String name);
+
 }

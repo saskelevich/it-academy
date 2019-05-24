@@ -13,43 +13,67 @@ import by.itacademy.java.yaskelevich.home.practic7.datalayer.IDao;
 import by.itacademy.java.yaskelevich.home.practic7.datalayer.db.ModelDBDaoImpl;
 import by.itacademy.java.yaskelevich.home.practic7.datalayer.entity.Model;
 
-public class WebModel extends HttpServlet{
+public class WebModel extends HttpServlet {
 
-	private static final String MODEL_JSP_PATH = "/practic7/update/model/models.jsp";
-	private IDao<Model, List<Model>> dao = ModelDBDaoImpl.getInstance();
+    private static final String ERROR_PAGE = "/practic7/error.jsp?error=";
+    private static final String MODEL_JSP_PATH = "/practic7/update/model/models.jsp";
+    private final IDao<Model, List<Model>> dao = ModelDBDaoImpl.getInstance();
 
     @Override
     protected void doGet(final HttpServletRequest req, final HttpServletResponse resp)
             throws ServletException, IOException {
-    	Util.doGet(req, resp, dao);
-    	Util.redirectToList(resp, MODEL_JSP_PATH);
+
+        final String modelName = req.getParameter("model");
+        if (modelName != null) {
+            try {
+                dao.findByName(modelName);
+            } catch (final DAOException e) {
+                Util.redirectToList(resp, ERROR_PAGE + e.getMessage());
+            }
+            Util.redirectToList(resp, "/practic7/update/model/models.jsp?name=" + modelName);
+        } else {
+            Util.doGet(req, resp, dao);
+            Util.redirectToList(resp, MODEL_JSP_PATH);
+        }
     }
 
     @Override
     protected void doPost(final HttpServletRequest req, final HttpServletResponse resp)
             throws ServletException, IOException {
         final String modelName = req.getParameter("name");
-        Integer brandId = Integer.valueOf(req.getParameter("brandId"));
+        Integer brandId = null;
+        try {
+            brandId = Integer.valueOf(req.getParameter("brandId"));
+        } catch (final NumberFormatException e) {
+            Util.redirectToList(resp, ERROR_PAGE + "Model id cannot be empty: " + e.getMessage());
+        }
         Integer id = null;
         try {
             id = Integer.valueOf(req.getParameter("id"));
         } catch (final NumberFormatException e) {
             // nothing to do
         }
-            if (id == null) {
-                final Model model = new Model();
-                model.setName(modelName);
-                model.setBrandId(brandId);
+        if (id == null) {
+            final Model model = new Model();
+            model.setName(modelName);
+            model.setBrandId(brandId);
+            try {
                 dao.insert(model);
-            } else {
-                final Model model = new Model();
-                model.setName(modelName);
-                model.setBrandId(brandId);
-                model.setId(id);
-                dao.update(model);
+            } catch (final DAOException e) {
+                Util.redirectToList(resp, ERROR_PAGE + e.getMessage());
             }
-            Util.redirectToList(resp, MODEL_JSP_PATH);
+        } else {
+            final Model model = new Model();
+            model.setName(modelName);
+            model.setBrandId(brandId);
+            model.setId(id);
+            try {
+                dao.update(model);
+            } catch (final DAOException e) {
+                Util.redirectToList(resp, ERROR_PAGE + e.getMessage());
+            }
+        }
+        Util.redirectToList(resp, MODEL_JSP_PATH);
     }
 
-	
 }

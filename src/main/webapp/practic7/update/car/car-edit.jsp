@@ -1,19 +1,18 @@
 <%@page import="by.itacademy.java.yaskelevich.home.practic7.datalayer.db.CarDBDaoImpl"%>
-<%@page import="java.util.List"%>
 <%@page import="by.itacademy.java.yaskelevich.home.practic7.datalayer.entity.Car"%>
 <%@page import="by.itacademy.java.yaskelevich.home.practic7.datalayer.IDao"%>
+<%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<!DOCTYPE html>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Cars</title>
 </head>
-<body>
-<%-- <%@include file="/practic7/menu.jsp"%> --%>
+<body bgcolor="#FFDEAD" link="#30D5C8" vlink="#990066">
 <jsp:include page="/practic7/menu.jsp"></jsp:include>
-<h1>Brands page</h1>
+<h1 align="center">Cars update</h1>
 
 <%!IDao<Car, List<Car>> dao = CarDBDaoImpl.getInstance();%>
 
@@ -37,5 +36,6 @@
 		</tr>
 	</table>
 	<input type="submit" value="SAVE">
+</form>
 </body>
 </html>

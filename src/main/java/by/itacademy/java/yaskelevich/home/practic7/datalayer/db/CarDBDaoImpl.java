@@ -17,6 +17,7 @@ import by.itacademy.java.yaskelevich.home.practic7.datalayer.entity.Car;
 public final class CarDBDaoImpl extends AbstractDBDao implements IDao<Car, List<Car>> {
 
     private static final String FIND_SQL = "select * from cars where model_id=%s";
+    private static final String FIND_BY_VIN = "select * from cars where vin=\'%s\'";
     private static final String GET_ALL_SQL = "select * from cars";
     private static final String DELETE_SQL = "delete from cars where id=%s";
     private static final String UPDATE_SQL = "update cars set vin=?, updated=?, model_id=? where id=?";
@@ -54,7 +55,7 @@ public final class CarDBDaoImpl extends AbstractDBDao implements IDao<Car, List<
                 return car;
             }
         } catch (final SQLException exc) {
-            throw new DAOException("Cannot get Car", exc);
+            throw new DAOException("Cannot get Car: " + exc.getMessage(), exc);
         }
         return null;
     }
@@ -62,8 +63,7 @@ public final class CarDBDaoImpl extends AbstractDBDao implements IDao<Car, List<
     @Override
     public Car insert(final Car entity) {
         try (Connection conn = createConnection();
-                PreparedStatement stmt = conn.prepareStatement(INSERT_SQL,
-                        Statement.RETURN_GENERATED_KEYS);) {
+                PreparedStatement stmt = conn.prepareStatement(INSERT_SQL, Statement.RETURN_GENERATED_KEYS);) {
 
             stmt.setString(1, entity.getVin());
             stmt.setInt(2, entity.getModelId());
@@ -75,15 +75,14 @@ public final class CarDBDaoImpl extends AbstractDBDao implements IDao<Car, List<
                 entity.setId(generatedId);
             }
         } catch (final SQLException exc) {
-            throw new DAOException("Cannot insert Car", exc);
+            throw new DAOException("Cannot insert Car: " + exc.getMessage(), exc);
         }
         return entity;
     }
 
     @Override
     public void update(final Car entity) {
-        try (Connection conn = createConnection();
-                PreparedStatement stmt = conn.prepareStatement(UPDATE_SQL);) {
+        try (Connection conn = createConnection(); PreparedStatement stmt = conn.prepareStatement(UPDATE_SQL);) {
 
             stmt.setString(1, entity.getVin());
             stmt.setObject(2, new Date(), Types.TIMESTAMP);
@@ -92,7 +91,7 @@ public final class CarDBDaoImpl extends AbstractDBDao implements IDao<Car, List<
 
             stmt.executeUpdate();
         } catch (final SQLException exc) {
-            throw new DAOException("Cannot update Car", exc);
+            throw new DAOException("Cannot update Car: " + exc.getMessage(), exc);
         }
     }
 
@@ -106,7 +105,7 @@ public final class CarDBDaoImpl extends AbstractDBDao implements IDao<Car, List<
                 throw new IllegalArgumentException("unexpected deleted rows count:" + rowsAffected);
             }
         } catch (final SQLException exc) {
-            throw new DAOException("Cannot delete Car", exc);
+            throw new DAOException("Cannot delete Car: " + exc.getMessage(), exc);
         }
     }
 
@@ -128,7 +127,7 @@ public final class CarDBDaoImpl extends AbstractDBDao implements IDao<Car, List<
                 list.add(car);
             }
         } catch (final SQLException exc) {
-            throw new DAOException("Cannot getAll Car", exc);
+            throw new DAOException("Cannot getAll Car: " + exc.getMessage(), exc);
         }
         return list;
     }
@@ -136,7 +135,7 @@ public final class CarDBDaoImpl extends AbstractDBDao implements IDao<Car, List<
     @Override
     public List<Car> find(final Integer id) {
 
-        final List<Car> list = new ArrayList<Car>();
+        final List<Car> list = new ArrayList<>();
 
         try (Connection connection = createConnection();
                 Statement st = connection.createStatement();
@@ -154,9 +153,34 @@ public final class CarDBDaoImpl extends AbstractDBDao implements IDao<Car, List<
                 list.add(car);
             }
         } catch (final SQLException exc) {
-            throw new DAOException("Cannot search Car", exc);
+            throw new DAOException("Cannot search Car: " + exc.getMessage(), exc);
         }
-
         return list;
     }
+
+    @Override
+    public List<Car> findByName(final String name) {
+        final List<Car> list = new ArrayList<>();
+
+        try (Connection connection = createConnection();
+                Statement st = connection.createStatement();
+                ResultSet rs = st.executeQuery(String.format(FIND_BY_VIN, name));) {
+
+            while (rs.next()) {
+                final Car car = new Car();
+
+                car.setId(rs.getInt(ID));
+                car.setVin(rs.getString(VIN));
+                car.setCreated(rs.getDate(CREATED));
+                car.setUpdated(rs.getDate(UPDATED));
+                car.setModelId(rs.getInt(MODEL_ID));
+
+                list.add(car);
+            }
+        } catch (final SQLException exc) {
+            throw new DAOException("Cannot search Car: " + exc.getMessage(), exc);
+        }
+        return list;
+    }
+
 }

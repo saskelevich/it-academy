@@ -17,6 +17,7 @@ import by.itacademy.java.yaskelevich.home.practic7.datalayer.entity.Model;
 public final class ModelDBDaoImpl extends AbstractDBDao implements IDao<Model, List<Model>> {
 
     private static final String FIND_SQL = "select * from models where brand_id=%s";
+    private static final String FIND_BY_NAME = "select * from models where name=\'%s\'";
     private static final String GET_ALL_SQL = "select * from models";
     private static final String DELETE_SQL = "delete from models where id=%s";
     private static final String UPDATE_SQL = "update models set name=?, updated=?, brand_id=? where id=?";
@@ -54,7 +55,7 @@ public final class ModelDBDaoImpl extends AbstractDBDao implements IDao<Model, L
                 return model;
             }
         } catch (final SQLException exc) {
-            throw new DAOException("Cannot get Model", exc);
+            throw new DAOException("Cannot get Model: " + exc.getMessage(), exc);
         }
         return null;
     }
@@ -62,8 +63,7 @@ public final class ModelDBDaoImpl extends AbstractDBDao implements IDao<Model, L
     @Override
     public Model insert(final Model entity) {
         try (Connection conn = createConnection();
-                PreparedStatement stmt = conn.prepareStatement(INSERT_SQL,
-                        Statement.RETURN_GENERATED_KEYS);) {
+                PreparedStatement stmt = conn.prepareStatement(INSERT_SQL, Statement.RETURN_GENERATED_KEYS);) {
 
             stmt.setString(1, entity.getName());
             stmt.setInt(2, entity.getBrandId());
@@ -75,15 +75,14 @@ public final class ModelDBDaoImpl extends AbstractDBDao implements IDao<Model, L
                 entity.setId(generatedId);
             }
         } catch (final SQLException exc) {
-            throw new DAOException("Cannot insert Model", exc);
+            throw new DAOException("Cannot insert Model: " + exc.getMessage(), exc);
         }
         return entity;
     }
 
     @Override
     public void update(final Model entity) {
-        try (Connection conn = createConnection();
-                PreparedStatement stmt = conn.prepareStatement(UPDATE_SQL);) {
+        try (Connection conn = createConnection(); PreparedStatement stmt = conn.prepareStatement(UPDATE_SQL);) {
 
             stmt.setString(1, entity.getName());
             stmt.setObject(2, new Date(), Types.TIMESTAMP);
@@ -92,7 +91,7 @@ public final class ModelDBDaoImpl extends AbstractDBDao implements IDao<Model, L
 
             stmt.executeUpdate();
         } catch (final SQLException exc) {
-            throw new DAOException("Cannot update Model", exc);
+            throw new DAOException("Cannot update Model: " + exc.getMessage(), exc);
         }
     }
 
@@ -108,7 +107,7 @@ public final class ModelDBDaoImpl extends AbstractDBDao implements IDao<Model, L
         } catch (
 
         final SQLException exc) {
-            throw new DAOException("Cannot delete Model", exc);
+            throw new DAOException("Cannot delete Model: " + exc.getMessage(), exc);
         }
     }
 
@@ -131,7 +130,7 @@ public final class ModelDBDaoImpl extends AbstractDBDao implements IDao<Model, L
                 list.add(model);
             }
         } catch (final SQLException exc) {
-            throw new DAOException("Cannot get all Model", exc);
+            throw new DAOException("Cannot get all Model: " + exc.getMessage(), exc);
         }
         return list;
     }
@@ -139,14 +138,13 @@ public final class ModelDBDaoImpl extends AbstractDBDao implements IDao<Model, L
     @Override
     public List<Model> find(final Integer id) {
 
-        final List<Model> list = new ArrayList<Model>();
+        final List<Model> list = new ArrayList<>();
 
         try (Connection connection = createConnection();
                 Statement st = connection.createStatement();
                 ResultSet rs = st.executeQuery(String.format(FIND_SQL, id));) {
 
             while (rs.next()) {
-
                 final Model model = new Model();
 
                 model.setId(rs.getInt(ID));
@@ -156,12 +154,36 @@ public final class ModelDBDaoImpl extends AbstractDBDao implements IDao<Model, L
                 model.setBrandId(rs.getInt(BRAND_ID));
 
                 list.add(model);
-
             }
         } catch (final SQLException exc) {
-            throw new DAOException("Cannot search Model", exc);
+            throw new DAOException("Cannot search Model: " + exc.getMessage(), exc);
         }
-
         return list;
     }
+
+    @Override
+    public List<Model> findByName(final String name) {
+        final List<Model> list = new ArrayList<>();
+
+        try (Connection connection = createConnection();
+                Statement st = connection.createStatement();
+                ResultSet rs = st.executeQuery(String.format(FIND_BY_NAME, name));) {
+
+            while (rs.next()) {
+                final Model model = new Model();
+
+                model.setId(rs.getInt(ID));
+                model.setName(rs.getString(NAME));
+                model.setCreated(rs.getDate(CREATED));
+                model.setUpdated(rs.getDate(UPDATED));
+                model.setBrandId(rs.getInt(BRAND_ID));
+
+                list.add(model);
+            }
+        } catch (final SQLException exc) {
+            throw new DAOException("Cannot search Model: " + exc.getMessage(), exc);
+        }
+        return list;
+    }
+
 }

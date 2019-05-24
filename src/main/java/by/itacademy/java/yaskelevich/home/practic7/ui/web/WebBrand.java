@@ -12,16 +12,28 @@ import by.itacademy.java.yaskelevich.home.practic7.datalayer.IDao;
 import by.itacademy.java.yaskelevich.home.practic7.datalayer.db.BrandDBDaoImpl;
 import by.itacademy.java.yaskelevich.home.practic7.datalayer.entity.Brand;
 
-public class WebBrand extends HttpServlet{
+public class WebBrand extends HttpServlet {
 
+    private static final String ERROR_PAGE = "/practic7/error.jsp?error=";
     private static final String BRANDS_JSP_PATH = "/practic7/update/brand/brands.jsp";
-	private IDao<Brand, Brand> dao = BrandDBDaoImpl.getInstance();
+    private final IDao<Brand, Brand> dao = BrandDBDaoImpl.getInstance();
 
     @Override
     protected void doGet(final HttpServletRequest req, final HttpServletResponse resp)
             throws ServletException, IOException {
-    	Util.doGet(req, resp, dao);
-    	Util.redirectToList(resp, BRANDS_JSP_PATH);
+
+        final String brandName = req.getParameter("brand");
+        if (brandName != null) {
+            try {
+                dao.findByName(brandName);
+            } catch (final DAOException e) {
+                Util.redirectToList(resp, ERROR_PAGE + e.getMessage());
+            }
+            Util.redirectToList(resp, "/practic7/update/brand/brands.jsp?name=" + brandName);
+        } else {
+            Util.doGet(req, resp, dao);
+            Util.redirectToList(resp, BRANDS_JSP_PATH);
+        }
     }
 
     @Override
@@ -34,20 +46,20 @@ public class WebBrand extends HttpServlet{
         } catch (final NumberFormatException e) {
             // nothing to do
         }
-            if (id == null) {
-                final Brand brand = new Brand();
-                brand.setName(brandName);
+        if (id == null) {
+            final Brand brand = new Brand();
+            brand.setName(brandName);
+            try {
                 dao.insert(brand);
-            } else {
-                final Brand brand = new Brand();
-                brand.setName(brandName);
-                brand.setId(id);
-                dao.update(brand);
+            } catch (final DAOException e) {
+                Util.redirectToList(resp, ERROR_PAGE + e.getMessage());
             }
-            Util.redirectToList(resp, BRANDS_JSP_PATH);
+        } else {
+            final Brand brand = new Brand();
+            brand.setName(brandName);
+            brand.setId(id);
+            dao.update(brand);
+        }
+        Util.redirectToList(resp, BRANDS_JSP_PATH);
     }
-
-//    private void redirectToList(final HttpServletResponse resp) throws IOException {
-//        resp.sendRedirect(BRANDS_JSP_PATH);
-//    }
 }

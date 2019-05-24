@@ -9,8 +9,7 @@ import by.itacademy.java.yaskelevich.home.practic7.datalayer.IDao;
 import by.itacademy.java.yaskelevich.home.practic7.datalayer.entity.Model;
 import by.itacademy.java.yaskelevich.home.practic7.datalayer.xml.table.ModelTable;
 
-public final class ModelXMLDaoImpl extends AbstractXMLDao<ModelTable>
-        implements IDao<Model, List<Model>> {
+public final class ModelXMLDaoImpl extends AbstractXMLDao<ModelTable> implements IDao<Model, List<Model>> {
 
     private static final String FILE_NAME = "models-table.xml";
     private static IDao<Model, List<Model>> instance;
@@ -88,7 +87,7 @@ public final class ModelXMLDaoImpl extends AbstractXMLDao<ModelTable>
                 return model;
             }
         }
-        return null;// TODO Optional
+        return null;
     }
 
     @Override
@@ -104,12 +103,17 @@ public final class ModelXMLDaoImpl extends AbstractXMLDao<ModelTable>
     @Override
     public List<Model> find(final Integer id) {
 
-        final List<Model> models = new ArrayList<Model>();
+        final List<Model> models = new ArrayList<>();
 
-        getAll().stream().filter(model -> model.getBrandId().equals(id))
-                .forEach(model -> models.add(model));
+        getAll().stream().filter(model -> model.getBrandId().equals(id)).forEach(model -> models.add(model));
 
         return models;
+    }
+
+    @Override
+    public List<Model> findByName(final String name) {
+        // TODO Auto-generated method stub
+        return null;
     }
 
 }

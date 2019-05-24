@@ -88,7 +88,7 @@ public final class CarXMLDaoImpl extends AbstractXMLDao<CarTable> implements IDa
                 return car;
             }
         }
-        return null;// TODO Optional
+        return null;
     }
 
     @Override
@@ -104,11 +104,17 @@ public final class CarXMLDaoImpl extends AbstractXMLDao<CarTable> implements IDa
     @Override
     public List<Car> find(final Integer id) {
 
-        final List<Car> cars = new ArrayList<Car>();
+        final List<Car> cars = new ArrayList<>();
 
         getAll().stream().filter(car -> car.getModelId().equals(id)).forEach(str -> cars.add(str));
 
         return cars;
+    }
+
+    @Override
+    public List<Car> findByName(final String name) {
+        // TODO Auto-generated method stub
+        return null;
     }
 
 }

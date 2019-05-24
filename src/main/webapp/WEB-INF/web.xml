@@ -127,11 +127,53 @@
 		<filter-class>by.itacademy.java.yaskelevich.classroom.lesson27.filters.AuthorizationFilter</filter-class>
 	</filter>
 
-	<filter-mapping>
+	<!-- <filter-mapping>
 		<filter-name>AuthorizationFilter</filter-name>
 		<url-pattern>/*</url-pattern>
-		<!-- <url-pattern>/filter</url-pattern> -->
-	</filter-mapping>
+		<url-pattern>/filter</url-pattern>
+	</filter-mapping> -->
+		
+	<servlet>
+		<servlet-name>R1</servlet-name>
+		<servlet-class>by.itacademy.java.yaskelevich.classroom.lesson27.filters.R1</servlet-class>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>R1</servlet-name>
+		<url-pattern>/r1</url-pattern>
+	</servlet-mapping>	
+
+	<servlet>
+		<servlet-name>R2</servlet-name>
+		<servlet-class>by.itacademy.java.yaskelevich.classroom.lesson27.filters.R2</servlet-class>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>R2</servlet-name>
+		<url-pattern>/r2</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>R3</servlet-name>
+		<servlet-class>by.itacademy.java.yaskelevich.classroom.lesson27.filters.R3</servlet-class>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>R3</servlet-name>
+		<url-pattern>/r3</url-pattern>
+	</servlet-mapping>	
+	
+	
+	<servlet>
+		<servlet-name>R4</servlet-name>
+		<servlet-class>by.itacademy.java.yaskelevich.classroom.lesson27.filters.R4</servlet-class>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>R4</servlet-name>
+		<url-pattern>/r4</url-pattern>
+	</servlet-mapping>	
+	
 		
 	
 	

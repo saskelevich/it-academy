@@ -8,8 +8,7 @@ import by.itacademy.java.yaskelevich.home.practic7.datalayer.IDao;
 import by.itacademy.java.yaskelevich.home.practic7.datalayer.entity.Brand;
 import by.itacademy.java.yaskelevich.home.practic7.datalayer.xml.table.BrandTable;
 
-public final class BrandXMLDaoImpl extends AbstractXMLDao<BrandTable>
-        implements IDao<Brand, Brand> {
+public final class BrandXMLDaoImpl extends AbstractXMLDao<BrandTable> implements IDao<Brand, Brand> {
 
     private static final String FILE_NAME = "brands-table.xml";
     private static IDao<Brand, Brand> instance;
@@ -32,10 +31,10 @@ public final class BrandXMLDaoImpl extends AbstractXMLDao<BrandTable>
 
         final Integer id = table.nextId();
 
-        entity.setId(id);
         final Date created = new Date();
         entity.setCreated(created);
         entity.setUpdated(created);
+        entity.setId(id);
         table.getBrands().add(entity);
 
         write(table);
@@ -48,12 +47,11 @@ public final class BrandXMLDaoImpl extends AbstractXMLDao<BrandTable>
 
         final BrandTable table = read();
 
-        table.getBrands().stream().filter(brand -> (brand.getId().equals(entity.getId())))
-                .forEach(brand -> {
-                    brand.setName(entity.getName());
-                    brand.setId(entity.getId());
-                    brand.setUpdated(new Date());
-                });
+        table.getBrands().stream().filter(brand -> (brand.getId().equals(entity.getId()))).forEach(brand -> {
+            brand.setName(entity.getName());
+            brand.setId(entity.getId());
+            brand.setUpdated(new Date());
+        });
         write(table);
     }
 
@@ -76,7 +74,13 @@ public final class BrandXMLDaoImpl extends AbstractXMLDao<BrandTable>
     public List<Brand> getAll() {
 
         final BrandTable table = read();
-        return table.getBrands();
+
+        final List<Brand> brands = table.getBrands();
+
+        if (brands != null) {
+            return brands;
+        }
+        return null;
     }
 
     @Override
@@ -97,7 +101,7 @@ public final class BrandXMLDaoImpl extends AbstractXMLDao<BrandTable>
                 return brand;
             }
         }
-        return null;// TODO Optional
+        return null;
     }
 
     @Override
@@ -116,6 +120,13 @@ public final class BrandXMLDaoImpl extends AbstractXMLDao<BrandTable>
                 return brand;
             }
         }
-        return null;// TODO Optional
+        return null;
     }
+
+    @Override
+    public Brand findByName(final String name) {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
 }

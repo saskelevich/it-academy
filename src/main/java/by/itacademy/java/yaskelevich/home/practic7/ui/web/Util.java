@@ -12,23 +12,30 @@ import by.itacademy.java.yaskelevich.home.practic7.ui.UIException;
 
 public class Util {
 
-	static <T, Y> void doGet(final HttpServletRequest req, final HttpServletResponse resp, IDao<T, Y> dao)
-			throws ServletException, IOException {
-		final Integer id = Integer.valueOf(req.getParameter("id"));
-		final String action = req.getParameter("action");
+    private static final String ERROR_PAGE = "/practic7/error.jsp?error=";
 
-		if ("delete".equals(action)) {
-			dao.delete(id);
-		} else {
-			throw new RuntimeException("operation unsupported");
-		}
-	}
+    static <T, Y> void doGet(final HttpServletRequest req, final HttpServletResponse resp, final IDao<T, Y> dao)
+            throws ServletException, IOException {
+        final Integer id = Integer.valueOf(req.getParameter("id"));
+        final String action = req.getParameter("action");
 
-	static void redirectToList(final HttpServletResponse resp, String path) throws IOException {
-		try{
-			resp.sendRedirect(path);
-		}catch (IOException e) {
-			throw new UIException(path, e);
-		}
-	}
+        if ("delete".equals(action)) {
+            try {
+                dao.delete(id);
+            } catch (final DAOException e) {
+                redirectToList(resp, ERROR_PAGE + e.getMessage());
+            }
+        } else {
+            throw new UIException("operation unsupported");
+        }
+    }
+
+    static void redirectToList(final HttpServletResponse resp, final String path) throws IOException {
+        try {
+            resp.sendRedirect(path);
+        } catch (final IOException e) {
+            throw new UIException(path, e);
+        }
+    }
+
 }

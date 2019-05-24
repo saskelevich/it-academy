@@ -1,19 +1,18 @@
 <%@page import="by.itacademy.java.yaskelevich.home.practic7.datalayer.db.ModelDBDaoImpl"%>
-<%@page import="java.util.List"%>
 <%@page import="by.itacademy.java.yaskelevich.home.practic7.datalayer.entity.Model"%>
 <%@page import="by.itacademy.java.yaskelevich.home.practic7.datalayer.IDao"%>
+<%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<!DOCTYPE html>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Models</title>
 </head>
-<body>
-<%-- <%@include file="/practic7/menu.jsp"%> --%>
+<body bgcolor="#FFDEAD" link="#30D5C8" vlink="#990066">
 <jsp:include page="/practic7/menu.jsp"></jsp:include>
-<h1>Brands page</h1>
+<h1 align="center">Models update</h1>
 
 <%!IDao<Model, List<Model>> dao = ModelDBDaoImpl.getInstance();%>
 

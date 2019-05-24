@@ -21,6 +21,7 @@ public final class BrandDBDaoImpl extends AbstractDBDao implements IDao<Brand, B
     private static final String DELETE_SQL = "delete from brands where id=%s";
     private static final String GET_SQL = "select * from brands where id=%s";
     private static final String GET_ALL_SQL = "select * from brands";
+    private static final String FIND_BY_NAME = "select * from brands where name=\'%s\'";
     private static final String NAME = "name";
     private static IDao<Brand, Brand> instance;
 
@@ -51,7 +52,7 @@ public final class BrandDBDaoImpl extends AbstractDBDao implements IDao<Brand, B
                 return brand;
             }
         } catch (final SQLException exc) {
-            throw new DAOException("Cannot get Brand", exc);
+            throw new DAOException("Cannot get Brand: " + exc.getMessage(), exc);
         }
         return null;
     }
@@ -59,8 +60,7 @@ public final class BrandDBDaoImpl extends AbstractDBDao implements IDao<Brand, B
     @Override
     public Brand insert(final Brand entity) {
         try (Connection conn = createConnection();
-                PreparedStatement stmt = conn.prepareStatement(INSERT_SQL,
-                        Statement.RETURN_GENERATED_KEYS);) {
+                PreparedStatement stmt = conn.prepareStatement(INSERT_SQL, Statement.RETURN_GENERATED_KEYS);) {
 
             stmt.setString(1, entity.getName());
             stmt.executeUpdate();
@@ -71,15 +71,14 @@ public final class BrandDBDaoImpl extends AbstractDBDao implements IDao<Brand, B
                 entity.setId(generatedId);
             }
         } catch (final SQLException exc) {
-            throw new DAOException("Cannot insert Brand", exc);
+            throw new DAOException("Cannot insert Brand: " + exc.getMessage(), exc);
         }
         return entity;
     }
 
     @Override
     public void update(final Brand entity) {
-        try (Connection conn = createConnection();
-                PreparedStatement stmt = conn.prepareStatement(UPDATE_SQL);) {
+        try (Connection conn = createConnection(); PreparedStatement stmt = conn.prepareStatement(UPDATE_SQL);) {
 
             stmt.setString(1, entity.getName());
             stmt.setObject(2, new Date(), Types.TIMESTAMP);
@@ -88,7 +87,7 @@ public final class BrandDBDaoImpl extends AbstractDBDao implements IDao<Brand, B
             stmt.executeUpdate();
 
         } catch (final SQLException exc) {
-            throw new DAOException("Cannot update Brand", exc);
+            throw new DAOException("Cannot update Brand: " + exc.getMessage(), exc);
         }
 
     }
@@ -103,14 +102,14 @@ public final class BrandDBDaoImpl extends AbstractDBDao implements IDao<Brand, B
                 throw new IllegalArgumentException("unexpected deleted rows count:" + rowsAffected);
             }
         } catch (final SQLException exc) {
-            throw new DAOException("Cannot delete Brand", exc);
+            throw new DAOException("Cannot delete Brand: " + exc.getMessage(), exc);
         }
     }
 
     @Override
     public List<Brand> getAll() {
 
-        final List<Brand> list = new ArrayList<Brand>();
+        final List<Brand> list = new ArrayList<>();
 
         try (Connection conn = createConnection();
                 Statement st = conn.createStatement();
@@ -128,7 +127,7 @@ public final class BrandDBDaoImpl extends AbstractDBDao implements IDao<Brand, B
 
             }
         } catch (final SQLException exc) {
-            throw new DAOException("Cannot getAll Brand", exc);
+            throw new DAOException("Cannot getAll Brand: " + exc.getMessage(), exc);
         }
         return list;
     }
@@ -137,4 +136,26 @@ public final class BrandDBDaoImpl extends AbstractDBDao implements IDao<Brand, B
     public Brand find(final Integer id) {
         return get(id);
     }
+
+    @Override
+    public Brand findByName(final String name) {
+        try (Connection conn = createConnection();
+                Statement st = conn.createStatement();
+                ResultSet rs = st.executeQuery(String.format(FIND_BY_NAME, name));) {
+
+            if (rs.next()) {
+                final Brand brand = new Brand();
+
+                brand.setId(rs.getInt(ID));
+                brand.setName(rs.getString(NAME));
+                brand.setCreated(rs.getDate(CREATED));
+                brand.setUpdated(rs.getDate(UPDATED));
+                return brand;
+            }
+        } catch (final SQLException e) {
+            throw new DAOException(e);
+        }
+        return null;
+    }
+
 }

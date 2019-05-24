@@ -4,10 +4,11 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<title>Error</title>
 </head>
-<body bgcolor="#4B0082" link="#990066" vlink="#30D5C8">
-	<%@include file= "/practic7/menu.jsp" %>
-	<h1 align="center">Cars page</h1>
+<body bgcolor="#FFDEAD" link="#30D5C8" vlink="#990066">
+	<jsp:include page="/practic7/menu.jsp"></jsp:include>
+	<h1 align="center">Error page</h1>
+	<%= request.getParameter("error") %>	
 </body>
 </html>

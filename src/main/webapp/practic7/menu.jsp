@@ -8,14 +8,42 @@
 </head>
 <body>
 	
-	<table>
+	<table align="left">
 		<tr>
 			<td><a href="/practic7/update/brand/brands.jsp">Brands</a></td>
 			<td><a href="/practic7/update/model/models.jsp">Models</a></td>
 			<td><a href="/practic7/update/car/cars.jsp">Cars</a></td>
-			<td><a href="/practic7/search/brands.jsp">Search</a></td>
 		</tr>	
 	</table>
 	
+	<table align="right">
+		<tr>
+			<td>BRAND</td>
+			<td>	
+				<form action="/servlet/brands" method="get">
+					<input type="text" name="brand" title="brand">
+					<input type="submit" value="SEARCH">
+				</form>
+			</td>
+		</tr>
+		<tr>
+			<td>MODEL</td>
+			<td>	
+				<form action="/servlet/models" method="get">
+					<input type="text" name="model" title="model">
+					<input type="submit" value="SEARCH">
+				</form>
+			</td>
+		</tr>
+		<tr>
+			<td>CAR</td>
+			<td>	
+				<form action="/servlet/cars" method="get">
+					<input type="text" name="car" title="car">
+					<input type="submit" value="SEARCH">
+				</form>
+			</td>
+		</tr>
+	</table>
 </body>
 </html>
