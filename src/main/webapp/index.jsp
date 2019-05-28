@@ -6,7 +6,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 </head>
-<body bgcolor="#4B0082" link="#990066" vlink="#30D5C8">
+<body bgcolor="#FFDEAD" link="#30D5C8" vlink="#990066">
 	<%@include file= "/practic7/menu.jsp" %>
 	<h1 align="center">Cars page</h1>
 </body>
